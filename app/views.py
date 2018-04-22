@@ -30,8 +30,11 @@ STRATEGY_DETAILLOG = 'Strategy_DetailLog'
 STRATEGY_TRADELOG = 'Strategy_TradeLog'
 
 # c = MongoClient()
-c = MongoClient(port=23429)
-c['admin'].authenticate('Dean2', 'Dean0129')
+try:
+    c = MongoClient(port=23429)
+    c['admin'].authenticate('Dean2', 'Dean0129')
+except:
+    print 'no mongoDB!'
 db = STRATEGY_DB_WEB
 dbTradeLog = STRATEGY_TRADELOG
 dbDetailLog = STRATEGY_DETAILLOG
