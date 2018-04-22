@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+  <form  style="margin:2cm 10cm 2cm 10cm;border:1px solid red" method="post">
+    <center>
+      <font size="6">
+        <span>username:</span><input type="text" name="username" id="username" style="height:30px"><br/>
+        <span>password:</span><input type="password" name="password" id="password" style="height:30px"><br/>
+        <button type="submit" id="loginBtn" style="height:30px;width:100px;"><font size="5">login</font></button>
+      </font>
+    </center>
+  </form>
+  {% if error %}
+      <h1 style="color:red">{{ error }}!</h1>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <font size="6" color="blue"><p>(*^__^*)</p></font>
+    <font size="6" color="blue"><p><b>策略持仓</b></p></font>
+	<ol>
+	{% for post in myposts%}
+	<p><b><li>{{post.name}} position : </li></b></p>
+		{% for k,v in post.value.pos.items()%}
+		<p>{{k}} : {{v}}</p>
+		{% endfor %}
+	<p>----------------------------------------------------</p>
+	{% endfor%}
+	</ol>
+
+	<font size="6" color="blue"><p>(*^__^*)</p></font>
+	<font size="6" color="blue"><p><b>策略状态信息</b></p></font>
+	<ol>
+	{% for info in myposts%}
+	<p><b><li>{{info.name}}</li></b></p>
+		{% for k,v in info.value.items()%}
+		<p>{{k}} : {{v}}</p>
+		{% endfor %}
+	<p>----------------------------------------------------</p>
+	{% endfor%}
+	</ol>
+
+{% endblock %}

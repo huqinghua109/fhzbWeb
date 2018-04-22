@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <font size="6" color="blue"><p>(*^__^*)</p></font>
+    <font size="6" color="blue"><p><b>策略持仓</b></p></font>
+	<ol>
+	{% for post in myposts%}
+	<b><li><p>{{post.name}} position : </p></li></b>
+		{% for k,v in post.value.pos.items()%}
+		<p>{{k}} : {{v}}</p>
+		{% endfor %}
+	<p>----------------------------------------------------</p>
+	{% endfor%}
+	</ol>
+
+	<font size="6" color="blue"><p>(*^__^*)</p></font>
+	<font size="6" color="blue"><p><b>历史成交信息</b></p></font>
+	<ol>
+	{% for log in mytradelogs%}
+	<li><p>{{log.datetime}} <b>{{log.strategy}}: {{log.context}}</b></p></li>
+	<p>----------------------------------------------------</p>
+	{% endfor%}
+	</ol>
+
+	<font size="6" color="blue"><p>(*^__^*)</p></font>
+	<font size="6" color="blue"><p><b>分策略成交信息</b></p></font>
+	{% for item in strategyTradeLogs%}
+	<p><b>{{item.strategy}}</b></p>
+		<ol>
+		{% for l in item.trades%}
+		<p><li>{{l[0]}} : {{l[1]}}</li></p>
+		{% endfor%}
+		</ol>
+	<p>----------------------------------------------------</p>
+	{% endfor%}
+
+	<font size="6" color="blue"><p>(*^__^*)</p></font>
+	<font size="6" color="blue"><p><b>策略状态信息</b></p></font>
+	<ol>
+	{% for info in myposts%}
+	<b><li><p>{{info.name}}</p></li></b>
+		{% for k,v in info.value.items()%}
+		<p>{{k}} : {{v}}</p>
+		{% endfor %}
+	<p>----------------------------------------------------</p>
+	{% endfor%}
+	</ol>
+
+	<font size="6" color="blue"><p>(*^__^*)</p></font>
+	<font size="6" color="blue"><p><b>策略变量</b></p></font>
+	{% for var in mytradeVars%}
+	<p><b>{{var.name}}</b> :</p>
+		<ul>
+		{% for k,v in var.value.items()%}
+			<p><b><font color="red">{{k}}</font></b></p>
+			{% for key,value in v.items()%}
+			<p><li>{{key}} : {{value}}</li></p>
+			{% endfor%}
+		{% endfor%}
+		</ul>
+	<p>----------------------------------------------------</p>
+	{% endfor%}
+
+	<font size="6" color="blue"><p>(*^__^*)</p></font>
+	<font size="6" color="blue"><p><b>策略历史数据</b></p></font>
+	{% for his in myhistoryData%}
+	<p><b>{{his.name}}</b> :</p>
+		<ol>
+		{% for sym,v in his.value.items()%}
+			<p><b><font color="red">{{sym}}</font></b></p>
+			{% for key,value in v.items()%}
+				<p>{{key}} : {{value}}</p>
+			{% endfor%}
+		{% endfor %}
+		</ol>
+	<p>----------------------------------------------------</p>
+	{% endfor%}
+
+{% endblock %}

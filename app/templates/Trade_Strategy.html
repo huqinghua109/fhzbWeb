@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<font size="6" color="blue"><p>(*^__^*)</p></font>
+	<font size="6" color="blue"><p><b>分策略成交信息</b></p></font>
+	{% for item in strategyTradeLogs%}
+	<p><b>{{item.strategy}}</b></p>
+		<ol>
+		{% for l in item.trades%}
+		<p><li>{{l[0]}} : {{l[1]}}</li></p>
+		{% endfor%}
+		</ol>
+	<p>----------------------------------------------------</p>
+	{% endfor%}
+
+{% endblock %}

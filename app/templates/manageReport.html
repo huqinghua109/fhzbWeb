@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<title>File Manager</title>
+<h1>File Manager</h1>
+<hr>
+
+{% for obj in files_list %}
+    - {{ obj }}
+    <!-- <a href="{{ url_for('open_file', filename=obj) }}">open</a> -->
+    <a href="{{ url_for('download_file', filename=obj) }}">download</a>
+    <a href="{{ url_for('delete_file', filename=obj) }}">delete</a><br>
+{% endfor %}
+
+{% endblock %}

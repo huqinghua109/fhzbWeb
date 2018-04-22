@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block content %}
+<script type="text/javascript">
+
+	function temp(){
+		conn = new Mongo("localhost:23429")
+		db = conn.getDB("admin")
+		print(db.getCollectionNames())
+		document.getElementById("timeid").innerHTML= db.getCollectionNames()
+	}
+	
+
+	function calculator1(){
+		var p = document.getElementById("mpriceid").value;
+		var mw = document.getElementById("mwaterid1").value;
+		var dw = document.getElementById("dwaterid1").value;
+		var r = document.getElementById("r1").value;
+		var cost = document.getElementById("cost1").value;
+		document.getElementById("pid1").innerHTML = (Number(p)/(1-(Number(mw)-Number(dw))*Number(r)/100)+Number(cost)).toFixed(2);
+	}
+
+	function calculator2(){
+		var p = document.getElementById("dpriceid").value;
+		var dw = document.getElementById("dwaterid2").value;
+		var mw = document.getElementById("mwaterid2").value;
+		var r = document.getElementById("r2").value;
+		var cost = document.getElementById("cost2").value;
+		document.getElementById("pid2").innerHTML = ((Number(p)-Number(cost)) * (1-(Number(mw)-Number(dw))*Number(r)/100)).toFixed(2);
+	}
+
+	function calculator3(){
+		var p = document.getElementById("pid1").innerHTML;
+		var trancost = document.getElementById("trancost").value;
+		var incost = document.getElementById("incost").value;
+		var sp = document.getElementById("sp").value;
+		var q_b = document.getElementById("q_b").value;
+		document.getElementById("pid3").innerHTML = (Number(p)+Number(trancost)+Number(incost)+Number(sp)+Number(q_b)).toFixed(2);
+	}
+
+	function calculator4(){
+		var p = document.getElementById("dpriceid").value;
+		var trancost = document.getElementById("trancost").value;
+		var incost = document.getElementById("incost").value;
+		var sp = document.getElementById("sp").value;
+		var q_b = document.getElementById("q_b").value;
+		document.getElementById("pid3").innerHTML = (Number(p)+Number(trancost)+Number(incost)+Number(sp)+Number(q_b)).toFixed(2);
+	}
+
+	function showtime(){
+		document.getElementById("timeid").innerHTML= Date()
+	}
+
+</script>
+
+<h3>潮粮折算干粮价格</h3>
+<p>
+	潮粮价格: <input type="number" value="1400" id="mpriceid" size="4">&nbsp;&nbsp;
+	潮粮水分：<input type="number" value="30.0" id="mwaterid1" maxlength="4">
+</p>
+<p>
+	干粮水分(%): <input type="number" value="14.5" id="dwaterid1" maxlength="4">&nbsp;&nbsp;
+	折扣比例： <input type="number" value="1.2" id="r1" maxlength="4">&nbsp;&nbsp;
+	烘干费用： <input type="number" value="50" id="cost1" maxlength="4">
+</p>
+<button onclick="calculator1()">干粮价格</button>
+<p id = "pid1"></p>
+<p>------------------------------------------------------</p>
+<h3>干粮折算潮粮价格</h3>
+<p>
+	干粮价格: <input type="number" value="1700" id="dpriceid">&nbsp;&nbsp;
+	干粮水分：<input type="number" value="14.5" id="dwaterid2">
+</p>
+<p>
+	潮粮水分(%): <input type="number" value="30.0" id="mwaterid2">&nbsp;&nbsp;
+	折扣比例： <input type="number" value="1.2" id="r2">&nbsp;&nbsp;
+	烘干费用： <input type="number" value="50" id="cost2">
+</p>
+<button onclick="calculator2()">潮粮价格</button>
+<p id = "pid2"></p>
+<p>------------------------------------------------------</p>
+<h3>交割成本测算</h3>
+<p>
+	运费: <input type="number" value="120" id="trancost">&nbsp;&nbsp;
+	入库费：<input type="number" value="15" id="incost">&nbsp;&nbsp;
+	贴水：<input type="number" value="5" id="sp">&nbsp;&nbsp;
+	检验发票：<input type="number" value="20" id="q_b">&nbsp;&nbsp;
+</p>
+<button onclick="calculator3()">潮粮交割成本</button>&nbsp;&nbsp;<button onclick="calculator4()">干粮交割成本</button>
+<p id = "pid3"></p>
+<p>------------------------------------------------------</p>
+<button onclick="temp()">ShowTime</button>
+<p id = "timeid"></p>
+{% endblock %}

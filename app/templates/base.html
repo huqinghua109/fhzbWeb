@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+    <title>{{title}}</title>
+    {% else %}
+    <title>Welcome to LGT-INVESTMENT's World</title>
+    {% endif%}
+</head>
+<body>
+	<div align="center">
+	    <hl>
+	    	<b><font size="6", color="red">Welcome To The LGT-INVESTMENT's World !</font></b> 
+	    </hl>
+	    <p><b>真 诚 地 提 示 您 ： 交 易 有 风 险 ， 投 资 需 谨 慎 ！</b></p>
+    </div>   
+    {% block content %}{% endblock %}
+</body>
+</html>

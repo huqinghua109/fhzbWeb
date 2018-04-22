@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<font size="6" color="blue"><p>(*^__^*)</p></font>
+	<font size="6" color="blue"><p><b>策略历史数据</b></p></font>
+	<ol>
+	{% for his in myhistoryData%}
+	<p><b><li>{{his.name}} :</li></b></p>
+		{% for sym,v in his.value.items()%}
+			<p><b><font color="red">{{sym}}</font></b></p>
+			{% for key,value in v.items()%}
+				<p>{{key}} : {{value}}</p>
+			{% endfor%}
+		{% endfor %}
+	<p>----------------------------------------------------</p>
+	{% endfor%}
+	<ol>
+
+{% endblock %}

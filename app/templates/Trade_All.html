@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<font size="6" color="blue"><p>(*^__^*)</p></font>
+	<font size="6" color="blue"><p><b>历史成交信息</b></p></font>
+	<ol>
+	{% for log in mytradelogs%}
+	<li><p>{{log.datetime}} <b>{{log.strategy}}: {{log.context}}</b></p></li>
+	<p>----------------------------------------------------</p>
+	{% endfor%}
+	</ol>
+
+{% endblock %}

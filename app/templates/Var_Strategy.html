@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<font size="6" color="blue"><p>(*^__^*)</p></font>
+	<font size="6" color="blue"><p><b>策略变量</b></p></font>
+	{% for var in mytradeVars%}
+	<p><b>{{var.name}}</b> :</p>
+		<ul>
+		{% for k,v in var.value.items()%}
+			<p><b><font color="red">{{k}}</font></b></p>
+			{% for key,value in v.items()%}
+			<p><li>{{key}} : {{value}}</li></p>
+			{% endfor%}
+		{% endfor%}
+		</ul>
+	<p>----------------------------------------------------</p>
+	{% endfor%}
+
+{% endblock %}
