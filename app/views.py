@@ -247,8 +247,15 @@ def cornCal():
 # 玉米现货价格录入
 @app.route('/cornPriceInsert', methods=['GET', 'POST'])
 def cornPriceInsert():
+    if request.method == 'POST':
+        if request.form['date']:
+            print request.form
+            return 'insert successfully'
+        else:
+            return 'insert failed!'
     return render_template("cornPriceInsert.html",
         title = 'Corn Price Insert')
+
 #------------------------------------------------------------------------------
 def allowed_file(filename):
     return '.' in filename and \
