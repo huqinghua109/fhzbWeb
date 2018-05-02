@@ -4,21 +4,21 @@
 <form  style="margin:2cm 10cm 2cm 10cm;border:1px solid red" method="post">
 	<h3>玉米现货价格</h3>
 		<p>
-			日期： <input type="text" value="20180808" id="date" size="4">&nbsp;&nbsp;
-			黑龙江价格: <input type="number" value="1400" id="heiPrice" size="4">&nbsp;&nbsp;
-			锦州港价格：<input type="number" value="1600" id="jinzhouPrice" maxlength="4">
+			<span>日期:</span><input type="text" value="20180808" name="date1" id="date1" size="10">&nbsp;&nbsp;
+			<span>黑龙江价格:</span><input type="number" value="1400" name="heiPrice" id="heiPrice" size="4">&nbsp;&nbsp;
+			<span>锦州港价格:</span><input type="number" value="1600" name="jinzhouPrice" id="jinzhouPrice" maxlength="4">
 		</p>
 		<p>------------------------------------------------------</p>
 
 	<h3>大豆现货价格</h3>
 		<p>
-			日期： <input type="text" value="20180808" id="date" size="4">&nbsp;&nbsp;
-			嫩江价格: <input type="number" value="3400" id="heiPrice" size="4">&nbsp;&nbsp;
-			大连价格：<input type="number" value="3600" id="dalianPrice" maxlength="4">
+			<span>日期:</span><input type="text" value="20180808" name="date2" id="date2" size="10">&nbsp;&nbsp;
+			<span>嫩江价格:</span><input type="number" value="3400" name="nenPrice" id="nenPrice" size="4">&nbsp;&nbsp;
+			<span>大连价格:</span><input type="number" value="3600" name="dalianPrice" id="dalianPrice" maxlength="4">
 		</p>
 		<p>------------------------------------------------------</p>
-	<button type="submit" id="loginBtn" style="height:30px;width:100px;"><font size="5">提交</font></button>
-  </form>
-<button onclick="temp()">ShowTime</button>
+	<button type="submit" id="loginBtn" style="height:30px;width:100px;"><font size="2">提交</font></button>
+</form>
+
 <p id = "timeid"></p>
 {% endblock %}

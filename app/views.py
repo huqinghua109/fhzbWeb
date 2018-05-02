@@ -248,7 +248,7 @@ def cornCal():
 @app.route('/cornPriceInsert', methods=['GET', 'POST'])
 def cornPriceInsert():
     if request.method == 'POST':
-        if request.form['date']:
+        if request.form['date1']:
             print request.form
             return 'insert successfully'
         else:
