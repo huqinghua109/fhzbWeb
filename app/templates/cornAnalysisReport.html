@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+<script type="text/javascript" src="http://echarts.baidu.com/dist/echarts.js"></script>
+
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main1" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main1'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: 'Charts 示例1'
+            },
+            tooltip: {},
+            legend: {
+                data:['采购量']
+            },
+            xAxis: {
+                data: ["一月","二月","三月","四月","五月","六月"]
+            },
+            yAxis: {},
+            series: [{
+                name: '采购量',
+                type: 'bar',
+                data: {{mydata[6:]}}
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main2" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main2'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: 'Charts 示例2'
+            },
+            tooltip: {},
+            legend: {
+                data:['销售量']
+            },
+            xAxis: {
+                data: ["一月","二月","三月","四月","五月","六月"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销售量',
+                type: 'line',
+                areaStyle: {},
+                data: {{mydata[:6]}}
+            }]
+        };
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+
+
+{% endblock %}

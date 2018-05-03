@@ -1,6 +1,6 @@
 # encoding: UTF-8
 import os
-import time
+import time, random
 
 from flask import render_template, request, redirect, url_for,  Flask, url_for, send_from_directory, abort
 from flask_uploads import UploadSet, configure_uploads, IMAGES, patch_request_class, DEFAULTS,ALL
@@ -257,6 +257,14 @@ def cornPriceInsert():
         title = 'Corn Price Insert')
 
 #------------------------------------------------------------------------------
+# 玉米分析报告
+@app.route('/cornAnalysisReport')
+def cornAnalysisReport():
+    
+    return render_template("cornAnalysisReport.html",
+        mydata = [random.randrange(100,900) for i in range(12)],
+        title = 'Corn Analysis Report')
+#------------------------------------------------------------------------------
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
@@ -403,4 +411,4 @@ def temptest():
     #     print 1111111111111
     # elif request.method == 'GET':
     #     print 22222
-    return render_template("temptest.html", mydata = [5, 20, 36, 10, 10, 20], title = 'temptest')
+    return render_template("temptest.html", mydata = [5, 20, 36, 10, 10, 20])
