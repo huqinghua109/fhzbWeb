@@ -250,7 +250,7 @@ def cornPriceInsert():
     if request.method == 'POST':
         if request.form['date1']:
             print request.form
-            return 'insert successfully'
+            return u'insert successfully,近期点评：%s' % request.form['pinglun']
         else:
             return 'insert failed!'
     return render_template("cornPriceInsert.html",
