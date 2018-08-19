@@ -1,6 +1,8 @@
 # encoding: UTF-8
 import os
 import time, random
+import pandas as pd
+import numpy as np
 
 from flask import render_template, request, redirect, url_for,  Flask, url_for, send_from_directory, abort
 from flask_uploads import UploadSet, configure_uploads, IMAGES, patch_request_class, DEFAULTS,ALL
@@ -29,12 +31,12 @@ STRATEGY_DB_WEB = 'Strategy_Var_Param_WEBDB'
 STRATEGY_DETAILLOG = 'Strategy_DetailLog'
 STRATEGY_TRADELOG = 'Strategy_TradeLog'
 
-# c = MongoClient()
-try:
-    c = MongoClient(port=23429)
-    c['admin'].authenticate('Dean2', 'Dean0129')
-except:
-    print 'no mongoDB!'
+c = MongoClient()
+# try:
+#     c = MongoClient(port=23429)
+#     c['admin'].authenticate('Dean2', 'Dean0129')
+# except:
+#     print 'no mongoDB!'
 db = STRATEGY_DB_WEB
 dbTradeLog = STRATEGY_TRADELOG
 dbDetailLog = STRATEGY_DETAILLOG
@@ -249,7 +251,6 @@ def cornCal():
 def cornPriceInsert():
     if request.method == 'POST':
         if request.form['date1']:
-            print request.form
             return u'insert successfully,近期点评：%s' % request.form['pinglun']
         else:
             return 'insert failed!'
@@ -407,8 +408,39 @@ def aboutus():
 # temptest
 @app.route('/temptest', methods=['GET', 'POST'])
 def temptest():
+    excel_path = "C:\\Users\\dell\\Desktop\\Quant\\fhzbWeb\\report\\CornBasisChart1.xlsx"
+    corn_year_basis_df = pd.read_excel(excel_path, sheet_name='cornyearbasis')
+    corn_basis_df = pd.read_excel(excel_path, sheet_name='cornbasis')
+    # corn_year_basis_df = corn_year_basis_df.fillna(0)
+    l1 = ['a','v','b','c','d']
+    l1 = list(corn_year_basis_df.index)
+    l2 = [10,12,13,15,20]
+    l3 = [11,14,15,18,22]
+    l4 = {'a':1,'b':2,'c':3,'d':4,'e':4}
+    l5 = list(corn_year_basis_df.ix[:,'2018basis1'])
+    l6 = []
+    l7 = []
+    for date in corn_year_basis_df.index:
+        d = {}
+        d['date'] = date
+        d['2018basis1'] = corn_year_basis_df.ix[date,'2018basis1']
+        d['2018basis5'] = corn_year_basis_df.ix[date,'2018basis5']
+        d['2018basis9'] = corn_year_basis_df.ix[date,'2018basis9']
+        l6.append(d)
+    for i in range(len(corn_basis_df.index)):
+        d = {}
+        d['date'] = corn_basis_df.index[i].date()
+        d['basis1'] = corn_basis_df.iloc[i,0]
+        d['basis5'] = corn_basis_df.iloc[i,1]
+        d['basis9'] = corn_basis_df.iloc[i,2]
+        l7.append(d)
+    # print(l5)
+    # print(type(l5))
+    # print(type(l5[5]))
+    # mydf = corn_year_basis_df.to_json()
+    # print(mydf)
     # if request.method == 'POST':
     #     print 1111111111111
     # elif request.method == 'GET':
     #     print 22222
-    return render_template("temptest.html", mydata = [5, 20, 36, 10, 10, 20])
+    return render_template("temptest.html", corn_year_basis_df=corn_year_basis_df, l1=l1, l2=l2, l3=l3, l4=l5, l6=l6, l7=l7)

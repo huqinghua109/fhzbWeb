@@ -8,35 +8,177 @@
     <script type="text/javascript" src="http://echarts.baidu.com/dist/echarts.js"></script>
 </head>
 <body>
+    <!-- <p>{{l6}}</p> -->
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="main" style="width: 600px;height:400px;"></div>
+    <div id="main" style="width: 1200px;height:500px;"></div>
+    <div id="main1" style="width: 1200px;height:500px;"></div>
+
     <script type="text/javascript">
+        // function fetchData(cb) {
+        //     // 通过 setTimeout 模拟异步加载
+        //     setTimeout(function () {
+        //         cb({
+        //             categories: corn_year_basis_df.index,
+        //             data: l4
+        //         });
+        //     }, 3000);
+        // }
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'));
+        var myChart = echarts.init(document.getElementById('main'), 'vintage');
+        var myl6 = {{l6|tojson}};
+        // myChart.showLoading();
 
         // 指定图表的配置项和数据
         var option = {
             title: {
-                text: 'Charts 示例'
+                text: 'Corn Year Basis'
             },
-            tooltip: {},
+            tooltip: {
+                trigger: 'axis',
+                axisPointer:{
+                    type:'cross'
+                }
+            },
+            // emphasis: {
+            //     itemStyle: {
+            //         color: 'blue'
+            //     },
+            //     label: {
+            //         show: true,
+            //         formatter: 'This is a emphasis label.'
+            //     
+            // },
             legend: {
-                data:['销量']
+                data:['basis1', 'basis5', 'basis9']
             },
             xAxis: {
-                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+                type:'category'
+                // data: []
             },
             yAxis: {},
-            series: [{
-                name: '销量',
-                type: 'bar',
-                data: {{mydata}}
-            }]
+            dataZoom: [
+                {
+                    type: 'slider',
+                    start:0,
+                    end:100
+                }
+            ],
+            dataset:{
+                dimensions: ['date', '2018basis1', '2018basis5', '2018basis9'],
+                source: myl6
+            },
+            series: [
+                {
+                    name: 'basis1',
+                    type: 'line'
+                    // data: {{l4}}
+                },
+                {
+                    name: 'basis5',
+                    type: 'line'
+                    // data: {{l4s}}
+                },
+                {
+                    name: 'basis9',
+                    type: 'line'
+                    // data: {{l4}}
+                }
+            ]
         };
 
 
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
+
+        // fetchData(function (data) {
+        //     myChart.hideLoading();
+        //     myChart.setOption({
+        //         xAxis: {
+        //             data: data.categories
+        //         },
+        //         series: [{
+        //             // 根据名字对应到相应的系列
+        //             name: '销量',
+        //             data: data.data
+        //         }]
+        //     });
+        // });
+        // $.get('data.json').done(function (data){
+        //     myChart.hideLoading();
+        //     myChart.setOption({
+        //         xAxis:{
+        //             data: data.categories
+        //         },
+        //         series:[{
+        //             name:'2018basis1',
+        //             data:data.data
+        //         }]
+        //     })
+        // })
+    </script>
+    <script type="text/javascript">
+        var myChart1 = echarts.init(document.getElementById('main1'), 'vintage');
+        var myl7 = {{l7|tojson}};
+        var option = {
+            title: {
+                text: 'Corn Basis'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer:{
+                    type:'cross'
+                }
+            },
+            legend: {
+                data:['basis1', 'basis5', 'basis9']
+            },
+            xAxis: {
+                type:'category',
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        // 格式化成月/日，只在第一个刻度显示年份
+                        var date = new Date(value);
+                        var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                        // if (index === 0) {
+                        //     texts.unshift(date.getFullYear());
+                        // }
+                        return texts.join('/');
+                    }
+                }
+                // data: []
+            },
+            yAxis: {},
+            dataZoom: [
+                {
+                    type: 'slider',
+                    start:0,
+                    end:100
+                }
+            ],
+            dataset:{
+                dimensions: ['date', 'basis1', 'basis5', 'basis9'],
+                source: myl7
+            },
+            series: [
+                {
+                    name: 'basis1',
+                    type: 'line'
+                    // data: {{l4}}
+                },
+                {
+                    name: 'basis5',
+                    type: 'line'
+                    // data: {{l4s}}
+                },
+                {
+                    name: 'basis9',
+                    type: 'line'
+                    // data: {{l4}}
+                }
+            ]
+        };
+        myChart1.setOption(option);
     </script>
 </body>
 </html>
