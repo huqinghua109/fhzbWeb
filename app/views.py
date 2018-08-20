@@ -408,9 +408,9 @@ def aboutus():
 # temptest
 @app.route('/temptest', methods=['GET', 'POST'])
 def temptest():
-    excel_path = "C:\\Users\\dell\\Desktop\\Quant\\fhzbWeb\\report\\CornBasisChart1.xlsx"
-    corn_year_basis_df = pd.read_excel(excel_path, sheet_name='cornyearbasis')
-    corn_basis_df = pd.read_excel(excel_path, sheet_name='cornbasis')
+    # excel_path = "C:\\Users\\dell\\Desktop\\Quant\\fhzbWeb\\report\\CornBasisChart1.xlsx"
+    corn_year_basis_df = pd.read_excel(app.config['EXCEL_PATH'], sheet_name='cornyearbasis')
+    corn_basis_df = pd.read_excel(app.config['EXCEL_PATH'], sheet_name='cornbasis')
     # corn_year_basis_df = corn_year_basis_df.fillna(0)
     l1 = ['a','v','b','c','d']
     l1 = list(corn_year_basis_df.index)
