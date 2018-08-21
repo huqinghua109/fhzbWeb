@@ -424,8 +424,10 @@ def temptest():
         d = {}
         d['date'] = date
         d['2018basis1'] = corn_year_basis_df.ix[date,'2018basis1']
-        d['2018basis5'] = corn_year_basis_df.ix[date,'2018basis5']
-        d['2018basis9'] = corn_year_basis_df.ix[date,'2018basis9']
+        d['2017basis1'] = corn_year_basis_df.ix[date,'2017basis1']
+        d['2016basis1'] = corn_year_basis_df.ix[date,'2016basis1']
+        d['2015basis1'] = corn_year_basis_df.ix[date,'2015basis1']
+        d['2014basis1'] = corn_year_basis_df.ix[date,'2014basis1']
         l6.append(d)
     for i in range(len(corn_basis_df.index)):
         d = {}

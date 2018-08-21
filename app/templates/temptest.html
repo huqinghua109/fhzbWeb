@@ -49,7 +49,7 @@
             //     
             // },
             legend: {
-                data:['basis1', 'basis5', 'basis9']
+                data:['2018basis1', '2017basis1', '2016basis1', '2015basis1', '2014basis1']
             },
             xAxis: {
                 type:'category'
@@ -64,22 +64,32 @@
                 }
             ],
             dataset:{
-                dimensions: ['date', '2018basis1', '2018basis5', '2018basis9'],
+                dimensions: ['date', '2018basis1', '2017basis1', '2016basis1', '2015basis1', '2014basis1'],
                 source: myl6
             },
             series: [
                 {
-                    name: 'basis1',
+                    name: '2018basis1',
                     type: 'line'
                     // data: {{l4}}
                 },
                 {
-                    name: 'basis5',
+                    name: '2017basis1',
                     type: 'line'
                     // data: {{l4s}}
                 },
                 {
-                    name: 'basis9',
+                    name: '2016basis1',
+                    type: 'line'
+                    // data: {{l4s}}
+                },
+                {
+                    name: '2015basis1',
+                    type: 'line'
+                    // data: {{l4s}}
+                },
+                {
+                    name: '2014basis1',
                     type: 'line'
                     // data: {{l4}}
                 }
