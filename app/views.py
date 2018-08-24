@@ -418,6 +418,7 @@ def cornbasischart():
     for date in corn_year_basis1_df.index:
         d = {}
         d['date'] = date
+        d['2019basis1'] = corn_year_basis1_df.ix[date,'2019basis1']
         d['2018basis1'] = corn_year_basis1_df.ix[date,'2018basis1']
         d['2017basis1'] = corn_year_basis1_df.ix[date,'2017basis1']
         d['2016basis1'] = corn_year_basis1_df.ix[date,'2016basis1']
@@ -429,6 +430,7 @@ def cornbasischart():
     for date in corn_year_basis5_df.index:
         d = {}
         d['date'] = date
+        d['2019basis5'] = corn_year_basis5_df.ix[date,'2019basis5']
         d['2018basis5'] = corn_year_basis5_df.ix[date,'2018basis5']
         d['2017basis5'] = corn_year_basis5_df.ix[date,'2017basis5']
         d['2016basis5'] = corn_year_basis5_df.ix[date,'2016basis5']
@@ -440,6 +442,7 @@ def cornbasischart():
     for date in corn_year_basis9_df.index:
         d = {}
         d['date'] = date
+        d['2019basis9'] = corn_year_basis9_df.ix[date,'2019basis9']
         d['2018basis9'] = corn_year_basis9_df.ix[date,'2018basis9']
         d['2017basis9'] = corn_year_basis9_df.ix[date,'2017basis9']
         d['2016basis9'] = corn_year_basis9_df.ix[date,'2016basis9']
