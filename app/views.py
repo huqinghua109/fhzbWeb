@@ -405,6 +405,60 @@ def aboutus():
     return render_template("aboutus.html",
         title = 'aboutus')
 #------------------------------------------------------------------------------
+# basis chart
+@app.route('/cornbasischart', methods=['GET', 'POST'])
+def cornbasischart():
+    # excel_path = "C:\\Users\\dell\\Desktop\\Quant\\fhzbWeb\\report\\CornBasisChart1.xlsx"
+    corn_year_basis1_df = pd.read_excel(app.config['EXCEL_PATH'], sheet_name='cornyearbasis1')
+    corn_year_basis5_df = pd.read_excel(app.config['EXCEL_PATH'], sheet_name='cornyearbasis5')
+    corn_year_basis9_df = pd.read_excel(app.config['EXCEL_PATH'], sheet_name='cornyearbasis9')
+    corn_basis_df = pd.read_excel(app.config['EXCEL_PATH'], sheet_name='cornbasis')
+    # corn_year_basis_df = corn_year_basis_df.fillna(0)
+    corn_year_basis1_l = []
+    for date in corn_year_basis1_df.index:
+        d = {}
+        d['date'] = date
+        d['2018basis1'] = corn_year_basis1_df.ix[date,'2018basis1']
+        d['2017basis1'] = corn_year_basis1_df.ix[date,'2017basis1']
+        d['2016basis1'] = corn_year_basis1_df.ix[date,'2016basis1']
+        d['2015basis1'] = corn_year_basis1_df.ix[date,'2015basis1']
+        d['2014basis1'] = corn_year_basis1_df.ix[date,'2014basis1']
+        corn_year_basis1_l.append(d)
+
+    corn_year_basis5_l = []
+    for date in corn_year_basis5_df.index:
+        d = {}
+        d['date'] = date
+        d['2018basis5'] = corn_year_basis5_df.ix[date,'2018basis5']
+        d['2017basis5'] = corn_year_basis5_df.ix[date,'2017basis5']
+        d['2016basis5'] = corn_year_basis5_df.ix[date,'2016basis5']
+        d['2015basis5'] = corn_year_basis5_df.ix[date,'2015basis5']
+        d['2014basis5'] = corn_year_basis5_df.ix[date,'2014basis5']
+        corn_year_basis5_l.append(d)
+
+    corn_year_basis9_l = []
+    for date in corn_year_basis9_df.index:
+        d = {}
+        d['date'] = date
+        d['2018basis9'] = corn_year_basis9_df.ix[date,'2018basis9']
+        d['2017basis9'] = corn_year_basis9_df.ix[date,'2017basis9']
+        d['2016basis9'] = corn_year_basis9_df.ix[date,'2016basis9']
+        d['2015basis9'] = corn_year_basis9_df.ix[date,'2015basis9']
+        d['2014basis9'] = corn_year_basis9_df.ix[date,'2014basis9']
+        corn_year_basis9_l.append(d)
+
+    corn_basis_l = []
+    for i in range(len(corn_basis_df.index)):
+        d = {}
+        d['date'] = corn_basis_df.index[i].date()
+        d['basis1'] = corn_basis_df.iloc[i,0]
+        d['basis5'] = corn_basis_df.iloc[i,1]
+        d['basis9'] = corn_basis_df.iloc[i,2]
+        corn_basis_l.append(d)
+
+    return render_template("cornbasischart.html", corn_year_basis1_l=corn_year_basis1_l, corn_year_basis5_l=corn_year_basis5_l, corn_year_basis9_l=corn_year_basis9_l, corn_basis_l=corn_basis_l)
+
+#------------------------------------------------------------------------------
 # temptest
 @app.route('/temptest', methods=['GET', 'POST'])
 def temptest():
@@ -446,3 +500,4 @@ def temptest():
     # elif request.method == 'GET':
     #     print 22222
     return render_template("temptest.html", corn_year_basis_df=corn_year_basis_df, l1=l1, l2=l2, l3=l3, l4=l5, l6=l6, l7=l7)
+
