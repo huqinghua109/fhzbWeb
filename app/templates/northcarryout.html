@@ -69,26 +69,24 @@
             },
             yAxis: [
                 {
-                    // name:'NorthCarryouy',
+                    name:'Carryout',
                     type:'value',
                     min:function(value){
                         return value.min-20
-                    },
-                    position:'left'
+                    }
                 },
                 {
-                    // name:'NorthCarryouyChange',
+                    name:'Change',
+                    type:'value'
+                },
+                {
+                    name:'JinzhouPrice',
                     type:'value',
                     position:'right',
-                    offset:50
-                },
-                {
-                    // name:'JinzhouPrice',
-                    type:'value',
+                    offset:70,
                     min:function(value){
                         return value.min-50
-                    },
-                    position:'right'
+                    }
                 }
             ],
             dataZoom: [

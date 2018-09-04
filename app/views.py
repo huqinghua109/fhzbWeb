@@ -3,6 +3,7 @@ import os
 import time, random
 import pandas as pd
 import numpy as np
+from collections import OrderedDict
 
 from flask import render_template, request, redirect, url_for,  Flask, url_for, send_from_directory, abort
 from flask_uploads import UploadSet, configure_uploads, IMAGES, patch_request_class, DEFAULTS,ALL
@@ -409,14 +410,14 @@ def aboutus():
 @app.route('/cornbasischart', methods=['GET', 'POST'])
 def cornbasischart():
     # excel_path = "C:\\Users\\dell\\Desktop\\Quant\\fhzbWeb\\report\\CornBasisChart1.xlsx"
-    corn_year_basis1_df = pd.read_excel(app.config['EXCEL_PATH'], sheet_name='cornyearbasis1')
-    corn_year_basis5_df = pd.read_excel(app.config['EXCEL_PATH'], sheet_name='cornyearbasis5')
-    corn_year_basis9_df = pd.read_excel(app.config['EXCEL_PATH'], sheet_name='cornyearbasis9')
-    corn_basis_df = pd.read_excel(app.config['EXCEL_PATH'], sheet_name='cornbasis')
+    corn_year_basis1_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='cornyearbasis1')
+    corn_year_basis5_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='cornyearbasis5')
+    corn_year_basis9_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='cornyearbasis9')
+    corn_basis_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='cornbasis')
     # corn_year_basis_df = corn_year_basis_df.fillna(0)
     corn_year_basis1_l = []
     for date in corn_year_basis1_df.index:
-        d = {}
+        d = OrderedDict()
         d['date'] = date
         d['2019basis1'] = corn_year_basis1_df.ix[date,'2019basis1']
         d['2018basis1'] = corn_year_basis1_df.ix[date,'2018basis1']
@@ -428,7 +429,7 @@ def cornbasischart():
 
     corn_year_basis5_l = []
     for date in corn_year_basis5_df.index:
-        d = {}
+        d = OrderedDict()
         d['date'] = date
         d['2019basis5'] = corn_year_basis5_df.ix[date,'2019basis5']
         d['2018basis5'] = corn_year_basis5_df.ix[date,'2018basis5']
@@ -440,7 +441,7 @@ def cornbasischart():
 
     corn_year_basis9_l = []
     for date in corn_year_basis9_df.index:
-        d = {}
+        d = OrderedDict()
         d['date'] = date
         d['2019basis9'] = corn_year_basis9_df.ix[date,'2019basis9']
         d['2018basis9'] = corn_year_basis9_df.ix[date,'2018basis9']
@@ -452,7 +453,7 @@ def cornbasischart():
 
     corn_basis_l = []
     for i in range(len(corn_basis_df.index)):
-        d = {}
+        d = OrderedDict()
         d['date'] = corn_basis_df.index[i].date()
         d['basis1'] = corn_basis_df.iloc[i,0]
         d['basis5'] = corn_basis_df.iloc[i,1]
@@ -462,45 +463,57 @@ def cornbasischart():
     return render_template("cornbasischart.html", corn_year_basis1_l=corn_year_basis1_l, corn_year_basis5_l=corn_year_basis5_l, corn_year_basis9_l=corn_year_basis9_l, corn_basis_l=corn_basis_l)
 
 #------------------------------------------------------------------------------
+# North Port Carryout & Price
+@app.route('/northcarryout', methods=['GET', 'POST'])
+def northcarryout():
+    df = pd.read_excel(app.config['EXCEL_CORNDATA'], sheet_name='NSPort')
+    df = df[1:-1]
+    # corn_year_basis_df = corn_year_basis_df.fillna(0)
+    l1 = []
+    l2 = []
+    l3 = []
+    for date in df.index:
+        d = OrderedDict()
+        d['date'] = date
+        d['NorthCarryouy'] = df.ix[date,'Unnamed: 20']
+        d['NorthCarryouyChange'] = df.ix[date,'Unnamed: 21']
+        d['JinzhouPrice'] = df.ix[date,'Unnamed: 4']
+        l1.append(d)
+
+    return render_template("northcarryout.html", l1=l1, l2=l2, l3=l3)
+#------------------------------------------------------------------------------
 # temptest
 @app.route('/temptest', methods=['GET', 'POST'])
 def temptest():
-    # excel_path = "C:\\Users\\dell\\Desktop\\Quant\\fhzbWeb\\report\\CornBasisChart1.xlsx"
-    corn_year_basis_df = pd.read_excel(app.config['EXCEL_PATH'], sheet_name='cornyearbasis')
-    corn_basis_df = pd.read_excel(app.config['EXCEL_PATH'], sheet_name='cornbasis')
+    excel_path = "E:\\Desktop\\fhzbWeb\\report\\CornData.xlsx"
+    df = pd.read_excel(excel_path, sheet_name='NSPort')
+    df = df[1:-1]
     # corn_year_basis_df = corn_year_basis_df.fillna(0)
-    l1 = ['a','v','b','c','d']
-    l1 = list(corn_year_basis_df.index)
-    l2 = [10,12,13,15,20]
-    l3 = [11,14,15,18,22]
-    l4 = {'a':1,'b':2,'c':3,'d':4,'e':4}
-    l5 = list(corn_year_basis_df.ix[:,'2018basis1'])
-    l6 = []
-    l7 = []
-    for date in corn_year_basis_df.index:
-        d = {}
+    l1 = []
+    l2 = []
+    l3 = []
+    for date in df.index:
+        d = OrderedDict()
         d['date'] = date
-        d['2018basis1'] = corn_year_basis_df.ix[date,'2018basis1']
-        d['2017basis1'] = corn_year_basis_df.ix[date,'2017basis1']
-        d['2016basis1'] = corn_year_basis_df.ix[date,'2016basis1']
-        d['2015basis1'] = corn_year_basis_df.ix[date,'2015basis1']
-        d['2014basis1'] = corn_year_basis_df.ix[date,'2014basis1']
-        l6.append(d)
-    for i in range(len(corn_basis_df.index)):
-        d = {}
-        d['date'] = corn_basis_df.index[i].date()
-        d['basis1'] = corn_basis_df.iloc[i,0]
-        d['basis5'] = corn_basis_df.iloc[i,1]
-        d['basis9'] = corn_basis_df.iloc[i,2]
-        l7.append(d)
+        d['NorthCarryouy'] = df.ix[date,'Unnamed: 20']
+        d['NorthCarryouyChange'] = df.ix[date,'Unnamed: 21']
+        d['JinzhouPrice'] = df.ix[date,'Unnamed: 4']
+        l1.append(d)
+    # for i in range(len(corn_basis_df.index)):
+    #     d = OrderedDict()
+    #     d['date'] = corn_basis_df.index[i].date()
+    #     d['basis1'] = corn_basis_df.iloc[i,0]
+    #     d['basis5'] = corn_basis_df.iloc[i,1]
+    #     d['basis9'] = corn_basis_df.iloc[i,2]
+    #     l7.append(d)
     # print(l5)
     # print(type(l5))
     # print(type(l5[5]))
-    # mydf = corn_year_basis_df.to_json()
+    # mydf = s.to_json()
     # print(mydf)
     # if request.method == 'POST':
     #     print 1111111111111
     # elif request.method == 'GET':
     #     print 22222
-    return render_template("temptest.html", corn_year_basis_df=corn_year_basis_df, l1=l1, l2=l2, l3=l3, l4=l5, l6=l6, l7=l7)
+    return render_template("temptest.html", l1=l1, l2=l2, l3=l3)
 
