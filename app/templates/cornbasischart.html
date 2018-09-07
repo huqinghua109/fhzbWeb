@@ -13,10 +13,10 @@
         <h1><b><font size="6", color="red">玉米期现基差图</font></b></h1>
     </div>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="basis1" style="width: 1200px;height:500px;"></div>
-    <div id="basis5" style="width: 1200px;height:500px;"></div>
-    <div id="basis9" style="width: 1200px;height:500px;"></div>
-    <div id="cornbasis" style="width: 1200px;height:500px;"></div>
+    <div id="basis1" style="width: 600px;height:300px;"></div>
+    <div id="basis5" style="width: 600px;height:300px;"></div>
+    <div id="basis9" style="width: 600px;height:300px;"></div>
+    <div id="cornbasis" style="width: 600px;height:500px;"></div>
 
     <script type="text/javascript">
         // function fetchData(cb) {
@@ -36,8 +36,8 @@
         // 指定图表的配置项和数据
         var option = {
             title: {
-                text: '现货-期货1月',
-                left:80
+                text: '现货-期货1月基差',
+                left:'center'
             },
             tooltip: {
                 trigger: 'axis',
@@ -55,7 +55,8 @@
             //     
             // },
             legend: {
-                data:['2019basis1', '2018basis1', '2017basis1', '2016basis1', '2015basis1', '2014basis1']
+                data:['2019', '2018', '2017', '2016', '2015', '2014'],
+                y:30
             },
             xAxis: {
                 type:'category',
@@ -88,40 +89,39 @@
             },
             series: [
                 {
-                    name: '2019basis1',
+                    name: '2019',
                     type: 'line',
                     color:'black',
                     symbol:'triangle',
-                    symbolSize:10
+                    symbolSize:8
                     // data: {{l4}}
                 },
                 {
-                    name: '2018basis1',
+                    name: '2018',
                     type: 'line',
                     symbol:'rect',
-                    symbolSize:10
+                    symbolSize:6
                     // data: {{l4}}
                 },
                 {
-                    name: '2017basis1',
+                    name: '2017',
                     type: 'line',
                     symbol:'diamond',
-                    symbolSize:10
+                    symbolSize:8
                     // data: {{l4s}}
                 },
                 {
-                    name: '2016basis1',
+                    name: '2016',
                     type: 'line',
-                    symbol:'none'
                     // data: {{l4s}}
                 },
                 {
-                    name: '2015basis1',
+                    name: '2015',
                     type: 'line'
                     // data: {{l4s}}
                 },
                 {
-                    name: '2014basis1',
+                    name: '2014',
                     type: 'line'
                     // data: {{l4}}
                 }
@@ -168,8 +168,8 @@
         // 指定图表的配置项和数据
         var option = {
             title: {
-                text: '现货-期货5月',
-                left:80
+                text: '现货-期货5月基差',
+                left:'center'
             },
             tooltip: {
                 trigger: 'axis',
@@ -187,7 +187,8 @@
             //     
             // },
             legend: {
-                data:['2019basis5', '2018basis5', '2017basis5', '2016basis5', '2015basis5', '2014basis5']
+                data:['2019', '2018', '2017', '2016', '2015', '2014'],
+                y:30
             },
             xAxis: {
                 type:'category',
@@ -220,35 +221,35 @@
             },
             series: [
                 {
-                    name: '2019basis5',
+                    name: '2019',
                     type: 'line',
                     color:'black',
                     symbol:'triangle',
-                    symbolSize:10
+                    symbolSize:8
                     // data: {{l4}}
                 },
                 {
-                    name: '2018basis5',
+                    name: '2018',
                     type: 'line'
                     // data: {{l4}}
                 },
                 {
-                    name: '2017basis5',
+                    name: '2017',
                     type: 'line'
                     // data: {{l4s}}
                 },
                 {
-                    name: '2016basis5',
+                    name: '2016',
                     type: 'line'
                     // data: {{l4s}}
                 },
                 {
-                    name: '2015basis5',
+                    name: '2015',
                     type: 'line'
                     // data: {{l4s}}
                 },
                 {
-                    name: '2014basis5',
+                    name: '2014',
                     type: 'line'
                     // data: {{l4}}
                 }
@@ -269,8 +270,8 @@
         // 指定图表的配置项和数据
         var option = {
             title: {
-                text: '现货-期货9月',
-                left:80
+                text: '现货-期货9月基差',
+                left:'center'
             },
             tooltip: {
                 trigger: 'axis',
@@ -288,7 +289,8 @@
             //     
             // },
             legend: {
-                data:['2019basis9', '2018basis9', '2017basis9', '2016basis9', '2015basis9', '2014basis9']
+                data:['2019', '2018', '2017', '2016', '2015', '2014'],
+                y:30
             },
             xAxis: {
                 type:'category',
@@ -321,35 +323,35 @@
             },
             series: [
                 {
-                    name: '2019basis9',
+                    name: '2019',
                     type: 'line',
                     color:'black',
                     symbol:'triangle',
-                    symbolSize:10
+                    symbolSize:8
                     // data: {{l4}}
                 },
                 {
-                    name: '2018basis9',
+                    name: '2018',
                     type: 'line'
                     // data: {{l4}}
                 },
                 {
-                    name: '2017basis9',
+                    name: '2017',
                     type: 'line'
                     // data: {{l4s}}
                 },
                 {
-                    name: '2016basis9',
+                    name: '2016',
                     type: 'line'
                     // data: {{l4s}}
                 },
                 {
-                    name: '2015basis9',
+                    name: '2015',
                     type: 'line'
                     // data: {{l4s}}
                 },
                 {
-                    name: '2014basis9',
+                    name: '2014',
                     type: 'line'
                     // data: {{l4}}
                 }
@@ -376,7 +378,7 @@
                 }
             },
             legend: {
-                data:['basis1', 'basis5', 'basis9']
+                data:['基差1月', '基差5月', '基差9月']
             },
             xAxis: {
                 type:'category',
@@ -408,17 +410,17 @@
             },
             series: [
                 {
-                    name: 'basis1',
+                    name: '基差1月',
                     type: 'line'
                     // data: {{l4}}
                 },
                 {
-                    name: 'basis5',
+                    name: '基差5月',
                     type: 'line'
                     // data: {{l4s}}
                 },
                 {
-                    name: 'basis9',
+                    name: '基差9月',
                     type: 'line'
                     // data: {{l4}}
                 }

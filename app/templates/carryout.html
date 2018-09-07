@@ -10,9 +10,9 @@
 <body>
     <!-- <p>{{l3}}</p> -->
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="northPort" style="width: 1200px;height:500px;"></div>
-    <div id="southPort" style="width: 1200px;height:500px;"></div>
-    <div id="profit" style="width: 1200px;height:500px;"></div>
+    <div id="northPort" style="width: 1000px;height:400px;"></div>
+    <div id="southPort" style="width: 640px;height:300px;"></div>
+    <div id="profit" style="width: 600px;height:300px;"></div>
 
     <script type="text/javascript">
         // function fetchData(cb) {
@@ -33,7 +33,7 @@
         var option = {
             title: {
                 text: '北港库存-价格',
-                left:80
+                left:'center'
             },
             tooltip: {
                 trigger: 'axis',
@@ -42,7 +42,8 @@
                 }
             },
             legend: {
-                data:['NorthCarryout', 'NorthCarryoutChange', 'JinzhouPrice']
+                data:['北港库存', '库存周度变化', '锦州港价格'],
+                y:30
             },
             xAxis: {
                 type:'category',
@@ -70,14 +71,14 @@
                     }
                 },
                 {
-                    name:'库存变化',
+                    name:'周度变化',
                     type:'value'
                 },
                 {
                     name:'锦州港价格',
                     type:'value',
                     position:'right',
-                    offset:70,
+                    offset:50,
                     min:function(value){
                         return value.min-50
                     }
@@ -96,7 +97,7 @@
             },
             series: [
                 {
-                    name: 'NorthCarryout',
+                    name: '北港库存',
                     yAxisIndex:0,
                     type: 'line',
                     symbol:'none',
@@ -105,14 +106,14 @@
                     // data: {{l4}}
                 },
                 {
-                    name: 'NorthCarryoutChange',
+                    name: '库存周度变化',
                     yAxisIndex:1,
                     type: 'bar',
                     color:'green'
                     // data: {{l4s}}
                 },
                 {
-                    name: 'JinzhouPrice',
+                    name: '锦州港价格',
                     yAxisIndex:2,
                     type: 'line'
                     // data: {{l4s}}
@@ -170,7 +171,7 @@
         var option = {
             title: {
                 text: '南港库存-价格',
-                left:80
+                left:'center'
             },
             tooltip: {
                 trigger: 'axis',
@@ -179,7 +180,8 @@
                 }
             },
             legend: {
-                data:['GDCarryout', 'GDCarryoutChange', 'GDPrice']
+                data:['广东港口库存', '库存周度变化', '广东港口价格'],
+                y:30
             },
             xAxis: {
                 type:'category',
@@ -205,14 +207,14 @@
                     min:10
                 },
                 {
-                    name:'库存变化',
+                    name:'周变',
                     type:'value'
                 },
                 {
-                    name:'广东港价格',
+                    name:'价格',
                     type:'value',
                     position:'right',
-                    offset:70,
+                    offset:20,
                     min:function(value){
                         return value.min-50
                     }
@@ -231,7 +233,7 @@
             },
             series: [
                 {
-                    name: 'GDCarryout',
+                    name: '广东港口库存',
                     yAxisIndex:0,
                     type: 'line',
                     symbol:'none',
@@ -240,14 +242,14 @@
                     // data: {{l4}}
                 },
                 {
-                    name: 'GDCarryoutChange',
+                    name: '库存周度变化',
                     yAxisIndex:1,
                     type: 'bar',
                     color:'green'
                     // data: {{l4s}}
                 },
                 {
-                    name: 'GDPrice',
+                    name: '广东港口价格',
                     yAxisIndex:2,
                     type: 'line'
                     // data: {{l4s}}
@@ -305,7 +307,7 @@
         var option = {
             title: {
                 text: '贸易利润',
-                left:80
+                left:'center'
             },
             tooltip: {
                 trigger: 'axis',
@@ -314,7 +316,8 @@
                 }
             },
             legend: {
-                data:['CarryoutSpread', 'profit']
+                data:['广东港口库存/北港库存', '散船贸易利润'],
+                y:30
             },
             xAxis: {
                 type:'category',
@@ -335,7 +338,7 @@
             },
             yAxis: [
                 {
-                    name:'广东港库存/北方库存',
+                    name:'广东库存/北方库存',
                     type:'value',
                     min:0.01
                 },
@@ -357,7 +360,7 @@
             },
             series: [
                 {
-                    name: 'CarryoutSpread',
+                    name: '广东港口库存/北港库存',
                     yAxisIndex:0,
                     type: 'line',
                     symbol:'none',
@@ -366,7 +369,7 @@
                     // data: {{l4}}
                 },
                 {
-                    name: 'profit',
+                    name: '散船贸易利润',
                     yAxisIndex:1,
                     type: 'bar',
                     color:'green'

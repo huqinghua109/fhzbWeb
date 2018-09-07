@@ -13,13 +13,13 @@
         <!-- <p>{{corn_cs_spread_df_l}}</p> -->
     </div>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="corncs1" style="width: 1200px;height:500px;"></div>
-    <div id="corncs5" style="width: 1200px;height:500px;"></div>
-    <div id="corncs9" style="width: 1200px;height:500px;"></div>
-    <div id="corncs" style="width: 1200px;height:500px;"></div>
-    <div id="corn9_1" style="width: 1200px;height:500px;"></div>
-    <div id="corn1_5" style="width: 1200px;height:500px;"></div>
-    <div id="corn5_9" style="width: 1200px;height:500px;"></div>
+    <div id="corncs1" style="width: 600px;height:300px;"></div>
+    <div id="corncs5" style="width: 600px;height:300px;"></div>
+    <div id="corncs9" style="width: 600px;height:300px;"></div>
+    <!-- <div id="corncs" style="width: 1200px;height:500px;"></div> -->
+    <div id="corn9_1" style="width: 600px;height:300px;"></div>
+    <div id="corn1_5" style="width: 600px;height:300px;"></div>
+    <div id="corn5_9" style="width: 600px;height:300px;"></div>
 
     <script type="text/javascript">
         // function fetchData(cb) {
@@ -40,7 +40,7 @@
         var option = {
             title: {
                 text: '玉米-淀粉1月',
-                left:80
+                left:'center'
             },
             tooltip: {
                 trigger: 'axis',
@@ -58,7 +58,8 @@
             //     
             // },
             legend: {
-                data:['2016c_cs1', '2017c_cs1', '2018c_cs1', '2019c_cs1']
+                data:['c_cs1601', 'c_cs1701', 'c_cs1801', 'c_cs1901'],
+                y:30
             },
             xAxis: {
                 type:'category',
@@ -91,28 +92,28 @@
             },
             series: [
                 {
-                    name: '2016c_cs1',
+                    name: 'c_cs1601',
                     type: 'line',
                     // symbol:'rect',
                     // symbolSize:6
                     // data: {{l4}}
                 },
                 {
-                    name: '2017c_cs1',
+                    name: 'c_cs1701',
                     type: 'line',
                     // symbol:'triangle',
                     // symbolSize:10
                     // data: {{l4}}
                 },
                 {
-                    name: '2018c_cs1',
+                    name: 'c_cs1801',
                     type: 'line',
                     // symbol:'diamond',
                     // symbolSize:10
                     // data: {{l4s}}
                 },
                 {
-                    name: '2019c_cs1',
+                    name: 'c_cs1901',
                     type: 'line',
                     color:'black',
                     symbol:'triangle',
@@ -163,7 +164,7 @@
         var option = {
             title: {
                 text: '玉米-淀粉5月',
-                left:80
+                left:'center'
             },
             tooltip: {
                 trigger: 'axis',
@@ -181,7 +182,8 @@
             //     
             // },
             legend: {
-                data:['2015c_cs5', '2016c_cs5', '2017c_cs5', '2018c_cs5', '2019c_cs5']
+                data:['c_cs1505', 'c_cs1605', 'c_cs1705', 'c_cs1805', 'c_cs1905'],
+                y:30
             },
             xAxis: {
                 type:'category',
@@ -214,27 +216,27 @@
             },
             series: [
                 {
-                    name: '2015c_cs5',
+                    name: 'c_cs1505',
                     type: 'line'
                     // data: {{l4}}
                 },
                 {
-                    name: '2016c_cs5',
+                    name: 'c_cs1605',
                     type: 'line'
                     // data: {{l4}}
                 },
                 {
-                    name: '2017c_cs5',
+                    name: 'c_cs1705',
                     type: 'line'
                     // data: {{l4s}}
                 },
                 {
-                    name: '2018c_cs5',
+                    name: 'c_cs1805',
                     type: 'line'
                     // data: {{l4s}}
                 },
                 {
-                    name: '2019c_cs5',
+                    name: 'c_cs1905',
                     type: 'line',
                     color:'black',
                     symbol:'triangle',
@@ -259,7 +261,7 @@
         var option = {
             title: {
                 text: '玉米-淀粉9月',
-                left:80
+                left:'center'
             },
             tooltip: {
                 trigger: 'axis',
@@ -277,7 +279,8 @@
             //     
             // },
             legend: {
-                data:['2015c_cs9', '2016c_cs9', '2017c_cs9', '2018c_cs9', '2019c_cs9']
+                data:['c_cs1509', 'c_cs1609', 'c_cs1709', 'c_cs1809', 'c_cs1909'],
+                y:30
             },
             xAxis: {
                 type:'category',
@@ -310,27 +313,27 @@
             },
             series: [
                 {
-                    name: '2015c_cs9',
+                    name: 'c_cs1509',
                     type: 'line'
                     // data: {{l4}}
                 },
                 {
-                    name: '2016c_cs9',
+                    name: 'c_cs1609',
                     type: 'line'
                     // data: {{l4}}
                 },
                 {
-                    name: '2017c_cs9',
+                    name: 'c_cs1709',
                     type: 'line'
                     // data: {{l4s}}
                 },
                 {
-                    name: '2018c_cs9',
+                    name: 'c_cs1809',
                     type: 'line'
                     // data: {{l4s}}
                 },
                 {
-                    name: '2019c_cs9',
+                    name: 'c_cs1909',
                     type: 'line',
                     color:'black',
                     symbol:'triangle',
@@ -355,7 +358,7 @@
         var option = {
             title: {
                 text: '玉米9月-1月',
-                left:80
+                left:'center'
             },
             tooltip: {
                 trigger: 'axis',
@@ -373,7 +376,8 @@
             //     
             // },
             legend: {
-                data:['1809_1901', '1709_1801', '1609_1701', '1509_1601', '1409_1501']
+                data:['1809_1901', '1709_1801', '1609_1701', '1509_1601', '1409_1501'],
+                y:30
             },
             xAxis: {
                 type:'category',
@@ -451,7 +455,7 @@
         var option = {
             title: {
                 text: '玉米1月-5月',
-                left:80
+                left:'center'
             },
             tooltip: {
                 trigger: 'axis',
@@ -469,7 +473,8 @@
             //     
             // },
             legend: {
-                data:['1901_1905', '1801_1805', '1701_1705', '1601_1605', '1501_1505']
+                data:['1901_1905', '1801_1805', '1701_1705', '1601_1605', '1501_1505'],
+                y:30
             },
             xAxis: {
                 type:'category',
@@ -548,7 +553,7 @@
         var option = {
             title: {
                 text: '玉米5月-9月',
-                left:80
+                left:'center'
             },
             tooltip: {
                 trigger: 'axis',
@@ -566,7 +571,8 @@
             //     
             // },
             legend: {
-                data:['1905_1909', '1805_1809', '1705_1709', '1605_1609', '1505_1509']
+                data:['1905_1909', '1805_1809', '1705_1709', '1605_1609', '1505_1509'],
+                y:30
             },
             xAxis: {
                 type:'category',
@@ -641,7 +647,7 @@
         var option = {
             title: {
                 text: '玉米-淀粉价差',
-                left:80
+                left:'center'
             },
             tooltip: {
                 trigger: 'axis',
@@ -650,7 +656,8 @@
                 }
             },
             legend: {
-                data:['corncs1', 'corncs5', 'corncs9']
+                data:['corncs1', 'corncs5', 'corncs9'],
+                y:30
             },
             xAxis: {
                 type:'category',
