@@ -415,6 +415,7 @@ def cornbasischart():
     corn_year_basis9_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='cornyearbasis9')
     corn_basis_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='cornbasis')
     # corn_year_basis_df = corn_year_basis_df.fillna(0)
+
     corn_year_basis1_l = []
     for date in corn_year_basis1_df.index:
         d = OrderedDict()
@@ -463,9 +464,99 @@ def cornbasischart():
     return render_template("cornbasischart.html", corn_year_basis1_l=corn_year_basis1_l, corn_year_basis5_l=corn_year_basis5_l, corn_year_basis9_l=corn_year_basis9_l, corn_basis_l=corn_basis_l)
 
 #------------------------------------------------------------------------------
+# corn spread month & cs
+@app.route('/cornspreadchart', methods=['GET', 'POST'])
+def cornspreadchart():
+    # excel_path = "C:\\Users\\dell\\Desktop\\Quant\\fhzbWeb\\report\\CornBasisChart1.xlsx"
+    # corn_year_basis_df = corn_year_basis_df.fillna(0)
+    corn_cs_spread1_year = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='corncsspread1year')
+    corn_cs_spread5_year = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='corncsspread5year')
+    corn_cs_spread9_year = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='corncsspread9year')
+    corn_cs_spread_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='corncsspread')
+
+    corn_91_spread_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='c9_1_year')
+    corn_15_spread_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='c1_5_year')
+    corn_59_spread_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='c5_9_year')
+
+    corn_cs_spread1_year_l = []
+    for date in corn_cs_spread1_year.index:
+        d = OrderedDict()
+        d['date'] = date
+        d['2016c_cs1'] = corn_cs_spread1_year.ix[date,'2016c-cs1']
+        d['2017c_cs1'] = corn_cs_spread1_year.ix[date,'2017c-cs1']
+        d['2018c_cs1'] = corn_cs_spread1_year.ix[date,'2018c-cs1']
+        d['2019c_cs1'] = corn_cs_spread1_year.ix[date,'2019c-cs1']
+        corn_cs_spread1_year_l.append(d)
+
+    corn_cs_spread5_year_l = []
+    for date in corn_cs_spread5_year.index:
+        d = OrderedDict()
+        d['date'] = date
+        d['2015c_cs5'] = corn_cs_spread5_year.ix[date,'2015c-cs5']
+        d['2016c_cs5'] = corn_cs_spread5_year.ix[date,'2016c-cs5']
+        d['2017c_cs5'] = corn_cs_spread5_year.ix[date,'2017c-cs5']
+        d['2018c_cs5'] = corn_cs_spread5_year.ix[date,'2018c-cs5']
+        d['2019c_cs5'] = corn_cs_spread5_year.ix[date,'2019c-cs5']
+        corn_cs_spread5_year_l.append(d)
+
+    corn_cs_spread9_year_l = []
+    for date in corn_cs_spread9_year.index:
+        d = OrderedDict()
+        d['date'] = date
+        d['2015c_cs9'] = corn_cs_spread9_year.ix[date,'2015c-cs9']
+        d['2016c_cs9'] = corn_cs_spread9_year.ix[date,'2016c-cs9']
+        d['2017c_cs9'] = corn_cs_spread9_year.ix[date,'2017c-cs9']
+        d['2018c_cs9'] = corn_cs_spread9_year.ix[date,'2018c-cs9']
+        d['2019c_cs9'] = corn_cs_spread9_year.ix[date,'2019c-cs9']
+        corn_cs_spread9_year_l.append(d)
+
+    corn_91_year_l = []
+    for date in corn_91_spread_df.index:
+        d = OrderedDict()
+        d['date'] = date
+        d['1809_1901'] = corn_91_spread_df.ix[date,'20189_1']
+        d['1709_1801'] = corn_91_spread_df.ix[date,'20179_1']
+        d['1609_1701'] = corn_91_spread_df.ix[date,'20169_1']
+        d['1509_1601'] = corn_91_spread_df.ix[date,'20159_1']
+        d['1409_1501'] = corn_91_spread_df.ix[date,'20149_1']
+        corn_91_year_l.append(d)
+
+    corn_15_year_l = []
+    for date in corn_15_spread_df.index:
+        d = OrderedDict()
+        d['date'] = date
+        d['1901_1905'] = corn_15_spread_df.ix[date,'20191_5']
+        d['1801_1805'] = corn_15_spread_df.ix[date,'20181_5']
+        d['1701_1705'] = corn_15_spread_df.ix[date,'20171_5']
+        d['1601_1605'] = corn_15_spread_df.ix[date,'20161_5']
+        d['1501_1505'] = corn_15_spread_df.ix[date,'20151_5']
+        corn_15_year_l.append(d)
+
+    corn_59_year_l = []
+    for date in corn_59_spread_df.index:
+        d = OrderedDict()
+        d['date'] = date
+        d['1905_1909'] = corn_59_spread_df.ix[date,'20195_9']
+        d['1805_1809'] = corn_59_spread_df.ix[date,'20185_9']
+        d['1705_1709'] = corn_59_spread_df.ix[date,'20175_9']
+        d['1605_1609'] = corn_59_spread_df.ix[date,'20165_9']
+        d['1505_1509'] = corn_59_spread_df.ix[date,'20155_9']
+        corn_59_year_l.append(d)
+
+    corn_cs_spread_df_l = []
+    for i in range(len(corn_cs_spread_df.index)):
+        d = OrderedDict()
+        d['date'] = corn_cs_spread_df.index[i].date()
+        d['corncs1'] = corn_cs_spread_df.iloc[i,0]
+        d['corncs5'] = corn_cs_spread_df.iloc[i,1]
+        d['corncs9'] = corn_cs_spread_df.iloc[i,2]
+        corn_cs_spread_df_l.append(d)
+    # print(corn_cs_spread_df_l)
+    return render_template("cornspreadchart.html", corn_cs_spread1_year_l=corn_cs_spread1_year_l, corn_cs_spread5_year_l=corn_cs_spread5_year_l, corn_cs_spread9_year_l=corn_cs_spread9_year_l, corn_cs_spread_df_l=corn_cs_spread_df_l, corn_91_year_l=corn_91_year_l, corn_15_year_l=corn_15_year_l, corn_59_year_l=corn_59_year_l)
+#------------------------------------------------------------------------------
 # North Port Carryout & Price
-@app.route('/northcarryout', methods=['GET', 'POST'])
-def northcarryout():
+@app.route('/carryout', methods=['GET', 'POST'])
+def carryout():
     df = pd.read_excel(app.config['EXCEL_CORNDATA'], sheet_name='NSPort')
     df = df[1:-1]
     # corn_year_basis_df = corn_year_basis_df.fillna(0)
@@ -473,14 +564,27 @@ def northcarryout():
     l2 = []
     l3 = []
     for date in df.index:
-        d = OrderedDict()
-        d['date'] = date
-        d['NorthCarryouy'] = df.ix[date,'Unnamed: 20']
-        d['NorthCarryouyChange'] = df.ix[date,'Unnamed: 21']
-        d['JinzhouPrice'] = df.ix[date,'Unnamed: 4']
-        l1.append(d)
+        d1 = OrderedDict()
+        d1['date'] = date
+        d1['NorthCarryout'] = df.ix[date,'Unnamed: 20']
+        d1['NorthCarryoutChange'] = df.ix[date,'Unnamed: 21']
+        d1['JinzhouPrice'] = df.ix[date,'Unnamed: 4']
+        l1.append(d1)
 
-    return render_template("northcarryout.html", l1=l1, l2=l2, l3=l3)
+        d2 = OrderedDict()
+        d2['date'] = date
+        d2['GDCarryout'] = df.ix[date,'Unnamed: 25']
+        d2['GDCarryoutChange'] = df.ix[date,'Unnamed: 26']
+        d2['GDPrice'] = df.ix[date,'Unnamed: 27']
+        l2.append(d2)
+
+        d3 = OrderedDict()
+        d3['date'] = date
+        d3['CarryoutSpread'] = d2['GDCarryout']/d1['NorthCarryout']
+        d3['profit'] = df.ix[date,'Unnamed: 29']
+        l3.append(d3)
+
+    return render_template("carryout.html", l1=l1, l2=l2, l3=l3)
 #------------------------------------------------------------------------------
 # temptest
 @app.route('/temptest', methods=['GET', 'POST'])
@@ -495,8 +599,8 @@ def temptest():
     for date in df.index:
         d = OrderedDict()
         d['date'] = date
-        d['NorthCarryouy'] = df.ix[date,'Unnamed: 20']
-        d['NorthCarryouyChange'] = df.ix[date,'Unnamed: 21']
+        d['NorthCarryout'] = df.ix[date,'Unnamed: 20']
+        d['NorthCarryoutChange'] = df.ix[date,'Unnamed: 21']
         d['JinzhouPrice'] = df.ix[date,'Unnamed: 4']
         l1.append(d)
     # for i in range(len(corn_basis_df.index)):

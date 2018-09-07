@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>North&South Port Carryout</title>
+    <!-- 引入 echarts.js -->
+    <!-- <script src="js/echarts.js"></script> -->
+    <script type="text/javascript" src="http://echarts.baidu.com/dist/echarts.js"></script>
+</head>
+<body>
+    <!-- <p>{{l3}}</p> -->
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="northPort" style="width: 1200px;height:500px;"></div>
+    <div id="southPort" style="width: 1200px;height:500px;"></div>
+    <div id="profit" style="width: 1200px;height:500px;"></div>
+
+    <script type="text/javascript">
+        // function fetchData(cb) {
+        //     // 通过 setTimeout 模拟异步加载
+        //     setTimeout(function () {
+        //         cb({
+        //             categories: corn_year_basis_df.index,
+        //             data: l4
+        //         });
+        //     }, 3000);
+        // }
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('northPort'), 'vintage');
+        var myl1 = {{l1|tojson}};
+        // myChart.showLoading();
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '北港库存-价格',
+                left:80
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer:{
+                    type:'cross'
+                }
+            },
+            legend: {
+                data:['NorthCarryout', 'NorthCarryoutChange', 'JinzhouPrice']
+            },
+            xAxis: {
+                type:'category',
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        // 格式化成月/日，只在第一个刻度显示年份
+                        var date = new Date(value);
+                        var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                        // var texts = [date.getMonth()+1, date.getDate()];
+                        // if (index === 0) {
+                        //     texts.unshift(date.getFullYear());
+                        // }
+                        return texts.join('/');
+                    }
+                }
+                // data: []
+            },
+            yAxis: [
+                {
+                    name:'库存',
+                    type:'value',
+                    min:function(value){
+                        return value.min-20
+                    }
+                },
+                {
+                    name:'库存变化',
+                    type:'value'
+                },
+                {
+                    name:'锦州港价格',
+                    type:'value',
+                    position:'right',
+                    offset:70,
+                    min:function(value){
+                        return value.min-50
+                    }
+                }
+            ],
+            // dataZoom: [
+            //     {
+            //         type: 'slider',
+            //         start:0,
+            //         end:100
+            //     }
+            // ],
+            dataset:{
+                dimensions: ['date', 'NorthCarryout', 'NorthCarryoutChange', 'JinzhouPrice'],
+                source: myl1
+            },
+            series: [
+                {
+                    name: 'NorthCarryout',
+                    yAxisIndex:0,
+                    type: 'line',
+                    symbol:'none',
+                    symbolSize:0,
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    // data: {{l4}}
+                },
+                {
+                    name: 'NorthCarryoutChange',
+                    yAxisIndex:1,
+                    type: 'bar',
+                    color:'green'
+                    // data: {{l4s}}
+                },
+                {
+                    name: 'JinzhouPrice',
+                    yAxisIndex:2,
+                    type: 'line'
+                    // data: {{l4s}}
+                }
+            ]
+        };
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+        // fetchData(function (data) {
+        //     myChart.hideLoading();
+        //     myChart.setOption({
+        //         xAxis: {
+        //             data: data.categories
+        //         },
+        //         series: [{
+        //             // 根据名字对应到相应的系列
+        //             name: '销量',
+        //             data: data.data
+        //         }]
+        //     });
+        // });
+        // $.get('data.json').done(function (data){
+        //     myChart.hideLoading();
+        //     myChart.setOption({
+        //         xAxis:{
+        //             data: data.categories
+        //         },
+        //         series:[{
+        //             name:'2018basis1',
+        //             data:data.data
+        //         }]
+        //     })
+        // })
+    </script>
+
+    <script type="text/javascript">
+        // function fetchData(cb) {
+        //     // 通过 setTimeout 模拟异步加载
+        //     setTimeout(function () {
+        //         cb({
+        //             categories: corn_year_basis_df.index,
+        //             data: l4
+        //         });
+        //     }, 3000);
+        // }
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('southPort'), 'vintage');
+        var myl2 = {{l2|tojson}};
+        // myChart.showLoading();
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '南港库存-价格',
+                left:80
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer:{
+                    type:'cross'
+                }
+            },
+            legend: {
+                data:['GDCarryout', 'GDCarryoutChange', 'GDPrice']
+            },
+            xAxis: {
+                type:'category',
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        // 格式化成月/日，只在第一个刻度显示年份
+                        var date = new Date(value);
+                        var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                        // var texts = [date.getMonth()+1, date.getDate()];
+                        // if (index === 0) {
+                        //     texts.unshift(date.getFullYear());
+                        // }
+                        return texts.join('/');
+                    }
+                }
+                // data: []
+            },
+            yAxis: [
+                {
+                    name:'库存',
+                    type:'value',
+                    min:10
+                },
+                {
+                    name:'库存变化',
+                    type:'value'
+                },
+                {
+                    name:'广东港价格',
+                    type:'value',
+                    position:'right',
+                    offset:70,
+                    min:function(value){
+                        return value.min-50
+                    }
+                }
+            ],
+            // dataZoom: [
+            //     {
+            //         type: 'slider',
+            //         start:0,
+            //         end:100
+            //     }
+            // ],
+            dataset:{
+                dimensions: ['date', 'GDCarryout', 'GDCarryoutChange', 'GDPrice'],
+                source: myl2
+            },
+            series: [
+                {
+                    name: 'GDCarryout',
+                    yAxisIndex:0,
+                    type: 'line',
+                    symbol:'none',
+                    symbolSize:0,
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    // data: {{l4}}
+                },
+                {
+                    name: 'GDCarryoutChange',
+                    yAxisIndex:1,
+                    type: 'bar',
+                    color:'green'
+                    // data: {{l4s}}
+                },
+                {
+                    name: 'GDPrice',
+                    yAxisIndex:2,
+                    type: 'line'
+                    // data: {{l4s}}
+                }
+            ]
+        };
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+        // fetchData(function (data) {
+        //     myChart.hideLoading();
+        //     myChart.setOption({
+        //         xAxis: {
+        //             data: data.categories
+        //         },
+        //         series: [{
+        //             // 根据名字对应到相应的系列
+        //             name: '销量',
+        //             data: data.data
+        //         }]
+        //     });
+        // });
+        // $.get('data.json').done(function (data){
+        //     myChart.hideLoading();
+        //     myChart.setOption({
+        //         xAxis:{
+        //             data: data.categories
+        //         },
+        //         series:[{
+        //             name:'2018basis1',
+        //             data:data.data
+        //         }]
+        //     })
+        // })
+    </script>
+
+    <script type="text/javascript">
+        // function fetchData(cb) {
+        //     // 通过 setTimeout 模拟异步加载
+        //     setTimeout(function () {
+        //         cb({
+        //             categories: corn_year_basis_df.index,
+        //             data: l4
+        //         });
+        //     }, 3000);
+        // }
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('profit'), 'vintage');
+        var myl3 = {{l3|tojson}};
+        // myChart.showLoading();
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '贸易利润',
+                left:80
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer:{
+                    type:'cross'
+                }
+            },
+            legend: {
+                data:['CarryoutSpread', 'profit']
+            },
+            xAxis: {
+                type:'category',
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        // 格式化成月/日，只在第一个刻度显示年份
+                        var date = new Date(value);
+                        var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                        // var texts = [date.getMonth()+1, date.getDate()];
+                        // if (index === 0) {
+                        //     texts.unshift(date.getFullYear());
+                        // }
+                        return texts.join('/');
+                    }
+                }
+                // data: []
+            },
+            yAxis: [
+                {
+                    name:'广东港库存/北方库存',
+                    type:'value',
+                    min:0.01
+                },
+                {
+                    name:'贸易利润',
+                    type:'value'
+                }
+            ],
+            // dataZoom: [
+            //     {
+            //         type: 'slider',
+            //         start:0,
+            //         end:100
+            //     }
+            // ],
+            dataset:{
+                dimensions: ['date', 'CarryoutSpread', 'profit'],
+                source: myl3
+            },
+            series: [
+                {
+                    name: 'CarryoutSpread',
+                    yAxisIndex:0,
+                    type: 'line',
+                    symbol:'none',
+                    symbolSize:0,
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    // data: {{l4}}
+                },
+                {
+                    name: 'profit',
+                    yAxisIndex:1,
+                    type: 'bar',
+                    color:'green'
+                    // data: {{l4s}}
+                }
+            ]
+        };
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+        // fetchData(function (data) {
+        //     myChart.hideLoading();
+        //     myChart.setOption({
+        //         xAxis: {
+        //             data: data.categories
+        //         },
+        //         series: [{
+        //             // 根据名字对应到相应的系列
+        //             name: '销量',
+        //             data: data.data
+        //         }]
+        //     });
+        // });
+        // $.get('data.json').done(function (data){
+        //     myChart.hideLoading();
+        //     myChart.setOption({
+        //         xAxis:{
+        //             data: data.categories
+        //         },
+        //         series:[{
+        //             name:'2018basis1',
+        //             data:data.data
+        //         }]
+        //     })
+        // })
+    </script>
+
+</body>
+</html>

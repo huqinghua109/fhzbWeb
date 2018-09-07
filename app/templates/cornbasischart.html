@@ -2,13 +2,16 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Charts</title>
+    <title>Corn Basis 1-5-9</title>
     <!-- 引入 echarts.js -->
     <!-- <script src="js/echarts.js"></script> -->
     <script type="text/javascript" src="http://echarts.baidu.com/dist/echarts.js"></script>
 </head>
 <body>
     <!-- <p>{{corn_basis_l}}</p> -->
+    <div align="center">
+        <h1><b><font size="6", color="red">玉米期现基差图</font></b></h1>
+    </div>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div id="basis1" style="width: 1200px;height:500px;"></div>
     <div id="basis5" style="width: 1200px;height:500px;"></div>
@@ -33,7 +36,8 @@
         // 指定图表的配置项和数据
         var option = {
             title: {
-                text: 'Corn Year Basis1'
+                text: '现货-期货1月',
+                left:80
             },
             tooltip: {
                 trigger: 'axis',
@@ -71,13 +75,13 @@
                 // data: []
             },
             yAxis: {},
-            dataZoom: [
-                {
-                    type: 'slider',
-                    start:0,
-                    end:100
-                }
-            ],
+            // dataZoom: [
+            //     {
+            //         type: 'slider',
+            //         start:0,
+            //         end:100
+            //     }
+            // ],
             dataset:{
                 dimensions: ['date', '2019basis1', '2018basis1', '2017basis1', '2016basis1', '2015basis1', '2014basis1'],
                 source: my_corn_year_basis1_l
@@ -86,14 +90,15 @@
                 {
                     name: '2019basis1',
                     type: 'line',
-                    symbol:'rect',
+                    color:'black',
+                    symbol:'triangle',
                     symbolSize:10
                     // data: {{l4}}
                 },
                 {
                     name: '2018basis1',
                     type: 'line',
-                    symbol:'triangle',
+                    symbol:'rect',
                     symbolSize:10
                     // data: {{l4}}
                 },
@@ -163,7 +168,8 @@
         // 指定图表的配置项和数据
         var option = {
             title: {
-                text: 'Corn Year Basis5'
+                text: '现货-期货5月',
+                left:80
             },
             tooltip: {
                 trigger: 'axis',
@@ -201,13 +207,13 @@
                 // data: []
             },
             yAxis: {},
-            dataZoom: [
-                {
-                    type: 'slider',
-                    start:0,
-                    end:100
-                }
-            ],
+            // dataZoom: [
+            //     {
+            //         type: 'slider',
+            //         start:0,
+            //         end:100
+            //     }
+            // ],
             dataset:{
                 dimensions: ['date', '2019basis5', '2018basis5', '2017basis5', '2016basis5', '2015basis5', '2014basis5'],
                 source: my_corn_year_basis5_l
@@ -215,7 +221,10 @@
             series: [
                 {
                     name: '2019basis5',
-                    type: 'line'
+                    type: 'line',
+                    color:'black',
+                    symbol:'triangle',
+                    symbolSize:10
                     // data: {{l4}}
                 },
                 {
@@ -260,7 +269,8 @@
         // 指定图表的配置项和数据
         var option = {
             title: {
-                text: 'Corn Year Basis9'
+                text: '现货-期货9月',
+                left:80
             },
             tooltip: {
                 trigger: 'axis',
@@ -298,13 +308,13 @@
                 // data: []
             },
             yAxis: {},
-            dataZoom: [
-                {
-                    type: 'slider',
-                    start:0,
-                    end:100
-                }
-            ],
+            // dataZoom: [
+            //     {
+            //         type: 'slider',
+            //         start:0,
+            //         end:100
+            //     }
+            // ],
             dataset:{
                 dimensions: ['date', '2019basis9', '2018basis9', '2017basis9', '2016basis9', '2015basis9', '2014basis9'],
                 source: my_corn_year_basis9_l
@@ -312,7 +322,10 @@
             series: [
                 {
                     name: '2019basis9',
-                    type: 'line'
+                    type: 'line',
+                    color:'black',
+                    symbol:'triangle',
+                    symbolSize:10
                     // data: {{l4}}
                 },
                 {
@@ -353,7 +366,8 @@
         var my_corn_basis_l = {{corn_basis_l|tojson}};
         var option = {
             title: {
-                text: 'Corn Basis'
+                text: '玉米基差',
+                left:80
             },
             tooltip: {
                 trigger: 'axis',

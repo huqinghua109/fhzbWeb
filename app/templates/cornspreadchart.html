@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Corn Futures Spread 1-5-9</title>
+    <!-- 引入 echarts.js -->
+    <!-- <script src="js/echarts.js"></script> -->
+    <script type="text/javascript" src="http://echarts.baidu.com/dist/echarts.js"></script>
+</head>
+<body>
+    <div align="center">
+        <h1><b><font size="6", color="red">玉米期货价差图</font></b></h1>
+        <!-- <p>{{corn_cs_spread_df_l}}</p> -->
+    </div>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="corncs1" style="width: 1200px;height:500px;"></div>
+    <div id="corncs5" style="width: 1200px;height:500px;"></div>
+    <div id="corncs9" style="width: 1200px;height:500px;"></div>
+    <div id="corncs" style="width: 1200px;height:500px;"></div>
+    <div id="corn9_1" style="width: 1200px;height:500px;"></div>
+    <div id="corn1_5" style="width: 1200px;height:500px;"></div>
+    <div id="corn5_9" style="width: 1200px;height:500px;"></div>
+
+    <script type="text/javascript">
+        // function fetchData(cb) {
+        //     // 通过 setTimeout 模拟异步加载
+        //     setTimeout(function () {
+        //         cb({
+        //             categories: corn_year_basis_df.index,
+        //             data: l4
+        //         });
+        //     }, 3000);
+        // }
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('corncs1'), 'vintage');
+        var my_corn_cs_spread1_year_l = {{corn_cs_spread1_year_l|tojson}};
+        // myChart.showLoading();
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '玉米-淀粉1月',
+                left:80
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer:{
+                    type:'cross'
+                }
+            },
+            // emphasis: {
+            //     itemStyle: {
+            //         color: 'blue'
+            //     },
+            //     label: {
+            //         show: true,
+            //         formatter: 'This is a emphasis label.'
+            //     
+            // },
+            legend: {
+                data:['2016c_cs1', '2017c_cs1', '2018c_cs1', '2019c_cs1']
+            },
+            xAxis: {
+                type:'category',
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        // 格式化成月/日，只在第一个刻度显示年份
+                        var date = new Date(value);
+                        // var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                        var texts = [date.getMonth()+1, date.getDate()];
+                        // if (index === 0) {
+                        //     texts.unshift(date.getFullYear());
+                        // }
+                        return texts.join('/');
+                    }
+                }
+                // data: []
+            },
+            yAxis: {},
+            // dataZoom: [
+            //     {
+            //         type: 'slider',
+            //         start:0,
+            //         end:100
+            //     }
+            // ],
+            dataset:{
+                dimensions: ['date', '2016c_cs1', '2017c_cs1', '2018c_cs1', '2019c_cs1'],
+                source: my_corn_cs_spread1_year_l
+            },
+            series: [
+                {
+                    name: '2016c_cs1',
+                    type: 'line',
+                    // symbol:'rect',
+                    // symbolSize:6
+                    // data: {{l4}}
+                },
+                {
+                    name: '2017c_cs1',
+                    type: 'line',
+                    // symbol:'triangle',
+                    // symbolSize:10
+                    // data: {{l4}}
+                },
+                {
+                    name: '2018c_cs1',
+                    type: 'line',
+                    // symbol:'diamond',
+                    // symbolSize:10
+                    // data: {{l4s}}
+                },
+                {
+                    name: '2019c_cs1',
+                    type: 'line',
+                    color:'black',
+                    symbol:'triangle',
+                    symbolSize:10
+                    // data: {{l4s}}
+                }
+            ]
+        };
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+        // fetchData(function (data) {
+        //     myChart.hideLoading();
+        //     myChart.setOption({
+        //         xAxis: {
+        //             data: data.categories
+        //         },
+        //         series: [{
+        //             // 根据名字对应到相应的系列
+        //             name: '销量',
+        //             data: data.data
+        //         }]
+        //     });
+        // });
+        // $.get('data.json').done(function (data){
+        //     myChart.hideLoading();
+        //     myChart.setOption({
+        //         xAxis:{
+        //             data: data.categories
+        //         },
+        //         series:[{
+        //             name:'2018basis1',
+        //             data:data.data
+        //         }]
+        //     })
+        // })
+    </script>
+
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('corncs5'), 'vintage');
+        var my_corn_cs_spread5_year_l = {{corn_cs_spread5_year_l|tojson}};
+        // myChart.showLoading();
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '玉米-淀粉5月',
+                left:80
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer:{
+                    type:'cross'
+                }
+            },
+            // emphasis: {
+            //     itemStyle: {
+            //         color: 'blue'
+            //     },
+            //     label: {
+            //         show: true,
+            //         formatter: 'This is a emphasis label.'
+            //     
+            // },
+            legend: {
+                data:['2015c_cs5', '2016c_cs5', '2017c_cs5', '2018c_cs5', '2019c_cs5']
+            },
+            xAxis: {
+                type:'category',
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        // 格式化成月/日，只在第一个刻度显示年份
+                        var date = new Date(value);
+                        // var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                        var texts = [date.getMonth()+1, date.getDate()];
+                        // if (index === 0) {
+                        //     texts.unshift(date.getFullYear());
+                        // }
+                        return texts.join('/');
+                    }
+                }
+                // data: []
+            },
+            yAxis: {},
+            // dataZoom: [
+            //     {
+            //         type: 'slider',
+            //         start:0,
+            //         end:100
+            //     }
+            // ],
+            dataset:{
+                dimensions: ['date', '2015c_cs5', '2016c_cs5', '2017c_cs5', '2018c_cs5', '2019c_cs5'],
+                source: my_corn_cs_spread5_year_l
+            },
+            series: [
+                {
+                    name: '2015c_cs5',
+                    type: 'line'
+                    // data: {{l4}}
+                },
+                {
+                    name: '2016c_cs5',
+                    type: 'line'
+                    // data: {{l4}}
+                },
+                {
+                    name: '2017c_cs5',
+                    type: 'line'
+                    // data: {{l4s}}
+                },
+                {
+                    name: '2018c_cs5',
+                    type: 'line'
+                    // data: {{l4s}}
+                },
+                {
+                    name: '2019c_cs5',
+                    type: 'line',
+                    color:'black',
+                    symbol:'triangle',
+                    symbolSize:10
+                    // data: {{l4s}}
+                }
+            ]
+        };
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('corncs9'), 'vintage');
+        var my_corn_cs_spread9_year_l = {{corn_cs_spread9_year_l|tojson}};
+        // myChart.showLoading();
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '玉米-淀粉9月',
+                left:80
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer:{
+                    type:'cross'
+                }
+            },
+            // emphasis: {
+            //     itemStyle: {
+            //         color: 'blue'
+            //     },
+            //     label: {
+            //         show: true,
+            //         formatter: 'This is a emphasis label.'
+            //     
+            // },
+            legend: {
+                data:['2015c_cs9', '2016c_cs9', '2017c_cs9', '2018c_cs9', '2019c_cs9']
+            },
+            xAxis: {
+                type:'category',
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        // 格式化成月/日，只在第一个刻度显示年份
+                        var date = new Date(value);
+                        // var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                        var texts = [date.getMonth()+1, date.getDate()];
+                        // if (index === 0) {
+                        //     texts.unshift(date.getFullYear());
+                        // }
+                        return texts.join('/');
+                    }
+                }
+                // data: []
+            },
+            yAxis: {},
+            // dataZoom: [
+            //     {
+            //         type: 'slider',
+            //         start:0,
+            //         end:100
+            //     }
+            // ],
+            dataset:{
+                dimensions: ['date', '2015c_cs9', '2016c_cs9', '2017c_cs9', '2018c_cs9', '2019c_cs9'],
+                source: my_corn_cs_spread9_year_l
+            },
+            series: [
+                {
+                    name: '2015c_cs9',
+                    type: 'line'
+                    // data: {{l4}}
+                },
+                {
+                    name: '2016c_cs9',
+                    type: 'line'
+                    // data: {{l4}}
+                },
+                {
+                    name: '2017c_cs9',
+                    type: 'line'
+                    // data: {{l4s}}
+                },
+                {
+                    name: '2018c_cs9',
+                    type: 'line'
+                    // data: {{l4s}}
+                },
+                {
+                    name: '2019c_cs9',
+                    type: 'line',
+                    color:'black',
+                    symbol:'triangle',
+                    symbolSize:10
+                    // data: {{l4s}}
+                }
+            ]
+        };
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('corn9_1'), 'vintage');
+        var my_corn_91_year_l = {{corn_91_year_l|tojson}};
+        // myChart.showLoading();
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '玉米9月-1月',
+                left:80
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer:{
+                    type:'cross'
+                }
+            },
+            // emphasis: {
+            //     itemStyle: {
+            //         color: 'blue'
+            //     },
+            //     label: {
+            //         show: true,
+            //         formatter: 'This is a emphasis label.'
+            //     
+            // },
+            legend: {
+                data:['1809_1901', '1709_1801', '1609_1701', '1509_1601', '1409_1501']
+            },
+            xAxis: {
+                type:'category',
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        // 格式化成月/日，只在第一个刻度显示年份
+                        var date = new Date(value);
+                        // var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                        var texts = [date.getMonth()+1, date.getDate()];
+                        // if (index === 0) {
+                        //     texts.unshift(date.getFullYear());
+                        // }
+                        return texts.join('/');
+                    }
+                }
+                // data: []
+            },
+            yAxis: {},
+            // dataZoom: [
+            //     {
+            //         type: 'slider',
+            //         start:0,
+            //         end:100
+            //     }
+            // ],
+            dataset:{
+                dimensions: ['date', '1809_1901', '1709_1801', '1609_1701', '1509_1601', '1409_1501'],
+                source: my_corn_91_year_l
+            },
+            series: [
+                {
+                    name: '1809_1901',
+                    type: 'line',
+                    color:'black',
+                    symbol:'triangle',
+                    symbolSize:10
+                    // data: {{l4}}
+                },
+                {
+                    name: '1709_1801',
+                    type: 'line'
+                    // data: {{l4}}
+                },
+                {
+                    name: '1609_1701',
+                    type: 'line'
+                    // data: {{l4s}}
+                },
+                {
+                    name: '1509_1601',
+                    type: 'line'
+                    // data: {{l4s}}
+                },
+                {
+                    name: '1409_1501',
+                    type: 'line',
+                    // data: {{l4s}}
+                }
+            ]
+        };
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('corn1_5'), 'vintage');
+        var my_corn_15_year_l = {{corn_15_year_l|tojson}};
+        // myChart.showLoading();
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '玉米1月-5月',
+                left:80
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer:{
+                    type:'cross'
+                }
+            },
+            // emphasis: {
+            //     itemStyle: {
+            //         color: 'blue'
+            //     },
+            //     label: {
+            //         show: true,
+            //         formatter: 'This is a emphasis label.'
+            //     
+            // },
+            legend: {
+                data:['1901_1905', '1801_1805', '1701_1705', '1601_1605', '1501_1505']
+            },
+            xAxis: {
+                type:'category',
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        // 格式化成月/日，只在第一个刻度显示年份
+                        var date = new Date(value);
+                        // var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                        var texts = [date.getMonth()+1, date.getDate()];
+                        // if (index === 0) {
+                        //     texts.unshift(date.getFullYear());
+                        // }
+                        return texts.join('/');
+                    }
+                }
+                // data: []
+            },
+            yAxis: {max:50},
+            // dataZoom: [
+            //     {
+            //         type: 'slider',
+            //         start:0,
+            //         end:100
+            //     }
+            // ],
+            dataset:{
+                dimensions: ['date', '1901_1905', '1801_1805', '1701_1705', '1601_1605', '1501_1505'],
+                source: my_corn_15_year_l
+            },
+            series: [
+                {
+                    name: '1901_1905',
+                    type: 'line',
+                    color:'black',
+                    symbol:'triangle',
+                    symbolSize:10
+                    // data: {{l4}}
+                },
+                {
+                    name: '1801_1805',
+                    type: 'line'
+                    // data: {{l4}}
+                },
+                {
+                    name: '1701_1705',
+                    type: 'line'
+                    // data: {{l4s}}
+                },
+                {
+                    name: '1601_1605',
+                    type: 'line'
+                    // data: {{l4s}}
+                },
+                {
+                    name: '1501_1505',
+                    type: 'line',
+                    
+                    // data: {{l4s}}
+                }
+            ]
+        };
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('corn5_9'), 'vintage');
+        var my_corn_59_year_l = {{corn_59_year_l|tojson}};
+        // myChart.showLoading();
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '玉米5月-9月',
+                left:80
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer:{
+                    type:'cross'
+                }
+            },
+            // emphasis: {
+            //     itemStyle: {
+            //         color: 'blue'
+            //     },
+            //     label: {
+            //         show: true,
+            //         formatter: 'This is a emphasis label.'
+            //     
+            // },
+            legend: {
+                data:['1905_1909', '1805_1809', '1705_1709', '1605_1609', '1505_1509']
+            },
+            xAxis: {
+                type:'category',
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        // 格式化成月/日，只在第一个刻度显示年份
+                        var date = new Date(value);
+                        // var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                        var texts = [date.getMonth()+1, date.getDate()];
+                        // if (index === 0) {
+                        //     texts.unshift(date.getFullYear());
+                        // }
+                        return texts.join('/');
+                    }
+                }
+                // data: []
+            },
+            yAxis: {},
+            // dataZoom: [
+            //     {
+            //         type: 'slider',
+            //         start:0,
+            //         end:100
+            //     }
+            // ],
+            dataset:{
+                dimensions: ['date', '1905_1909', '1805_1809', '1705_1709', '1605_1609', '1505_1509'],
+                source: my_corn_59_year_l
+            },
+            series: [
+                {
+                    name: '1905_1909',
+                    type: 'line',
+                    color:'black',
+                    symbol:'triangle',
+                    symbolSize:10
+                    // data: {{l4}}
+                },
+                {
+                    name: '1805_1809',
+                    type: 'line'
+                    // data: {{l4}}
+                },
+                {
+                    name: '1705_1709',
+                    type: 'line'
+                    // data: {{l4s}}
+                },
+                {
+                    name: '1605_1609',
+                    type: 'line'
+                    // data: {{l4s}}
+                },
+                {
+                    name: '1505_1509',
+                    type: 'line',
+                    
+                    // data: {{l4s}}
+                }
+            ]
+        };
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+
+    <script type="text/javascript">
+        var myChart1 = echarts.init(document.getElementById('corncs'), 'vintage');
+        var my_corn_cs_spread_df_l = {{corn_cs_spread_df_l}};
+        var option = {
+            title: {
+                text: '玉米-淀粉价差',
+                left:80
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer:{
+                    type:'cross'
+                }
+            },
+            legend: {
+                data:['corncs1', 'corncs5', 'corncs9']
+            },
+            xAxis: {
+                type:'category',
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        // 格式化成月/日，只在第一个刻度显示年份
+                        var date = new Date(value);
+                        var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                        // if (index === 0) {
+                        //     texts.unshift(date.getFullYear());
+                        // }
+                        return texts.join('/');
+                    }
+                }
+                // data: []
+            },
+            yAxis: {},
+            dataZoom: [
+                {
+                    type: 'slider',
+                    start:0,
+                    end:100
+                }
+            ],
+            dataset:{
+                dimensions: ['date', 'corncs1', 'corncs5', 'corncs9'],
+                source: corn_cs_spread_df_l
+            },
+            series: [
+                {
+                    name: 'corncs1',
+                    type: 'bar'
+                    // data: {{l4}}
+                },
+                {
+                    name: 'corncs5',
+                    type: 'bar'
+                    // data: {{l4s}}
+                },
+                {
+                    name: 'corncs9',
+                    type: 'bar'
+                    // data: {{l4}}
+                }
+            ]
+        };
+        myChart1.setOption(option);
+    </script>
+</body>
+</html>
