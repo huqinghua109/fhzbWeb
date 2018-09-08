@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 <script type="text/javascript" src="http://echarts.baidu.com/dist/echarts.js"></script>
+<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">
 
 <body>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="main1" style="width: 600px;height:400px;"></div>
+    <div id="main1" class="chart618"></div>
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main1'));
+        var myChart1 = echarts.init(document.getElementById('main1'));
 
         // 指定图表的配置项和数据
         var option = {
@@ -30,11 +31,11 @@
         };
 
         // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
+        myChart1.setOption(option);
     </script>
 
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="main2" style="width: 600px;height:400px;"></div>
+    <div id="main2" class="chart618"></div>
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main2'));
@@ -63,6 +64,14 @@
 
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
+        // window.onresize = myChart.resize;
+    </script>
+
+    <script type="text/javascript">
+        window.onresize = function(){
+            myChart1.resize();
+            myChart.resize();
+        }
     </script>
 </body>
 

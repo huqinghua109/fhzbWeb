@@ -6,6 +6,7 @@
     <!-- 引入 echarts.js -->
     <!-- <script src="js/echarts.js"></script> -->
     <script type="text/javascript" src="http://echarts.baidu.com/dist/echarts.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">
 </head>
 <body>
     <!-- <p>{{corn_basis_l}}</p> -->
@@ -13,10 +14,10 @@
         <h1><b><font size="6", color="red">玉米期现基差图</font></b></h1>
     </div>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="basis1" style="width: 600px;height:300px;"></div>
-    <div id="basis5" style="width: 600px;height:300px;"></div>
-    <div id="basis9" style="width: 600px;height:300px;"></div>
-    <div id="cornbasis" style="width: 600px;height:500px;"></div>
+    <div id="basis1" class="chart618"></div>
+    <div id="basis5" class="chart618"></div>
+    <div id="basis9" class="chart618"></div>
+    <div id="cornbasis" class="chart618"></div>
 
     <script type="text/javascript">
         // function fetchData(cb) {
@@ -29,7 +30,7 @@
         //     }, 3000);
         // }
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('basis1'), 'vintage');
+        var myChart1 = echarts.init(document.getElementById('basis1'), 'vintage');
         var my_corn_year_basis1_l = {{corn_year_basis1_l|tojson}};
         // myChart.showLoading();
 
@@ -130,7 +131,7 @@
 
 
         // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
+        myChart1.setOption(option);
 
         // fetchData(function (data) {
         //     myChart.hideLoading();
@@ -161,7 +162,7 @@
 
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('basis5'), 'vintage');
+        var myChart2 = echarts.init(document.getElementById('basis5'), 'vintage');
         var my_corn_year_basis5_l = {{corn_year_basis5_l|tojson}};
         // myChart.showLoading();
 
@@ -258,12 +259,12 @@
 
 
         // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
+        myChart2.setOption(option);
     </script>
 
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('basis9'), 'vintage');
+        var myChart3 = echarts.init(document.getElementById('basis9'), 'vintage');
         var my_corn_year_basis9_l = {{corn_year_basis9_l|tojson}};
         // myChart.showLoading();
 
@@ -360,11 +361,11 @@
 
 
         // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
+        myChart3.setOption(option);
     </script>
 
     <script type="text/javascript">
-        var myChart1 = echarts.init(document.getElementById('cornbasis'), 'vintage');
+        var myChart4 = echarts.init(document.getElementById('cornbasis'), 'vintage');
         var my_corn_basis_l = {{corn_basis_l|tojson}};
         var option = {
             title: {
@@ -426,7 +427,16 @@
                 }
             ]
         };
-        myChart1.setOption(option);
+        myChart4.setOption(option);
+    </script>
+
+    <script type="text/javascript">
+        window.onresize = function(){
+            myChart1.resize()
+            myChart2.resize()
+            myChart3.resize()
+            myChart4.resize()
+        }
     </script>
 </body>
 </html>

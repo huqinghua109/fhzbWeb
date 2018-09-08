@@ -6,13 +6,14 @@
     <!-- 引入 echarts.js -->
     <!-- <script src="js/echarts.js"></script> -->
     <script type="text/javascript" src="http://echarts.baidu.com/dist/echarts.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">
 </head>
 <body>
     <!-- <p>{{l3}}</p> -->
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="northPort" style="width: 1000px;height:400px;"></div>
-    <div id="southPort" style="width: 640px;height:300px;"></div>
-    <div id="profit" style="width: 600px;height:300px;"></div>
+    <div id="northPort" class="chart618"></div>
+    <div id="southPort" class="chart618"></div>
+    <div id="profit" class="chart618"></div>
 
     <script type="text/javascript">
         // function fetchData(cb) {
@@ -25,7 +26,7 @@
         //     }, 3000);
         // }
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('northPort'), 'vintage');
+        var myChart1 = echarts.init(document.getElementById('northPort'), 'vintage');
         var myl1 = {{l1|tojson}};
         // myChart.showLoading();
 
@@ -123,7 +124,7 @@
 
 
         // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
+        myChart1.setOption(option);
 
         // fetchData(function (data) {
         //     myChart.hideLoading();
@@ -163,7 +164,7 @@
         //     }, 3000);
         // }
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('southPort'), 'vintage');
+        var myChart2 = echarts.init(document.getElementById('southPort'), 'vintage');
         var myl2 = {{l2|tojson}};
         // myChart.showLoading();
 
@@ -259,7 +260,7 @@
 
 
         // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
+        myChart2.setOption(option);
 
         // fetchData(function (data) {
         //     myChart.hideLoading();
@@ -299,7 +300,7 @@
         //     }, 3000);
         // }
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('profit'), 'vintage');
+        var myChart3 = echarts.init(document.getElementById('profit'), 'vintage');
         var myl3 = {{l3|tojson}};
         // myChart.showLoading();
 
@@ -380,7 +381,7 @@
 
 
         // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
+        myChart3.setOption(option);
 
         // fetchData(function (data) {
         //     myChart.hideLoading();
@@ -407,6 +408,14 @@
         //         }]
         //     })
         // })
+    </script>
+
+    <script type="text/javascript">
+        window.onresize = function(){
+            myChart1.resize()
+            myChart2.resize()
+            myChart3.resize()
+        }
     </script>
 
 </body>
