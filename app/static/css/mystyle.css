@@ -3,6 +3,11 @@
 	height: 49.44vw;
 	margin: 0 auto;
 }
+.chart600{
+	width: 90vw;
+	height: 54vw;
+	margin: 0 auto;
+}
 .temp{
 	color: red;
 	text-align: center;
