@@ -563,6 +563,7 @@ def carryout():
     l1 = []
     l2 = []
     l3 = []
+    l4 = []
     for date in df.index:
         d1 = OrderedDict()
         d1['date'] = date
@@ -581,10 +582,19 @@ def carryout():
         d3 = OrderedDict()
         d3['date'] = date
         d3['CarryoutSpread'] = d2['GDCarryout']/d1['NorthCarryout']
-        d3['profit'] = df.ix[date,'Unnamed: 29']
+        d3['profit'] = df.ix[date,'Unnamed: 30']
         l3.append(d3)
 
-    return render_template("carryout.html", l1=l1, l2=l2, l3=l3)
+        d4 = OrderedDict()
+        d4['date'] = date
+        d4['GDPrice'] = df.ix[date,'Unnamed: 27']
+        d4['InportCorn'] = df.ix[date,'Unnamed: 31']
+        d4['Sorghum'] = df.ix[date,'Unnamed: 32']
+        d4['Barley'] = df.ix[date,'Unnamed: 33']
+        d4['GDInportSpread'] = d4['GDPrice']-d4['InportCorn']
+        l4.append(d4)
+
+    return render_template("carryout.html", l1=l1, l2=l2, l3=l3, l4=l4)
 #------------------------------------------------------------------------------
 # temptest
 @app.route('/temptest', methods=['GET', 'POST'])

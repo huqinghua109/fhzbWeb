@@ -14,6 +14,7 @@
     <div id="northPort" class="chart600"></div>
     <div id="southPort" class="chart600"></div>
     <div id="profit" class="chart600"></div>
+    <div id="inportPrice" class="chart600"></div>
 
     <script type="text/javascript">
         // function fetchData(cb) {
@@ -34,7 +35,11 @@
         var option = {
             title: {
                 text: '北港库存-价格',
-                left:'center'
+                left:'center',
+                // textStyle:{
+                //     color:'black',
+                //     fontSize:28,
+                // }
             },
             tooltip: {
                 trigger: 'axis',
@@ -44,7 +49,11 @@
             },
             legend: {
                 data:['北港库存', '库存周度变化', '锦州港价格'],
-                y:30
+                y:30,
+                // textStyle:{
+                //     color:'black',
+                //     fontSize:20,
+                // }
             },
             xAxis: {
                 type:'category',
@@ -59,7 +68,7 @@
                         //     texts.unshift(date.getFullYear());
                         // }
                         return texts.join('/');
-                    }
+                    },
                 }
                 // data: []
             },
@@ -411,10 +420,125 @@
     </script>
 
     <script type="text/javascript">
+        var myChart4 = echarts.init(document.getElementById('inportPrice'), 'vintage');
+        var myl4 = {{l4|tojson}};
+        // myChart.showLoading();
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '进口玉米高粱大麦价格',
+                left:'center'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer:{
+                    type:'cross'
+                }
+            },
+            legend: {
+                data:['内贸价格', '进口玉米成本','高粱', '大麦', '进口利润'],
+                y:30
+            },
+            xAxis: {
+                type:'category',
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        // 格式化成月/日，只在第一个刻度显示年份
+                        var date = new Date(value);
+                        var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                        // var texts = [date.getMonth()+1, date.getDate()];
+                        // if (index === 0) {
+                        //     texts.unshift(date.getFullYear());
+                        // }
+                        return texts.join('/');
+                    }
+                }
+                // data: []
+            },
+            yAxis: [
+                {
+                    name:'价格',
+                    type:'value',
+                    min:function(value){
+                        return value.min-50
+                    }
+                },
+                {
+                    name:'进口利润',
+                    type:'value'
+                }
+            ],
+            // dataZoom: [
+            //     {
+            //         type: 'slider',
+            //         start:0,
+            //         end:100
+            //     }
+            // ],
+            dataset:{
+                dimensions: ['date', 'GDPrice', 'InportCorn', 'Sorghum', 'Barley', 'GDInportSpread'],
+                source: myl4
+            },
+            series: [
+                {
+                    name: '内贸价格',
+                    yAxisIndex:0,
+                    type: 'line',
+                    color: 'black',
+                    symbol:'triangle',
+                    symbolSize:8,
+                    // itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    // data: {{l4}}
+                },
+                {
+                    name: '进口玉米成本',
+                    yAxisIndex:0,
+                    type: 'line',
+                    // symbol:'none',
+                    // symbolSize:0,
+                    // itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    // data: {{l4}}
+                },
+                {
+                    name: '高粱',
+                    yAxisIndex:0,
+                    type: 'line',
+                    color:'yellow',
+                    // symbol:'none',
+                    // symbolSize:0,
+                    // itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    // data: {{l4}}
+                },
+                {
+                    name: '大麦',
+                    yAxisIndex:0,
+                    type: 'line',
+                    // symbol:'none',
+                    // symbolSize:0,
+                    // itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    // data: {{l4}}
+                },
+                {
+                    name: '进口利润',
+                    yAxisIndex:1,
+                    type: 'bar',
+                    color:'green'
+                    // data: {{l4s}}
+                }
+            ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart4.setOption(option);
+    </script>
+
+    <script type="text/javascript">
         window.onresize = function(){
             myChart1.resize()
             myChart2.resize()
             myChart3.resize()
+            myChart4.resize()
         }
     </script>
 
