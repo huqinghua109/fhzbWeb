@@ -81,14 +81,14 @@
                     }
                 },
                 {
-                    name:'周度变化',
+                    name:'周变',
                     type:'value'
                 },
                 {
-                    name:'锦州港价格',
+                    name:'价格',
                     type:'value',
                     position:'right',
-                    offset:50,
+                    offset:30,
                     min:function(value){
                         return value.min-50
                     }
@@ -119,13 +119,22 @@
                     name: '库存周度变化',
                     yAxisIndex:1,
                     type: 'bar',
-                    color:'green'
+                    color:"yellowgreen",
+                    // itemStyle:{
+                    //     normal:{
+                    //         color:function(params){
+                    //             console.log(params);
+                    //             if (params.data.NorthCarryoutChange>0) {return 'red'} else {return 'green'}
+                    //         }
+                    //     }
+                    // }
                     // data: {{l4s}}
                 },
                 {
                     name: '锦州港价格',
                     yAxisIndex:2,
-                    type: 'line'
+                    type: 'line',
+                    itemStyle: {normal: {lineStyle: {width: 3}}},
                     // data: {{l4s}}
                 }
             ]
@@ -224,7 +233,7 @@
                     name:'价格',
                     type:'value',
                     position:'right',
-                    offset:50,
+                    offset:30,
                     min:function(value){
                         return value.min-50
                     }
@@ -255,13 +264,14 @@
                     name: '库存周度变化',
                     yAxisIndex:1,
                     type: 'bar',
-                    color:'green'
+                    color:'yellowgreen'
                     // data: {{l4s}}
                 },
                 {
                     name: '广东港口价格',
                     yAxisIndex:2,
-                    type: 'line'
+                    type: 'line',
+                    itemStyle: {normal: {lineStyle: {width: 3}}},
                     // data: {{l4s}}
                 }
             ]
@@ -382,7 +392,7 @@
                     name: '散船贸易利润',
                     yAxisIndex:1,
                     type: 'bar',
-                    color:'green'
+                    color:'yellowgreen'
                     // data: {{l4s}}
                 }
             ]
@@ -489,7 +499,7 @@
                     color: 'black',
                     symbol:'triangle',
                     symbolSize:8,
-                    // itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    itemStyle: {normal: {lineStyle: {width: 3}}},
                     // data: {{l4}}
                 },
                 {
@@ -505,7 +515,7 @@
                     name: '高粱',
                     yAxisIndex:0,
                     type: 'line',
-                    color:'yellow',
+                    color:'purple',
                     // symbol:'none',
                     // symbolSize:0,
                     // itemStyle: {normal: {areaStyle: {type: 'default'}}},
@@ -515,6 +525,7 @@
                     name: '大麦',
                     yAxisIndex:0,
                     type: 'line',
+                    color:'yellow'
                     // symbol:'none',
                     // symbolSize:0,
                     // itemStyle: {normal: {areaStyle: {type: 'default'}}},
@@ -524,7 +535,7 @@
                     name: '进口利润',
                     yAxisIndex:1,
                     type: 'bar',
-                    color:'green'
+                    color:'yellowgreen'
                     // data: {{l4s}}
                 }
             ]
