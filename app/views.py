@@ -425,7 +425,7 @@ def cornbasischart():
         d['2017basis1'] = corn_year_basis1_df.ix[date,'2017basis1']
         d['2016basis1'] = corn_year_basis1_df.ix[date,'2016basis1']
         d['2015basis1'] = corn_year_basis1_df.ix[date,'2015basis1']
-        d['2014basis1'] = corn_year_basis1_df.ix[date,'2014basis1']
+        # d['2014basis1'] = corn_year_basis1_df.ix[date,'2014basis1']
         corn_year_basis1_l.append(d)
 
     corn_year_basis5_l = []
@@ -437,7 +437,7 @@ def cornbasischart():
         d['2017basis5'] = corn_year_basis5_df.ix[date,'2017basis5']
         d['2016basis5'] = corn_year_basis5_df.ix[date,'2016basis5']
         d['2015basis5'] = corn_year_basis5_df.ix[date,'2015basis5']
-        d['2014basis5'] = corn_year_basis5_df.ix[date,'2014basis5']
+        # d['2014basis5'] = corn_year_basis5_df.ix[date,'2014basis5']
         corn_year_basis5_l.append(d)
 
     corn_year_basis9_l = []
@@ -449,7 +449,6 @@ def cornbasischart():
         d['2017basis9'] = corn_year_basis9_df.ix[date,'2017basis9']
         d['2016basis9'] = corn_year_basis9_df.ix[date,'2016basis9']
         d['2015basis9'] = corn_year_basis9_df.ix[date,'2015basis9']
-        d['2014basis9'] = corn_year_basis9_df.ix[date,'2014basis9']
         corn_year_basis9_l.append(d)
 
     corn_basis_l = []
@@ -595,6 +594,28 @@ def carryout():
         l4.append(d4)
 
     return render_template("carryout.html", l1=l1, l2=l2, l3=l3, l4=l4)
+#------------------------------------------------------------------------------
+# priceSummarize
+@app.route('/priceSummarize')
+def priceSummarize():
+    df = pd.read_excel(app.config['EXCEL_CORNDATA'], sheet_name='summarize', header=None)
+    region_df = df.ix[:7, :8]
+    region_df.iloc[0,0] = region_df.iloc[0,0].date()
+
+    deepcarryout_df = df.ix[:16, 10:14]
+    deepcarryout_df.iloc[0,3] = deepcarryout_df.iloc[0,3].date()
+    deepcarryout_df.iloc[0,4] = deepcarryout_df.iloc[0,4].date()
+    for i in range(deepcarryout_df.shape[0]-1):
+        deepcarryout_df.iloc[i+1,2] = '%.2f%%' % (deepcarryout_df.iloc[i+1,2]*100)
+
+    feedcarryout_df = df.ix[:12, 15:20]
+    feedcarryout_df.iloc[0,3] = feedcarryout_df.iloc[0,3].date()
+    feedcarryout_df.iloc[0,4] = feedcarryout_df.iloc[0,4].date()
+    # region_df = region_df.to_html(header=None, index=None, na_rep='', col_space=20, bold_rows=True)
+    # carryout_df = carryout_df.to_html(header=None, index=None, na_rep='', col_space=20, bold_rows=True)
+    # region_df = region_df.to_json()
+    return render_template("priceSummarize.html", region_df=region_df, deepcarryout_df=deepcarryout_df, feedcarryout_df=feedcarryout_df)
+    # return carryout_df
 #------------------------------------------------------------------------------
 # temptest
 @app.route('/temptest', methods=['GET', 'POST'])

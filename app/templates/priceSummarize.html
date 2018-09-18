@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>信息概览</title>
+    <!-- 引入 echarts.js -->
+    <!-- <script src="js/echarts.js"></script> -->
+    <script type="text/javascript" src="http://echarts.baidu.com/dist/echarts.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">
+</head>
+<body>
+    <font size="6" color="blue"><p>产区价格信息</p></font>
+    <div>
+        <table border="1" cellpadding="10">
+            {% for row in region_df.values %}
+            <tr>
+                {% for cell in row %}
+                <td align="center">{{cell |  replace('nan','')}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <font size="6" color="blue"><p>深加工企业库存（天）</p></font>
+    <div>
+        <table border="1" cellpadding="10">
+            {% for row in deepcarryout_df.values %}
+            <tr>
+                {% for cell in row %}
+                <td align="center">
+                    {{cell | replace('nan','')}}
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <font size="6" color="blue"><p>饲料厂库存（天）</p></font>
+    <div>
+        <table border="1" cellpadding="10">
+            {% for row in feedcarryout_df.values %}
+            <tr>
+                {% for cell in row %}
+                <td align="center">{{cell |  replace('nan','')}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
