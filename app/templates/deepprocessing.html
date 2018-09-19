@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>DeepProcessing</title>
+    <!-- 引入 echarts.js -->
+    <!-- <script src="js/echarts.js"></script> -->
+    <script type="text/javascript" src="http://echarts.baidu.com/dist/echarts.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">
+</head>
+<body>
+    <!-- <p>{{l1}}</p> -->
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="kgl_lr" class="chart600"></div>
+
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart1 = echarts.init(document.getElementById('kgl_lr'), 'vintage');
+        var myl1 = {{l1|tojson}};
+        // myChart.showLoading();
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: [
+            {
+                text: '东北淀粉厂',
+                x:'25%',
+                textAlign:'center'
+                // textStyle:{
+                //     color:'black',
+                //     fontSize:28,
+                // }
+            },{
+                text: '山东淀粉厂',
+                x:'75%',
+                textAlign:'center'
+            },{
+                text: '东北酒精厂',
+                x:'25%',
+                y:'49%',
+                textAlign:'center'
+            },{
+                text: '河南酒精厂',
+                x:'75%',
+                y:'49%',
+                textAlign:'center'
+            }
+            ],
+            tooltip: {
+                trigger: 'axis',
+                axisPointer:{
+                    type:'cross'
+                }
+            },
+            grid: [
+                {x: '7%', y: '7%', width: '40%', height: '38%'},
+                {x2: '7%', y: '7%', width: '40%', height: '38%'},
+                {x: '7%', y2: '7%', width: '40%', height: '38%'},
+                {x2: '7%', y2: '7%', width: '40%', height: '38%'}
+            ],
+            legend: [{
+                data:['东北开工率', '黑龙江利润', '吉林利润'],
+                x:'15%',
+                y:25,
+            },{
+                data:['山东开工率', '山东利润'],
+                x:'65%',
+                y:25
+            },{
+                data:['东北开工率', '黑龙江利润', '吉林利润'],
+                x:'15%',
+                y:'53%',
+            },{
+                data:['河南开工率', '河南利润'],
+                x:'65%',
+                y:'53%',
+            }],
+            xAxis: [{
+                type:'category',
+                gridIndex: 0,
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        var date = new Date(value);
+                        var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                        return texts.join('/');
+                    },
+                },
+                // data: []
+            },{
+                type:'category',
+                gridIndex: 1,
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        var date = new Date(value);
+                        var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                        return texts.join('/');
+                    },
+                }
+            },{
+                type:'category',
+                gridIndex: 2,
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        var date = new Date(value);
+                        var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                        return texts.join('/');
+                    },
+                }
+            },{
+                type:'category',
+                gridIndex: 3,
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        var date = new Date(value);
+                        var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                        return texts.join('/');
+                    },
+                }                    
+            }            
+            ],
+            yAxis: [
+                {
+                    gridIndex: 0, 
+                    type:'value', 
+                    min:function(value){
+                        return value.min-5
+                    }
+                },{
+                    gridIndex: 0, 
+                    type:'value'
+                },{
+                    gridIndex: 1, 
+                    type:'value',
+                    min:function(value){
+                        return value.min-5
+                    }
+                },{
+                    gridIndex: 1, 
+                    type:'value'
+                },{
+                    gridIndex: 2,
+                    type:'value',
+                    min:function(value){
+                        return value.min-5
+                    }
+                },{
+                    gridIndex: 2,
+                    type:'value'
+                },{
+                    gridIndex: 3,
+                    type:'value',
+                    min:function(value){
+                        return value.min-5
+                    }
+                },{
+                    gridIndex: 3,
+                    type:'value'
+                }
+            ],
+            // dataZoom: [
+            //     {
+            //         type: 'slider',
+            //         start:0,
+            //         end:100
+            //     }
+            // ],
+            dataset:{
+                dimensions: ['date', '68cs_db_kgl', 'cs_hlj_lr', 'cs_jl_lr', '68cs_sd_kgl', 'cs_sd_lr', '35jj_db_kgl', 'jj_jl_lr', 'jj_hlj_lr', '35jj_hn_kgl', 'jj_hn_lr'],
+                source: myl1
+            },
+            series: [
+                {
+                    name: '东北开工率',
+                    xAxisIndex: 0,
+                    yAxisIndex:0,
+                    type: 'line',
+                    // symbol:'none',
+                    // symbolSize:0,
+                    // itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    // data: {{l4}}
+                },
+                {
+                    name: '黑龙江利润',
+                    xAxisIndex: 0,
+                    yAxisIndex:1,
+                    type: 'bar',
+                    // color:"yellowgreen",
+                    // itemStyle:{
+                    //     normal:{
+                    //         color:function(params){
+                    //             console.log(params);
+                    //             if (params.data.NorthCarryoutChange>0) {return 'red'} else {return 'green'}
+                    //         }
+                    //     }
+                    // }
+                    // data: {{l4s}}
+                },
+                {
+                    name: '吉林利润',
+                    xAxisIndex: 0,
+                    yAxisIndex:1,
+                    type: 'bar',
+                    // itemStyle: {normal: {lineStyle: {width: 3}}},
+                    // data: {{l4s}}
+                },{
+                    name: '山东开工率',
+                    xAxisIndex: 1,
+                    yAxisIndex:2,
+                    type: 'line',
+                },{
+                    name: '山东利润',
+                    xAxisIndex: 1,
+                    yAxisIndex:3,
+                    type: 'bar',
+                },{
+                    name: '东北开工率',
+                    xAxisIndex: 2,
+                    yAxisIndex:4,
+                    type: 'line',
+                },{
+                    name: '黑龙江利润',
+                    xAxisIndex: 2,
+                    yAxisIndex:5,
+                    type: 'bar',
+                },{
+                    name: '吉林利润',
+                    xAxisIndex: 2,
+                    yAxisIndex: 5,
+                    type: 'bar',
+                },{
+                    name: '河南开工率',
+                    xAxisIndex: 3,
+                    yAxisIndex:6,
+                    type: 'line',
+                },{
+                    name: '河南利润',
+                    xAxisIndex: 3,
+                    yAxisIndex:7,
+                    type: 'bar',
+                }
+            ]
+        };
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart1.setOption(option);
+    </script>
+<!--     <script type="text/javascript">
+        var myChart1 = echarts.init(document.getElementById('kgl_lr'), 'vintage');
+        var myl1 = {{l1|tojson}};
+        console.log(myl1);
+        var option = {
+            title: {
+                text: 'deepprocessing'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer:{
+                    type:'cross'
+                }
+            },
+            // emphasis: {
+            //     itemStyle: {
+            //         color: 'blue'
+            //     },
+            //     label: {
+            //         show: true,
+            //         formatter: 'This is a emphasis label.'
+            //     
+            // },
+            legend: {
+                data:['开工率', '黑龙江利润', '吉林利润']
+            },
+            xAxis: {
+                type:'category',
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        // 格式化成月/日，只在第一个刻度显示年份
+                        var date = new Date(value);
+                        var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                        // var texts = [date.getMonth()+1, date.getDate()];
+                        // if (index === 0) {
+                        //     texts.unshift(date.getFullYear());
+                        // }
+                        return texts.join('/');
+                    }
+                }
+                // data: []
+            },
+            yAxis: [
+                {
+                    // name:'NorthCarryouy',
+                    type:'value',
+                    min:function(value){
+                        return value.min-20
+                    },
+                    position:'left'
+                },
+                {
+                    // name:'NorthCarryouyChange',
+                    type:'value',
+                    position:'right',
+                    offset:50
+                },
+                {
+                    // name:'JinzhouPrice',
+                    type:'value',
+                    min:function(value){
+                        return value.min-50
+                    },
+                    position:'right'
+                }
+            ],
+            dataZoom: [
+                {
+                    type: 'slider',
+                    start:0,
+                    end:100
+                }
+            ],
+            dataset:{
+                dimensions: ['date', '68cs_db_kgl', 'cs_hlj_lr', 'cs_jl_lr'],
+                source: myl1
+            },
+            series: [
+                {
+                    name: '开工率',
+                    yAxisIndex:0,
+                    type: 'line',
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    // data: {{l4}}
+                },
+                {
+                    name: '黑龙江利润',
+                    yAxisIndex:1,
+                    type: 'bar',
+                    color:'green'
+                    // data: {{l4s}}
+                },
+                {
+                    name: '吉林利润',
+                    yAxisIndex:2,
+                    type: 'bar'
+                    // data: {{l4s}}
+                }
+            ]
+        };
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart1.setOption(option);
+    </script> -->
+
+    <script type="text/javascript">
+        window.onresize = function(){
+            myChart1.resize()
+            // myChart2.resize()
+            // myChart3.resize()
+            // myChart4.resize()
+        }
+    </script>
+
+</body>
+</html>

@@ -595,6 +595,39 @@ def carryout():
 
     return render_template("carryout.html", l1=l1, l2=l2, l3=l3, l4=l4)
 #------------------------------------------------------------------------------
+# deepprocessing
+@app.route('/deepprocessing')
+def deepProcessing():
+    df = pd.read_excel(app.config['EXCEL_CORNDATA'], sheet_name='DeepProcessing')
+    deepprocessing_df = df.iloc[1:,:16]
+    deepprocessing_df.columns = ['68cs_qg_kgl', '68cs_db_kgl', '68cs_sd_kgl', '68cs_hb_kgl', 'cs_hlj_lr', 'cs_jl_lr', 'cs_ln_lr', 'cs_hb_lr', 'cs_sd_lr', '35jj_qg_kgl', '35jj_db_kgl', '35jj_hn_kgl', 'jj_jl_lr', 'jj_hlj_lr', 'jj_hb_lr', 'jj_hn_lr']
+    # print(deepprocessing_df.columns)
+    l1 = []
+    for date in deepprocessing_df.index:
+        # print(date)
+        d1 = OrderedDict()
+        d1['date'] = date
+        # d1['68cs_qg_kgl'] = deepprocessing_df.ix[date,'68cs_qg_kgl']
+        d1['68cs_db_kgl'] = deepprocessing_df.ix[date,'68cs_db_kgl']
+        d1['68cs_sd_kgl'] = deepprocessing_df.ix[date,'68cs_sd_kgl']
+        # d1['68cs_hb_kgl'] = deepprocessing_df.ix[date,'68cs_hb_kgl']
+        d1['cs_hlj_lr'] = deepprocessing_df.ix[date,'cs_hlj_lr']
+        d1['cs_jl_lr'] = deepprocessing_df.ix[date,'cs_jl_lr']
+        # d1['cs_ln_lr'] = deepprocessing_df.ix[date,'cs_ln_lr']
+        # d1['cs_hb_lr'] = deepprocessing_df.ix[date,'cs_hb_lr']
+        d1['cs_sd_lr'] = deepprocessing_df.ix[date,'cs_sd_lr']
+        # d1['35jj_qg_kgl'] = deepprocessing_df.ix[date,'35jj_qg_kgl']
+        d1['35jj_db_kgl'] = deepprocessing_df.ix[date,'35jj_db_kgl']
+        d1['35jj_hn_kgl'] = deepprocessing_df.ix[date,'35jj_hn_kgl']
+        d1['jj_jl_lr'] = deepprocessing_df.ix[date,'jj_jl_lr']
+        d1['jj_hlj_lr'] = deepprocessing_df.ix[date,'jj_hlj_lr']
+        # d1['jj_hb_lr'] = deepprocessing_df.ix[date,'jj_hb_lr']
+        d1['jj_hn_lr'] = deepprocessing_df.ix[date,'jj_hn_lr']
+        l1.append(d1)
+    # print(l1)
+    return render_template("deepprocessing.html", l1=l1)
+    # return deepprocessing_df.to_html()
+#------------------------------------------------------------------------------
 # priceSummarize
 @app.route('/priceSummarize')
 def priceSummarize():
@@ -611,6 +644,8 @@ def priceSummarize():
     feedcarryout_df = df.ix[:12, 15:20]
     feedcarryout_df.iloc[0,3] = feedcarryout_df.iloc[0,3].date()
     feedcarryout_df.iloc[0,4] = feedcarryout_df.iloc[0,4].date()
+    for i in range(feedcarryout_df.shape[0]-1):
+        feedcarryout_df.iloc[i+1,2] = '%.2f%%' % (feedcarryout_df.iloc[i+1,2]*100)
     # region_df = region_df.to_html(header=None, index=None, na_rep='', col_space=20, bold_rows=True)
     # carryout_df = carryout_df.to_html(header=None, index=None, na_rep='', col_space=20, bold_rows=True)
     # region_df = region_df.to_json()
