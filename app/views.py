@@ -554,8 +554,8 @@ def cornspreadchart():
     return render_template("cornspreadchart.html", corn_cs_spread1_year_l=corn_cs_spread1_year_l, corn_cs_spread5_year_l=corn_cs_spread5_year_l, corn_cs_spread9_year_l=corn_cs_spread9_year_l, corn_cs_spread_df_l=corn_cs_spread_df_l, corn_91_year_l=corn_91_year_l, corn_15_year_l=corn_15_year_l, corn_59_year_l=corn_59_year_l)
 #------------------------------------------------------------------------------
 # North Port Carryout & Price
-@app.route('/carryout', methods=['GET', 'POST'])
-def carryout():
+@app.route('/portcarryout', methods=['GET', 'POST'])
+def portcarryout():
     df = pd.read_excel(app.config['EXCEL_CORNDATA'], sheet_name='NSPort')
     df = df[1:-1]
     # corn_year_basis_df = corn_year_basis_df.fillna(0)
@@ -593,7 +593,29 @@ def carryout():
         d4['GDInportSpread'] = d4['GDPrice']-d4['InportCorn']
         l4.append(d4)
 
-    return render_template("carryout.html", l1=l1, l2=l2, l3=l3, l4=l4)
+    gatherN_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='gatherN_year_df')
+    gatherS_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='gatherS_year_df')
+    outN_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='outN_year_df')
+    outS_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='outS_year_df')
+    l5 = []
+    for date in gatherN_df.index:
+        d5 = OrderedDict()
+        d5['date'] = date
+        d5['gatherN_2016_2017'] = gatherN_df.ix[date,'2016/2017']
+        d5['gatherN_2017_2018'] = gatherN_df.ix[date,'2017/2018']
+        d5['gatherN_2018_2019'] = gatherN_df.ix[date,'2018/2019']
+        d5['gatherS_2016_2017'] = gatherS_df.ix[date,'2016/2017']
+        d5['gatherS_2017_2018'] = gatherS_df.ix[date,'2017/2018']
+        d5['gatherS_2018_2019'] = gatherS_df.ix[date,'2018/2019']
+        d5['outN_2016_2017'] = outN_df.ix[date,'2016/2017']
+        d5['outN_2017_2018'] = outN_df.ix[date,'2017/2018']
+        d5['outN_2018_2019'] = outN_df.ix[date,'2018/2019']
+        d5['outS_2016_2017'] = outS_df.ix[date,'2016/2017']
+        d5['outS_2017_2018'] = outS_df.ix[date,'2017/2018']
+        d5['outS_2018_2019'] = outS_df.ix[date,'2018/2019']
+        l5.append(d5)
+
+    return render_template("portcarryout.html", l1=l1, l2=l2, l3=l3, l4=l4, l5=l5)
 #------------------------------------------------------------------------------
 # deepprocessing
 @app.route('/deepprocessing')

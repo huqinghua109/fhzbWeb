@@ -9,12 +9,13 @@
     <link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">
 </head>
 <body>
-    <!-- <p>{{l3}}</p> -->
+    <!-- <p>{{l5}}</p> -->
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div id="northPort" class="chart600"></div>
     <div id="southPort" class="chart600"></div>
     <div id="profit" class="chart600"></div>
     <div id="inportPrice" class="chart600"></div>
+    <div id="gatherout" class="chart600"></div>
 
     <script type="text/javascript">
         // function fetchData(cb) {
@@ -545,11 +546,247 @@
     </script>
 
     <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart5 = echarts.init(document.getElementById('gatherout'), 'vintage');
+        var myl5 = {{l5|tojson}};
+        // myChart.showLoading();
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: [
+            {
+                text: '北港集港',
+                x:'25%',
+                textAlign:'center'
+                // textStyle:{
+                //     color:'black',
+                //     fontSize:28,
+                // }
+            },{
+                text: '北港疏港',
+                x:'75%',
+                textAlign:'center'
+            },{
+                text: '广东到货',
+                x:'25%',
+                y:'49%',
+                textAlign:'center'
+            },{
+                text: '广东走货',
+                x:'75%',
+                y:'49%',
+                textAlign:'center'
+            }
+            ],
+            tooltip: {
+                trigger: 'axis',
+                axisPointer:{
+                    type:'cross'
+                }
+            },
+            grid: [
+                {x: '7%', y: '7%', width: '38%', height: '38%'},
+                {x2: '7%', y: '7%', width: '38%', height: '38%'},
+                {x: '7%', y2: '7%', width: '38%', height: '38%'},
+                {x2: '7%', y2: '7%', width: '38%', height: '38%'}
+            ],
+            legend: [{
+                data:['16/17', '17/18', '18/19'],
+                x:'15%',
+                y:25,
+            },{
+                data:['16/17', '17/18', '18/19'],
+                x:'65%',
+                y:25
+            },{
+                data:['16/17', '17/18', '18/19'],
+                x:'15%',
+                y:'53%',
+            },{
+                data:['16/17', '17/18', '18/19'],
+                x:'65%',
+                y:'53%',
+            }],
+            xAxis: [{
+                type:'category',
+                gridIndex: 0,
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        var date = new Date(value);
+                        var texts = [date.getMonth()+1, date.getDate()];
+                        return texts.join('/');
+                    },
+                },
+                // data: []
+            },{
+                type:'category',
+                gridIndex: 1,
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        var date = new Date(value);
+                        var texts = [date.getMonth()+1, date.getDate()];
+                        return texts.join('/');
+                    },
+                }
+            },{
+                type:'category',
+                gridIndex: 2,
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        var date = new Date(value);
+                        var texts = [date.getMonth()+1, date.getDate()];
+                        return texts.join('/');
+                    },
+                }
+            },{
+                type:'category',
+                gridIndex: 3,
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        var date = new Date(value);
+                        var texts = [date.getMonth()+1, date.getDate()];
+                        return texts.join('/');
+                    },
+                }                    
+            }            
+            ],
+            yAxis: [
+                {
+                    gridIndex: 0, 
+                    type:'value', 
+                },{
+                    gridIndex: 1, 
+                    type:'value'
+                },{
+                    gridIndex: 2, 
+                    type:'value',
+                },{
+                    gridIndex: 3, 
+                    type:'value'
+                }
+            ],
+            // dataZoom: [
+            //     {
+            //         type: 'slider',
+            //         start:0,
+            //         end:100
+            //     }
+            // ],
+            dataset:{
+                dimensions: ['date', 'gatherN_2016_2017', 'gatherN_2017_2018', 'gatherN_2018_2019', 'outN_2016_2017', 'outN_2017_2018', 'outN_2018_2019', 'gatherS_2016_2017', 'gatherS_2017_2018', 'gatherS_2018_2019', 'outS_2016_2017', 'outS_2017_2018', 'outS_2018_2019'],
+                source: myl5
+            },
+            series: [
+                {
+                    name: '16/17',
+                    xAxisIndex: 0,
+                    yAxisIndex:0,
+                    type: 'bar',
+                    barWidth:'35%',
+                    // symbol:'none',
+                    // symbolSize:0,
+                    // itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    // data: {{l4}}
+                },
+                {
+                    name: '17/18',
+                    xAxisIndex: 0,
+                    yAxisIndex:0,
+                    type: 'bar',
+                    barWidth:'35%',
+                    // color:"yellowgreen",
+                    // itemStyle:{
+                    //     normal:{
+                    //         color:function(params){
+                    //             console.log(params);
+                    //             if (params.data.NorthCarryoutChange>0) {return 'red'} else {return 'green'}
+                    //         }
+                    //     }
+                    // }
+                    // data: {{l4s}}
+                },
+                {
+                    name: '18/19',
+                    xAxisIndex: 0,
+                    yAxisIndex:0,
+                    type: 'bar',
+                    barWidth:'35%',
+                    // itemStyle: {normal: {lineStyle: {width: 3}}},
+                    // data: {{l4s}}
+                },{
+                    name: '16/17',
+                    xAxisIndex: 1,
+                    yAxisIndex:1,
+                    type: 'bar',
+                    barWidth:'35%',
+                },{
+                    name: '17/18',
+                    xAxisIndex: 1,
+                    yAxisIndex:1,
+                    type: 'bar',
+                    barWidth:'35%',
+                },{
+                    name: '18/19',
+                    xAxisIndex: 1,
+                    yAxisIndex:1,
+                    type: 'bar',
+                    barWidth:'35%',
+                },{
+                    name: '16/17',
+                    xAxisIndex: 2,
+                    yAxisIndex:2,
+                    type: 'bar',
+                    barWidth:'35%',
+                },{
+                    name: '17/18',
+                    xAxisIndex: 2,
+                    yAxisIndex: 2,
+                    type: 'bar',
+                    barWidth:'35%',
+                },{
+                    name: '18/19',
+                    xAxisIndex: 2,
+                    yAxisIndex:2,
+                    type: 'bar',
+                    barWidth:'35%',
+                },{
+                    name: '16/17',
+                    xAxisIndex: 3,
+                    yAxisIndex:3,
+                    type: 'bar',
+                    barWidth:'35%',
+                },{
+                    name: '17/18',
+                    xAxisIndex: 3,
+                    yAxisIndex:3,
+                    type: 'bar',
+                    barWidth:'35%',
+                },{
+                    name: '18/19',
+                    xAxisIndex: 3,
+                    yAxisIndex:3,
+                    type: 'bar',
+                    barWidth:'35%',
+                }
+            ]
+        };
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart5.setOption(option);
+    </script>
+
+    <script type="text/javascript">
         window.onresize = function(){
             myChart1.resize()
             myChart2.resize()
             myChart3.resize()
             myChart4.resize()
+            myChart5.resize()
         }
     </script>
 
