@@ -7,6 +7,11 @@
 	width: 80vw;
 	height: 48vw;
 	margin: 0 auto;
+	background-image: url('/static/wtny.png');
+	background-repeat: no-repeat;
+	background-size: 50%;
+	background-position: 50% 5%;
+	opacity: 1;
 }
 .temp{
 	color: red;
@@ -15,5 +20,11 @@
 tr,td {
 	font-size:20px;
 	color:#000000;
-	background:#ffffff;
+}
+table {
+	background-image: url('/static/wtny.png');
+	background-repeat: no-repeat;
+	background-size: 50%;
+	background-position: center;
+	opacity: 1;
 }
