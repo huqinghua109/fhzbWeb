@@ -7,3 +7,4 @@ UPLOAD_FOLDER = './tmp/uploads'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'doc'])
 EXCEL_BASIS = os.path.join(os.path.dirname(os.path.abspath(__file__)),'report/cleandata_basis.xlsx')
 EXCEL_CORNDATA = os.path.join(os.path.dirname(os.path.abspath(__file__)),'report/CornData.xlsx')
+EXCEL_TEMPRES = os.path.join(os.path.dirname(os.path.abspath(__file__)),'report/CornTempRes.xlsx')

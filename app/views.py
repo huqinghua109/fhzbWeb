@@ -674,6 +674,50 @@ def priceSummarize():
     return render_template("priceSummarize.html", region_df=region_df, deepcarryout_df=deepcarryout_df, feedcarryout_df=feedcarryout_df)
     # return carryout_df
 #------------------------------------------------------------------------------
+# corntempres
+@app.route('/corntempres')
+def corntempres():
+    # summarize
+    df = pd.read_excel(app.config['EXCEL_TEMPRES'], sheet_name='summarize', header=None)
+    tempRes_df = df.iloc[10:22, 5:13]
+    tempRes_df.iloc[0,0] = tempRes_df.iloc[0,0].date()
+    for i in range(tempRes_df.shape[0]-1):
+        if i in [0,1,2,3,5,6,7,8]:
+            tempRes_df.iloc[i+1,5] = '%.2f%%' % (tempRes_df.iloc[i+1,5]*100)
+        tempRes_df.iloc[i+1,2] = '%d万吨' % tempRes_df.iloc[i+1,2]
+        tempRes_df.iloc[i+1,3] = '%.2f万吨' % (tempRes_df.iloc[i+1,3]/10000.0)
+        tempRes_df.iloc[i+1,6] = '%d万吨' % tempRes_df.iloc[i+1,6]
+        tempRes_df.iloc[i+1,7] = '%d万吨' % tempRes_df.iloc[i+1,7]
+
+    # detail
+    df1 = pd.read_excel(app.config['EXCEL_TEMPRES'], sheet_name='detail')
+    detail_df = df1[-4:]
+    detail_df.columns = list(range(1,df1.shape[1]+1))
+    l1 = []
+    for i in detail_df.index:
+        d1 = OrderedDict()
+        d1['date'] = detail_df.loc[i,1]
+        d1['2014cjl_hlj'] = detail_df.loc[i,9]
+        d1['2015cjl_hlj'] = detail_df.loc[i,33]
+        d1['2014p_hlj'] = detail_df.loc[i,8]
+        d1['2015p_hlj'] = detail_df.loc[i,32]
+        d1['2014cjl_jl'] = detail_df.loc[i,15]
+        d1['2015cjl_jl'] = detail_df.loc[i,39]
+        d1['2014p_jl'] = detail_df.loc[i,14]
+        d1['2015p_jl'] = detail_df.loc[i,38]
+        d1['2014cjl_ln'] = detail_df.loc[i,21]
+        d1['2015cjl_ln'] = detail_df.loc[i,45]
+        d1['2014p_ln'] = detail_df.loc[i,20]
+        d1['2015p_ln'] = detail_df.loc[i,44]
+        d1['2014cjl_nm'] = detail_df.loc[i,27]
+        d1['2015cjl_nm'] = detail_df.loc[i,51]
+        d1['2014p_nm'] = detail_df.loc[i,26]
+        d1['2015p_nm'] = detail_df.loc[i,50]
+        l1.append(d1)
+
+    return render_template("corntempres.html", tempRes_df=tempRes_df, l1=l1)
+    # return detail_df.to_html()
+#------------------------------------------------------------------------------
 # temptest
 @app.route('/temptest', methods=['GET', 'POST'])
 def temptest():

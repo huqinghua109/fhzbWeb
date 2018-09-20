@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>深加工开工率及利润</title>
+    <title>玉米临储拍卖</title>
     <!-- 引入 echarts.js -->
     <!-- <script src="js/echarts.js"></script> -->
     <script type="text/javascript" src="http://echarts.baidu.com/dist/echarts.js"></script>
@@ -10,12 +10,26 @@
 </head>
 <body>
     <!-- <p>{{l1}}</p> -->
+    <font size="6" color="blue"><p align="center">拍卖成交</p></font>
+    <div>
+        <table border="1" cellpadding="10" align="center">
+            {% for row in tempRes_df.values %}
+            <tr>
+                {% for cell in row %}
+                <td align="center">{{cell |  replace('nan','')}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <font size="6" color="blue"><p align="center">拍卖量价走势图</p></font>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="kgl_lr" class="chart600"></div>
+    <div id="tempres" class="chart600"></div>
 
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart1 = echarts.init(document.getElementById('kgl_lr'), 'vintage');
+        var myChart1 = echarts.init(document.getElementById('tempres'), 'vintage');
         var myl1 = {{l1|tojson}};
         // myChart.showLoading();
 
@@ -23,7 +37,7 @@
         var option = {
             title: [
             {
-                text: '东北淀粉厂',
+                text: '黑龙江',
                 x:'25%',
                 textAlign:'center'
                 // textStyle:{
@@ -31,16 +45,16 @@
                 //     fontSize:28,
                 // }
             },{
-                text: '山东淀粉厂',
+                text: '吉林',
                 x:'75%',
                 textAlign:'center'
             },{
-                text: '东北酒精厂',
+                text: '辽宁',
                 x:'25%',
                 y:'49%',
                 textAlign:'center'
             },{
-                text: '河南酒精厂',
+                text: '内蒙',
                 x:'75%',
                 y:'49%',
                 textAlign:'center'
@@ -58,23 +72,10 @@
                 {x: '7%', y2: '7%', width: '38%', height: '38%'},
                 {x2: '7%', y2: '7%', width: '38%', height: '38%'}
             ],
-            legend: [{
-                data:['东北开工率', '黑龙江利润', '吉林利润'],
-                x:'12%',
-                y:25,
-            },{
-                data:['山东开工率', '山东利润'],
-                x:'65%',
-                y:25
-            },{
-                data:['东北开工率', '黑龙江利润', '吉林利润'],
-                x:'12%',
-                y:'53%',
-            },{
-                data:['河南开工率', '河南利润'],
-                x:'65%',
-                y:'53%',
-            }],
+            legend: {
+                data:['2014成交率', '2015成交率', '2014成交价', '2015成交价'],
+                y:'49%',
+            },
             xAxis: [{
                 type:'category',
                 gridIndex: 0,
@@ -126,39 +127,39 @@
                 {
                     gridIndex: 0, 
                     type:'value', 
-                    min:function(value){
-                        return value.min-5
-                    }
                 },{
                     gridIndex: 0, 
-                    type:'value'
+                    type:'value',
+                    min:function(value){
+                        return value.min-10
+                    }
+                },{
+                    gridIndex: 1, 
+                    type:'value',
                 },{
                     gridIndex: 1, 
                     type:'value',
                     min:function(value){
-                        return value.min-5
+                        return value.min-10
                     }
                 },{
-                    gridIndex: 1, 
-                    type:'value'
+                    gridIndex: 2,
+                    type:'value',
                 },{
                     gridIndex: 2,
                     type:'value',
                     min:function(value){
-                        return value.min-5
+                        return value.min-10
                     }
                 },{
-                    gridIndex: 2,
-                    type:'value'
+                    gridIndex: 3,
+                    type:'value',
                 },{
                     gridIndex: 3,
                     type:'value',
                     min:function(value){
-                        return value.min-5
+                        return value.min-10
                     }
-                },{
-                    gridIndex: 3,
-                    type:'value'
                 }
             ],
             // dataZoom: [
@@ -169,25 +170,28 @@
             //     }
             // ],
             dataset:{
-                dimensions: ['date', '68cs_db_kgl', 'cs_hlj_lr', 'cs_jl_lr', '68cs_sd_kgl', 'cs_sd_lr', '35jj_db_kgl', 'jj_jl_lr', 'jj_hlj_lr', '35jj_hn_kgl', 'jj_hn_lr'],
+                dimensions: ['date', '2014cjl_hlj', '2015cjl_hlj', '2014p_hlj', '2015p_hlj', '2014cjl_jl', '2015cjl_jl', '2014p_jl', '2015p_jl', '2014cjl_ln', '2015cjl_ln', '2014p_ln', '2015p_ln', '2014cjl_nm', '2015cjl_nm', '2014p_nm', '2015p_nm'],
                 source: myl1
             },
             series: [
                 {
-                    name: '东北开工率',
+                    name: '2014成交率',
                     xAxisIndex: 0,
                     yAxisIndex:0,
-                    type: 'line',
+                    type: 'bar',
+                    barWidth:'20%',
                     // symbol:'none',
                     // symbolSize:0,
                     // itemStyle: {normal: {areaStyle: {type: 'default'}}},
                     // data: {{l4}}
                 },
                 {
-                    name: '黑龙江利润',
+                    name: '2015成交率',
                     xAxisIndex: 0,
-                    yAxisIndex:1,
+                    yAxisIndex:0,
                     type: 'bar',
+                    barWidth:'20%',
+                    color:"yellowgreen",
                     // color:"yellowgreen",
                     // itemStyle:{
                     //     normal:{
@@ -200,47 +204,102 @@
                     // data: {{l4s}}
                 },
                 {
-                    name: '吉林利润',
+                    name: '2014成交价',
                     xAxisIndex: 0,
                     yAxisIndex:1,
-                    type: 'bar',
+                    type: 'line',
+                    symbol:'diamond',
+                    symbolSize:'15',
                     // itemStyle: {normal: {lineStyle: {width: 3}}},
                     // data: {{l4s}}
                 },{
-                    name: '山东开工率',
+                    name: '2015成交价',
+                    xAxisIndex: 0,
+                    yAxisIndex:1,
+                    type: 'line',
+                    symbol:'diamond',
+                    symbolSize:'15',
+                },{
+                    name: '2014成交率',
                     xAxisIndex: 1,
                     yAxisIndex:2,
-                    type: 'line',
+                    type: 'bar',
+                    barWidth:'20%',
                 },{
-                    name: '山东利润',
+                    name: '2015成交率',
+                    xAxisIndex: 1,
+                    yAxisIndex:2,
+                    type: 'bar',
+                    barWidth:'20%',
+                    color:"yellowgreen",
+                },{
+                    name: '2014成交价',
                     xAxisIndex: 1,
                     yAxisIndex:3,
-                    type: 'bar',
+                    type: 'line',
+                    symbol:'diamond',
+                    symbolSize:'15',
                 },{
-                    name: '东北开工率',
+                    name: '2015成交价',
+                    xAxisIndex: 1,
+                    yAxisIndex: 3,
+                    type: 'line',
+                    symbol:'diamond',
+                    symbolSize:'15',
+                },{
+                    name: '2014成交率',
                     xAxisIndex: 2,
                     yAxisIndex:4,
-                    type: 'line',
+                    type: 'bar',
+                    barWidth:'20%',
                 },{
-                    name: '黑龙江利润',
+                    name: '2015成交率',
+                    xAxisIndex: 2,
+                    yAxisIndex:4,
+                    type: 'bar',
+                    barWidth:'20%',
+                    color:"yellowgreen",
+                },{
+                    name: '2014成交价',
                     xAxisIndex: 2,
                     yAxisIndex:5,
-                    type: 'bar',
+                    type: 'line',
+                    symbol:'diamond',
+                    symbolSize:'15',
                 },{
-                    name: '吉林利润',
+                    name: '2015成交价',
                     xAxisIndex: 2,
-                    yAxisIndex: 5,
-                    type: 'bar',
+                    yAxisIndex:5,
+                    type: 'line',
+                    symbol:'diamond',
+                    symbolSize:'15',
                 },{
-                    name: '河南开工率',
+                    name: '2014成交率',
                     xAxisIndex: 3,
                     yAxisIndex:6,
-                    type: 'line',
+                    type: 'bar',
+                    barWidth:'20%',
                 },{
-                    name: '河南利润',
+                    name: '2015成交率',
+                    xAxisIndex: 3,
+                    yAxisIndex:6,
+                    type: 'bar',
+                    barWidth:'20%',
+                    color:"yellowgreen",
+                },{
+                    name: '2014成交价',
                     xAxisIndex: 3,
                     yAxisIndex:7,
-                    type: 'bar',
+                    type: 'line',
+                    symbol:'diamond',
+                    symbolSize:'15',
+                },{
+                    name: '2015成交价',
+                    xAxisIndex: 3,
+                    yAxisIndex:7,
+                    type: 'line',
+                    symbol:'diamond',
+                    symbolSize:'15',
                 }
             ]
         };
