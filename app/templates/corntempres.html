@@ -12,7 +12,7 @@
     <!-- <p>{{l1}}</p> -->
     <font size="6" color="blue"><p align="center">拍卖成交</p></font>
     <div>
-        <table border="1" cellpadding="10" align="center">
+        <table  id="corntempres" border="1" cellpadding="10" align="center">
             {% for row in tempRes_df.values %}
             <tr>
                 {% for cell in row %}
@@ -22,6 +22,35 @@
             {% endfor %}
         </table>
     </div>
+    <script type="text/javascript">
+        var tb = document.getElementById("corntempres"); 
+        tb.rows[2].cells[0].style.display='none';
+        tb.rows[3].cells[0].style.display='none';
+        tb.rows[4].cells[0].style.display='none';
+        tb.rows[1].cells[0].rowSpan = 4;
+        tb.rows[5].cells[1].style.display='none';
+        tb.rows[5].cells[0].colSpan = 2;
+        for(var i=0; i<8;i++){
+            tb.rows[5].cells[i].style.color = 'red';
+        }
+
+        tb.rows[7].cells[0].style.display='none';
+        tb.rows[8].cells[0].style.display='none';
+        tb.rows[9].cells[0].style.display='none';
+        tb.rows[6].cells[0].rowSpan = 4;
+        tb.rows[10].cells[1].style.display='none';
+        tb.rows[10].cells[0].colSpan = 2;
+        for(var i=0; i<8;i++){
+            tb.rows[10].cells[i].style.color = 'yellowgreen';
+        }
+        tb.rows[11].cells[1].style.display='none';
+        tb.rows[11].cells[0].colSpan = 2;
+        tb.rows[11].cells[6].style.color = 'red';
+        tb.rows[11].cells[6].style.fontSize = "30px";
+        tb.rows[11].cells[7].style.color = 'green';
+        tb.rows[11].cells[7].style.fontSize = '30px';
+
+    </script>
 
     <font size="6" color="blue"><p align="center">拍卖量价走势图</p></font>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
