@@ -13,6 +13,11 @@
 	background-position: 50% 5%;
 	opacity: 1;
 }
+.chart600noyin{
+	width: 80vw;
+	height: 48vw;
+	margin: 0 auto;
+}
 .temp{
 	color: red;
 	text-align: center;
