@@ -689,7 +689,7 @@ def corntempres():
         tempRes_df.iloc[i+1,6] = '%d万吨' % tempRes_df.iloc[i+1,6]
         tempRes_df.iloc[i+1,7] = '%d万吨' % tempRes_df.iloc[i+1,7]
 
-    # detail
+    # corn detail
     df1 = pd.read_excel(app.config['EXCEL_TEMPRES'], sheet_name='detail')
     detail_df = df1[-4:]
     detail_df.columns = list(range(1,df1.shape[1]+1))
@@ -715,7 +715,19 @@ def corntempres():
         d1['2015p_nm'] = detail_df.loc[i,50]
         l1.append(d1)
 
-    return render_template("corntempres.html", tempRes_df=tempRes_df, l1=l1)
+    # soy detail
+    df2 = pd.read_excel(app.config['EXCEL_TEMPRES'], sheet_name='soydetail')
+    print(df2)
+    l2 = []
+    for i in df2.index:
+        d2 = OrderedDict()
+        d2['date'] = i
+        d2['2018volume'] = df2.loc[i,'vol']
+        d2['2018price'] = df2.loc[i,'price']
+        d2['2018ratio'] = df2.loc[i,'ratio']
+        l2.append(d2)
+
+    return render_template("corntempres.html", tempRes_df=tempRes_df, l1=l1, l2=l2)
     # return detail_df.to_html()
 #------------------------------------------------------------------------------
 # temptest

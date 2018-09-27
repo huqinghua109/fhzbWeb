@@ -50,7 +50,10 @@
                 trigger: 'axis',
                 axisPointer:{
                     type:'cross'
-                }
+                },
+                // formatter:function(params){
+
+                // }
             },
             grid: [
                 {x: '7%', y: '7%', width: '38%', height: '38%'},
@@ -86,6 +89,15 @@
                         return texts.join('/');
                     },
                 },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },
                 // data: []
             },{
                 type:'category',
@@ -97,7 +109,16 @@
                         var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
                         return texts.join('/');
                     },
-                }
+                },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },
             },{
                 type:'category',
                 gridIndex: 2,
@@ -108,7 +129,16 @@
                         var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
                         return texts.join('/');
                     },
-                }
+                },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },
             },{
                 type:'category',
                 gridIndex: 3,
@@ -119,7 +149,16 @@
                         var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
                         return texts.join('/');
                     },
-                }                    
+                },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },                    
             }            
             ],
             yAxis: [
@@ -128,6 +167,11 @@
                     type:'value', 
                     min:function(value){
                         return value.min-5
+                    },
+                    axisLabel:{
+                        formatter:function(value){
+                            return value.toFixed(0)+"%"
+                        }
                     }
                 },{
                     gridIndex: 0, 
@@ -137,6 +181,11 @@
                     type:'value',
                     min:function(value){
                         return value.min-5
+                    },
+                    axisLabel:{
+                        formatter:function(value){
+                            return value.toFixed(0)+"%"
+                        }
                     }
                 },{
                     gridIndex: 1, 
@@ -146,6 +195,11 @@
                     type:'value',
                     min:function(value){
                         return value.min-5
+                    },
+                    axisLabel:{
+                        formatter:function(value){
+                            return value.toFixed(0)+"%"
+                        }
                     }
                 },{
                     gridIndex: 2,
@@ -155,6 +209,11 @@
                     type:'value',
                     min:function(value){
                         return value.min-5
+                    },
+                    axisLabel:{
+                        formatter:function(value){
+                            return value.toFixed(0)+"%"
+                        }
                     }
                 },{
                     gridIndex: 3,

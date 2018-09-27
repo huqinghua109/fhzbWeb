@@ -70,7 +70,16 @@
                         // }
                         return texts.join('/');
                     },
-                }
+                },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },
                 // data: []
             },
             yAxis: [
@@ -217,7 +226,16 @@
                         // }
                         return texts.join('/');
                     }
-                }
+                },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },
                 // data: []
             },
             yAxis: [
@@ -354,7 +372,16 @@
                         // }
                         return texts.join('/');
                     }
-                }
+                },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },
                 // data: []
             },
             yAxis: [
@@ -465,7 +492,16 @@
                         // }
                         return texts.join('/');
                     }
-                }
+                },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },
                 // data: []
             },
             yAxis: [
@@ -618,6 +654,15 @@
                         return texts.join('/');
                     },
                 },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },
                 // data: []
             },{
                 type:'category',
@@ -629,7 +674,16 @@
                         var texts = [date.getMonth()+1, date.getDate()];
                         return texts.join('/');
                     },
-                }
+                },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },
             },{
                 type:'category',
                 gridIndex: 2,
@@ -640,7 +694,16 @@
                         var texts = [date.getMonth()+1, date.getDate()];
                         return texts.join('/');
                     },
-                }
+                },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },
             },{
                 type:'category',
                 gridIndex: 3,
@@ -651,7 +714,16 @@
                         var texts = [date.getMonth()+1, date.getDate()];
                         return texts.join('/');
                     },
-                }                    
+                },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },                    
             }            
             ],
             yAxis: [
