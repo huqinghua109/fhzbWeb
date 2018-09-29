@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>七省售粮进度</title>
+    <!-- 引入 echarts.js -->
+    <!-- <script src="js/echarts.js"></script> -->
+    <script type="text/javascript" src="http://echarts.baidu.com/dist/echarts.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">
+</head>
+<body>
+    <h1 align="center"><b><font size="6", color="red">售粮进度</font></b></h1>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="shouliangjindu_hjlm" class="chart600"></div>
+
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart1 = echarts.init(document.getElementById('shouliangjindu_hjlm'), 'vintage');
+        var myl1 = {{l1|tojson}};
+        // myChart.showLoading();
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: [
+            {
+                text: '黑龙江',
+                x:'25%',
+                textAlign:'center'
+                // textStyle:{
+                //     color:'black',
+                //     fontSize:28,
+                // }
+            },{
+                text: '吉林',
+                x:'75%',
+                textAlign:'center'
+            },{
+                text: '辽宁',
+                x:'25%',
+                y:'49%',
+                textAlign:'center'
+            },{
+                text: '内蒙',
+                x:'75%',
+                y:'49%',
+                textAlign:'center'
+            }
+            ],
+            tooltip: {
+                trigger: 'axis',
+                axisPointer:{
+                    type:'cross'
+                },
+                // formatter:function(params){
+
+                // }
+            },
+            grid: [
+                {x: '5%', y: '7%', width: '40%', height: '38%'},
+                {x2: '5%', y: '7%', width: '40%', height: '38%'},
+                {x: '5%', y2: '7%', width: '40%', height: '38%'},
+                {x2: '5%', y2: '7%', width: '40%', height: '38%'}
+            ],
+            legend: {
+                data:['5年平均', '13/14', '14/15', '15/16', '16/17', '17/18', '18/19'],
+                y:'97%',
+            },
+            xAxis: [{
+                type:'category',
+                gridIndex: 0,
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        var date = new Date(value);
+                        var texts = [date.getMonth()+1, date.getDate()];
+                        return texts.join('/');
+                    },
+                },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },
+                // data: []
+            },{
+                type:'category',
+                gridIndex: 1,
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        var date = new Date(value);
+                        var texts = [date.getMonth()+1, date.getDate()];
+                        return texts.join('/');
+                    },
+                },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },
+            },{
+                type:'category',
+                gridIndex: 2,
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        var date = new Date(value);
+                        var texts = [date.getMonth()+1, date.getDate()];
+                        return texts.join('/');
+                    },
+                },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },
+            },{
+                type:'category',
+                gridIndex: 3,
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        var date = new Date(value);
+                        var texts = [date.getMonth()+1, date.getDate()];
+                        return texts.join('/');
+                    },
+                },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },                    
+            }            
+            ],
+            yAxis: [
+                {
+                    gridIndex: 0, 
+                    type:'value', 
+                    min:function(value){
+                        return value.min-0.01
+                    },
+                    axisLabel:{
+                        formatter:function(value){
+                            return (value*100).toFixed(0)+"%"
+                        }
+                    }
+                },{
+                    gridIndex: 1, 
+                    type:'value',
+                    min:function(value){
+                        return value.min-0.01
+                    },
+                    axisLabel:{
+                        formatter:function(value){
+                            return (value*100).toFixed(0)+"%"
+                        }
+                    }
+                },{
+                    gridIndex: 2,
+                    type:'value',
+                    min:function(value){
+                        return value.min-0.01
+                    },
+                    axisLabel:{
+                        formatter:function(value){
+                            return (value*100).toFixed(0)+"%"
+                        }
+                    }
+                },{
+                    gridIndex: 3,
+                    type:'value',
+                    min:function(value){
+                        return value.min-0.01
+                    },
+                    axisLabel:{
+                        formatter:function(value){
+                            return (value*100).toFixed(0)+"%"
+                        }
+                    }
+                }
+            ],
+            // dataZoom: [
+            //     {
+            //         type: 'slider',
+            //         start:0,
+            //         end:100
+            //     }
+            // ],
+            dataset:{
+                dimensions: ['date',
+                'hlg_5ave', 'hlg_1314', 'hlg_1415', 'hlg_1516', 'hlg_1617', 'hlg_1718', 'hlg_1819',
+                'jl_5ave', 'jl_1314', 'jl_1415', 'jl_1516', 'jl_1617', 'jl_1718', 'jl_1819',
+                'ln_5ave', 'ln_1314', 'ln_1415', 'ln_1516', 'ln_1617', 'ln_1718', 'ln_1819',
+                'nm_5ave', 'nm_1314', 'nm_1415', 'nm_1516', 'nm_1617', 'nm_1718', 'nm_1819',
+                ],
+                source: myl1
+            },
+            series: [
+                {
+                    name:'5年平均',
+                    xAxisIndex: 0,
+                    yAxisIndex:0,
+                    type: 'line',
+                    lineStyle:{
+                        width:0,
+                    },
+                    symbol:'none',
+                    // symbolSize:0,
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    connectNulls:true,
+                    // data: {{l4}}
+                },
+                {
+                    name:'13/14',
+                    xAxisIndex: 0,
+                    yAxisIndex:0,
+                    type: 'line',
+                    connectNulls:true,
+                },
+                {
+                    name:'14/15',
+                    xAxisIndex: 0,
+                    yAxisIndex:0,
+                    type: 'line',
+                    connectNulls:true,
+                    // itemStyle: {normal: {lineStyle: {width: 3}}},
+                    // data: {{l4s}}
+                },{
+                    name:'15/16',
+                    xAxisIndex: 0,
+                    yAxisIndex:0,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'16/17',
+                    xAxisIndex: 0,
+                    yAxisIndex:0,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'17/18',
+                    xAxisIndex: 0,
+                    yAxisIndex:0,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'18/19',
+                    xAxisIndex: 0,
+                    yAxisIndex:0,
+                    type: 'line',
+                    connectNulls:true,
+                    color:'black',
+                    symbol:'triangle',
+                    symbolSize:8,
+
+                },{
+                    name:'5年平均',
+                    xAxisIndex: 1,
+                    yAxisIndex:1,
+                    type: 'line',
+                    lineStyle:{
+                        width:0,
+                    },
+                    symbol:'none',
+                    // symbolSize:0,
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    connectNulls:true,
+                    // data: {{l4}}
+                },
+                {
+                    name:'13/14',
+                    xAxisIndex: 1,
+                    yAxisIndex:1,
+                    type: 'line',
+                    connectNulls:true,
+                },
+                {
+                    name:'14/15',
+                    xAxisIndex: 1,
+                    yAxisIndex:1,
+                    type: 'line',
+                    connectNulls:true,
+                    // itemStyle: {normal: {lineStyle: {width: 3}}},
+                    // data: {{l4s}}
+                },{
+                    name:'15/16',
+                    xAxisIndex: 1,
+                    yAxisIndex:1,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'16/17',
+                    xAxisIndex: 1,
+                    yAxisIndex:1,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'17/18',
+                    xAxisIndex: 1,
+                    yAxisIndex:1,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'18/19',
+                    xAxisIndex: 1,
+                    yAxisIndex:1,
+                    type: 'line',
+                    connectNulls:true,
+                    color:'black',
+                    symbol:'triangle',
+                    symbolSize:8,
+                    
+                },{
+                    name:'5年平均',
+                    xAxisIndex: 2,
+                    yAxisIndex:2,
+                    type: 'line',
+                    lineStyle:{
+                        width:0,
+                    },
+                    symbol:'none',
+                    // symbolSize:0,
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    connectNulls:true,
+                    // data: {{l4}}
+                },
+                {
+                    name:'13/14',
+                    xAxisIndex: 2,
+                    yAxisIndex:2,
+                    type: 'line',
+                    connectNulls:true,
+                },
+                {
+                    name:'14/15',
+                    xAxisIndex: 2,
+                    yAxisIndex:2,
+                    type: 'line',
+                    connectNulls:true,
+                    // itemStyle: {normal: {lineStyle: {width: 3}}},
+                    // data: {{l4s}}
+                },{
+                    name:'15/16',
+                    xAxisIndex: 2,
+                    yAxisIndex:2,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'16/17',
+                    xAxisIndex: 2,
+                    yAxisIndex:2,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'17/18',
+                    xAxisIndex: 2,
+                    yAxisIndex:2,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'18/19',
+                    xAxisIndex: 2,
+                    yAxisIndex:2,
+                    type: 'line',
+                    connectNulls:true,
+                    color:'black',
+                    symbol:'triangle',
+                    symbolSize:8,
+                    
+                },{
+                    name:'5年平均',
+                    xAxisIndex: 3,
+                    yAxisIndex:3,
+                    type: 'line',
+                    lineStyle:{
+                        width:0,
+                    },
+                    symbol:'none',
+                    // symbolSize:0,
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    connectNulls:true,
+                    // data: {{l4}}
+                },
+                {
+                    name:'13/14',
+                    xAxisIndex: 3,
+                    yAxisIndex:3,
+                    type: 'line',
+                    connectNulls:true,
+                },
+                {
+                    name:'14/15',
+                    xAxisIndex: 3,
+                    yAxisIndex:3,
+                    type: 'line',
+                    connectNulls:true,
+                    // itemStyle: {normal: {lineStyle: {width: 3}}},
+                    // data: {{l4s}}
+                },{
+                    name:'15/16',
+                    xAxisIndex: 3,
+                    yAxisIndex:3,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'16/17',
+                    xAxisIndex: 3,
+                    yAxisIndex:3,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'17/18',
+                    xAxisIndex: 3,
+                    yAxisIndex:3,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'18/19',
+                    xAxisIndex: 3,
+                    yAxisIndex:3,
+                    type: 'line',
+                    connectNulls:true,
+                    color:'black',
+                    symbol:'triangle',
+                    symbolSize:8,
+                    
+                },
+            ]
+        };
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart1.setOption(option);
+    </script>
+
+    <div id="shouliangjindu_jly" class="chart600"></div>
+
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart2 = echarts.init(document.getElementById('shouliangjindu_jly'), 'vintage');
+        var myl1 = {{l1|tojson}};
+        // myChart.showLoading();
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: [
+            {
+                text: '河北',
+                x:'25%',
+                textAlign:'center'
+                // textStyle:{
+                //     color:'black',
+                //     fontSize:28,
+                // }
+            },{
+                text: '山东',
+                x:'75%',
+                textAlign:'center'
+            },{
+                text: '河南',
+                x:'25%',
+                y:'49%',
+                textAlign:'center'
+            },{
+                text: '全国',
+                x:'75%',
+                y:'49%',
+                textAlign:'center'
+            }
+            ],
+            tooltip: {
+                trigger: 'axis',
+                axisPointer:{
+                    type:'cross'
+                },
+                // formatter:function(params){
+
+                // }
+            },
+            grid: [
+                {x: '5%', y: '7%', width: '40%', height: '38%'},
+                {x2: '5%', y: '7%', width: '40%', height: '38%'},
+                {x: '5%', y2: '7%', width: '40%', height: '38%'},
+                {x2: '5%', y2: '7%', width: '40%', height: '38%'}
+            ],
+            legend: {
+                data:['5年平均', '13/14', '14/15', '15/16', '16/17', '17/18', '18/19'],
+                y:'97%',
+            },
+            xAxis: [{
+                type:'category',
+                gridIndex: 0,
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        var date = new Date(value);
+                        var texts = [date.getMonth()+1, date.getDate()];
+                        return texts.join('/');
+                    },
+                },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },
+                // data: []
+            },{
+                type:'category',
+                gridIndex: 1,
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        var date = new Date(value);
+                        var texts = [date.getMonth()+1, date.getDate()];
+                        return texts.join('/');
+                    },
+                },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },
+            },{
+                type:'category',
+                gridIndex: 2,
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        var date = new Date(value);
+                        var texts = [date.getMonth()+1, date.getDate()];
+                        return texts.join('/');
+                    },
+                },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },
+            },{
+                type:'category',
+                gridIndex: 3,
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        var date = new Date(value);
+                        var texts = [date.getMonth()+1, date.getDate()];
+                        return texts.join('/');
+                    },
+                },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },                    
+            }            
+            ],
+            yAxis: [
+                {
+                    gridIndex: 0, 
+                    type:'value', 
+                    min:function(value){
+                        return value.min-0.01
+                    },
+                    axisLabel:{
+                        formatter:function(value){
+                            return (value*100).toFixed(0)+"%"
+                        }
+                    }
+                },{
+                    gridIndex: 1, 
+                    type:'value',
+                    min:function(value){
+                        return value.min-0.01
+                    },
+                    axisLabel:{
+                        formatter:function(value){
+                            return (value*100).toFixed(0)+"%"
+                        }
+                    }
+                },{
+                    gridIndex: 2,
+                    type:'value',
+                    min:function(value){
+                        return value.min-0.01
+                    },
+                    axisLabel:{
+                        formatter:function(value){
+                            return (value*100).toFixed(0)+"%"
+                        }
+                    }
+                },{
+                    gridIndex: 3,
+                    type:'value',
+                    min:function(value){
+                        return value.min-0.01
+                    },
+                    axisLabel:{
+                        formatter:function(value){
+                            return (value*100).toFixed(0)+"%"
+                        }
+                    }
+                }
+            ],
+            // dataZoom: [
+            //     {
+            //         type: 'slider',
+            //         start:0,
+            //         end:100
+            //     }
+            // ],
+            dataset:{
+                dimensions: ['date',
+                'hb_5ave', 'hb_1314', 'hb_1415', 'hb_1516', 'hb_1617', 'hb_1718', 'hb_1819',
+                'sd_5ave', 'sd_1314', 'sd_1415', 'sd_1516', 'sd_1617', 'sd_1718', 'sd_1819',
+                'hn_5ave', 'hn_1314', 'hn_1415', 'hn_1516', 'hn_1617', 'hn_1718', 'hn_1819',
+                'nm_5ave', 'nm_1314', 'nm_1415', 'nm_1516', 'nm_1617', 'nm_1718', 'nm_1819',
+                ],
+                source: myl1
+            },
+            series: [
+                {
+                    name:'5年平均',
+                    xAxisIndex: 0,
+                    yAxisIndex:0,
+                    type: 'line',
+                    lineStyle:{
+                        width:0,
+                    },
+                    symbol:'none',
+                    // symbolSize:0,
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    connectNulls:true,
+                    // data: {{l4}}
+                },
+                {
+                    name:'13/14',
+                    xAxisIndex: 0,
+                    yAxisIndex:0,
+                    type: 'line',
+                    connectNulls:true,
+                },
+                {
+                    name:'14/15',
+                    xAxisIndex: 0,
+                    yAxisIndex:0,
+                    type: 'line',
+                    connectNulls:true,
+                    // itemStyle: {normal: {lineStyle: {width: 3}}},
+                    // data: {{l4s}}
+                },{
+                    name:'15/16',
+                    xAxisIndex: 0,
+                    yAxisIndex:0,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'16/17',
+                    xAxisIndex: 0,
+                    yAxisIndex:0,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'17/18',
+                    xAxisIndex: 0,
+                    yAxisIndex:0,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'18/19',
+                    xAxisIndex: 0,
+                    yAxisIndex:0,
+                    type: 'line',
+                    connectNulls:true,
+                    color:'black',
+                    symbol:'triangle',
+                    symbolSize:8,
+
+                },{
+                    name:'5年平均',
+                    xAxisIndex: 1,
+                    yAxisIndex:1,
+                    type: 'line',
+                    lineStyle:{
+                        width:0,
+                    },
+                    symbol:'none',
+                    // symbolSize:0,
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    connectNulls:true,
+                    // data: {{l4}}
+                },
+                {
+                    name:'13/14',
+                    xAxisIndex: 1,
+                    yAxisIndex:1,
+                    type: 'line',
+                    connectNulls:true,
+                },
+                {
+                    name:'14/15',
+                    xAxisIndex: 1,
+                    yAxisIndex:1,
+                    type: 'line',
+                    connectNulls:true,
+                    // itemStyle: {normal: {lineStyle: {width: 3}}},
+                    // data: {{l4s}}
+                },{
+                    name:'15/16',
+                    xAxisIndex: 1,
+                    yAxisIndex:1,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'16/17',
+                    xAxisIndex: 1,
+                    yAxisIndex:1,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'17/18',
+                    xAxisIndex: 1,
+                    yAxisIndex:1,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'18/19',
+                    xAxisIndex: 1,
+                    yAxisIndex:1,
+                    type: 'line',
+                    connectNulls:true,
+                    color:'black',
+                    symbol:'triangle',
+                    symbolSize:8,
+                    
+                },{
+                    name:'5年平均',
+                    xAxisIndex: 2,
+                    yAxisIndex:2,
+                    type: 'line',
+                    lineStyle:{
+                        width:0,
+                    },
+                    symbol:'none',
+                    // symbolSize:0,
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    connectNulls:true,
+                    // data: {{l4}}
+                },
+                {
+                    name:'13/14',
+                    xAxisIndex: 2,
+                    yAxisIndex:2,
+                    type: 'line',
+                    connectNulls:true,
+                },
+                {
+                    name:'14/15',
+                    xAxisIndex: 2,
+                    yAxisIndex:2,
+                    type: 'line',
+                    connectNulls:true,
+                    // itemStyle: {normal: {lineStyle: {width: 3}}},
+                    // data: {{l4s}}
+                },{
+                    name:'15/16',
+                    xAxisIndex: 2,
+                    yAxisIndex:2,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'16/17',
+                    xAxisIndex: 2,
+                    yAxisIndex:2,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'17/18',
+                    xAxisIndex: 2,
+                    yAxisIndex:2,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'18/19',
+                    xAxisIndex: 2,
+                    yAxisIndex:2,
+                    type: 'line',
+                    connectNulls:true,
+                    color:'black',
+                    symbol:'triangle',
+                    symbolSize:8,
+                    
+                },{
+                    name:'5年平均',
+                    xAxisIndex: 3,
+                    yAxisIndex:3,
+                    type: 'line',
+                    lineStyle:{
+                        width:0,
+                    },
+                    symbol:'none',
+                    // symbolSize:0,
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    connectNulls:true,
+                    // data: {{l4}}
+                },
+                {
+                    name:'13/14',
+                    xAxisIndex: 3,
+                    yAxisIndex:3,
+                    type: 'line',
+                    connectNulls:true,
+                },
+                {
+                    name:'14/15',
+                    xAxisIndex: 3,
+                    yAxisIndex:3,
+                    type: 'line',
+                    connectNulls:true,
+                    // itemStyle: {normal: {lineStyle: {width: 3}}},
+                    // data: {{l4s}}
+                },{
+                    name:'15/16',
+                    xAxisIndex: 3,
+                    yAxisIndex:3,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'16/17',
+                    xAxisIndex: 3,
+                    yAxisIndex:3,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'17/18',
+                    xAxisIndex: 3,
+                    yAxisIndex:3,
+                    type: 'line',
+                    connectNulls:true,
+                },{
+                    name:'18/19',
+                    xAxisIndex: 3,
+                    yAxisIndex:3,
+                    type: 'line',
+                    connectNulls:true,
+                    color:'black',
+                    symbol:'triangle',
+                    symbolSize:8,
+                    
+                },
+            ]
+        };
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart2.setOption(option);
+    </script>
+
+    <script type="text/javascript">
+        window.onresize = function(){
+            myChart1.resize()
+            myChart2.resize()
+            // myChart3.resize()
+            // myChart4.resize()
+        }
+    </script>
+
+</body>
+</html>

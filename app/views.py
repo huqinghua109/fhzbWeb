@@ -717,7 +717,7 @@ def corntempres():
 
     # soy detail
     df2 = pd.read_excel(app.config['EXCEL_TEMPRES'], sheet_name='soydetail')
-    print(df2)
+    # print(df2)
     l2 = []
     for i in df2.index:
         d2 = OrderedDict()
@@ -729,6 +729,76 @@ def corntempres():
 
     return render_template("corntempres.html", tempRes_df=tempRes_df, l1=l1, l2=l2)
     # return detail_df.to_html()
+#------------------------------------------------------------------------------
+# shou liang jin du
+@app.route('/shouliangjindu')
+def shouliangjindu():
+    df1 = pd.read_excel(app.config['EXCEL_CORNDATA'], sheet_name='salerate')
+    salerate_df = df1[1:]
+    salerate_df.columns = list(range(1,df1.shape[1]+1))
+    l1 = []
+    for i in salerate_df.index:
+        d1 = OrderedDict()
+        d1['date'] = i
+        d1['hlg_5ave'] = salerate_df.loc[i,1]
+        d1['jl_5ave'] = salerate_df.loc[i,2]
+        d1['ln_5ave'] = salerate_df.loc[i,3]
+        d1['nm_5ave'] = salerate_df.loc[i,4]
+        d1['hb_5ave'] = salerate_df.loc[i,5]
+        d1['sd_5ave'] = salerate_df.loc[i,6]
+        d1['hn_5ave'] = salerate_df.loc[i,7]
+
+        d1['hlg_1314'] = salerate_df.loc[i,25]
+        d1['jl_1314'] = salerate_df.loc[i,26]
+        d1['ln_1314'] = salerate_df.loc[i,27]
+        d1['nm_1314'] = salerate_df.loc[i,28]
+        d1['hb_1314'] = salerate_df.loc[i,29]
+        d1['sd_1314'] = salerate_df.loc[i,30]
+        d1['hn_1314'] = salerate_df.loc[i,31]
+
+        d1['hlg_1415'] = salerate_df.loc[i,33]
+        d1['jl_1415'] = salerate_df.loc[i,34]
+        d1['ln_1415'] = salerate_df.loc[i,35]
+        d1['nm_1415'] = salerate_df.loc[i,36]
+        d1['hb_1415'] = salerate_df.loc[i,37]
+        d1['sd_1415'] = salerate_df.loc[i,38]
+        d1['hn_1415'] = salerate_df.loc[i,39]
+
+        d1['hlg_1516'] = salerate_df.loc[i,41]
+        d1['jl_1516'] = salerate_df.loc[i,42]
+        d1['ln_1516'] = salerate_df.loc[i,43]
+        d1['nm_1516'] = salerate_df.loc[i,44]
+        d1['hb_1516'] = salerate_df.loc[i,45]
+        d1['sd_1516'] = salerate_df.loc[i,46]
+        d1['hn_1516'] = salerate_df.loc[i,47]
+
+        d1['hlg_1617'] = salerate_df.loc[i,49]
+        d1['jl_1617'] = salerate_df.loc[i,50]
+        d1['ln_1617'] = salerate_df.loc[i,51]
+        d1['nm_1617'] = salerate_df.loc[i,52]
+        d1['hb_1617'] = salerate_df.loc[i,53]
+        d1['sd_1617'] = salerate_df.loc[i,54]
+        d1['hn_1617'] = salerate_df.loc[i,55]
+
+        d1['hlg_1718'] = salerate_df.loc[i,57]
+        d1['jl_1718'] = salerate_df.loc[i,58]
+        d1['ln_1718'] = salerate_df.loc[i,59]
+        d1['nm_1718'] = salerate_df.loc[i,60]
+        d1['hb_1718'] = salerate_df.loc[i,61]
+        d1['sd_1718'] = salerate_df.loc[i,62]
+        d1['hn_1718'] = salerate_df.loc[i,63]
+
+        d1['hlg_1819'] = salerate_df.loc[i,65]
+        d1['jl_1819'] = salerate_df.loc[i,66]
+        d1['ln_1819'] = salerate_df.loc[i,67]
+        d1['nm_1819'] = salerate_df.loc[i,68]
+        d1['hb_1819'] = salerate_df.loc[i,69]
+        d1['sd_1819'] = salerate_df.loc[i,70]
+        d1['hn_1819'] = salerate_df.loc[i,71]
+        l1.append(d1)
+
+    return render_template("shouliangjindu.html", l1=l1)
+    # return salerate_df.to_html()
 #------------------------------------------------------------------------------
 # temptest
 @app.route('/temptest', methods=['GET', 'POST'])
