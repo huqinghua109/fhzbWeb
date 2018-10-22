@@ -4,13 +4,18 @@
     <meta charset="utf-8">
     <title>Charts</title>
     <!-- 引入 echarts.js -->
-    <!-- <script src="js/echarts.js"></script> -->
     <script type="text/javascript" src="http://echarts.baidu.com/dist/echarts.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+    <script src="../static/js/china.js"></script>
+    <script src="../static/js/liaoning.js"></script>
+
 </head>
 <body>
-    <p>{{l1}}</p>
+    <!-- <p>{{l1}}</p> -->
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="main" style="width: 1200px;height:500px;"></div>
+    <div id="main" style="width: 100vw;height:40vw;"></div>
+    <div id="liaoning" style="width: 1200px;height:500px;"></div>
+    <div id="heilongjiang" style="width: 1200px;height:500px;"></div>
 
     <script type="text/javascript">
         // function fetchData(cb) {
@@ -22,22 +27,153 @@
         //         });
         //     }, 3000);
         // }
+
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'), 'vintage');
-        var myl1 = {{l1|tojson}};
+        var mydata = [  
+                {name: '内蒙古自治区',value: '2000' },{name: '黑龙江省',value: '4600' },  
+                {name: '吉林省',value: '3800' },{name: '辽宁省',value: '1600' },  
+                // {name: '河北省',value: '1450' },{name: '河南省',value: '1400' },  
+                // {name: '山东省',value: '2000' },
+                {name: '长春市',value: '829' },
+                {name: '吉林市',value: '307' },{name: '四平市',value: '710' },
+                {name: '辽源市',value: '139' },{name: '通化市',value: '121' },
+                {name: '白山市',value: '213' },{name: '松原市',value: '596' },
+                {name: '白城市',value: '240' },{name: '延边朝鲜族自治州',value: '988' },
+                {name: '哈尔滨市',value: '887' },{name: '齐齐哈尔市',value: '700' },
+                {name: '鸡西市',value: '148' },{name: '鹤岗市',value: '44' },
+                {name: '双鸭山市',value: '185' },{name: '大庆市',value: '320' },
+                {name: '伊春市',value: '241' },{name: '佳木斯市',value: '357' },
+                {name: '七台河市',value: '77' },{name: '牡丹江市',value: '195' },
+                {name: '黑河市',value: '106' },{name: '绥化市',value: '897' },
+                {name: '呼伦贝尔市',value: '340' },{name: '兴安盟',value: '363' },
+                {name: '通辽市',value: '633' },{name: '赤峰市',value: '381' },
+                {name: '巴彦淖尔市',value: '188' },{name: '鄂尔多斯市',value: '128' },
+                {name: '包头市',value: '81' },{name: '呼和浩特市',value: '95' },
+                ]
+
+        $.get('../static/json/china_dongbei.geojson', function (cornJson) {
+            echarts.registerMap('cornchina', cornJson);
+            option = {
+                title: {
+                    text: 'China Corn Production',
+                    // subtext: 'Data from www.census.gov',
+                    // sublink: 'http://www.census.gov/popest/data/datasets.html',
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'item',
+                    // showDelay: 0,
+                    // transitionDuration: 0.2,
+                    // formatter: function (params) {
+                    //     var value = (params.value + '').split('.');
+                    //     value = value[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,');
+                    //     return params.seriesName + '<br/>' + params.name + ': ' + value;
+                    // }
+                },
+                visualMap: {
+                    left: 'left',
+                    min: 0,
+                    max: 1000,
+                    // inRange: {
+                    //     color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+                    // },
+                    inRange:{color:['white', 'red']},
+                    text:['High','Low'],           // 文本，默认为数值文本
+                    calculable: true
+                },
+                toolbox: {
+                    show: true,
+                    //orient: 'vertical',
+                    left: 'left',
+                    top: 'top',
+                    feature: {
+                        dataView: {readOnly: false},
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                series: [
+                    {
+                        name: 'China Cron Production',
+                        type: 'map',
+                        roam: true,
+                        map: 'cornchina',
+                        itemStyle:{
+                            normal:{label:{show:true}},
+                            emphasis:{label:{show:true}}
+                        },
+                        // 文本位置修正
+                        textFixed: {
+                            Alaska: [20, -20]
+                        },
+                        data:mydata
+                    }
+                ]
+            };
+
+            myChart.setOption(option);
+        });
+    </script>
+
+    <script type="text/javascript">
+        // function fetchData(cb) {
+        //     // 通过 setTimeout 模拟异步加载
+        //     setTimeout(function () {
+        //         cb({
+        //             categories: corn_year_basis_df.index,
+        //             data: l4
+        //         });
+        //     }, 3000);
+        // }
+        function randomData() {  
+             return Math.round(Math.random()*500);  
+        } 
+        // 基于准备好的dom，初始化echarts实例
+        var myChart1 = echarts.init(document.getElementById('liaoning'), 'vintage');
+        var mydata1 = [  
+                {name: '大连市',value: '100' },{name: '锦州市',value: randomData() },  
+                {name: '盘锦市',value: randomData() },{name: '丹东市',value: randomData() },  
+                // {name: '河北',value: randomData() },{name: '河南',value: randomData() },  
+                // {name: '云南',value: randomData() },{name: '辽宁',value: randomData() },  
+                // {name: '黑龙江',value: randomData() },{name: '湖南',value: randomData() },  
+                // {name: '安徽',value: randomData() },{name: '山东',value: randomData() },  
+                // {name: '新疆',value: randomData() },{name: '江苏',value: randomData() },  
+                // {name: '浙江',value: randomData() },{name: '江西',value: randomData() },  
+                // {name: '湖北',value: randomData() },{name: '广西',value: randomData() },  
+                // {name: '甘肃',value: randomData() },{name: '山西',value: randomData() },  
+                // {name: '内蒙古',value: randomData() },{name: '陕西',value: randomData() },  
+                // {name: '吉林',value: randomData() },{name: '福建',value: randomData() },  
+                // {name: '贵州',value: randomData() },{name: '广东',value: randomData() },  
+                // {name: '青海',value: randomData() },{name: '西藏',value: randomData() },  
+                // {name: '四川',value: randomData() },{name: '宁夏',value: randomData() },  
+                // {name: '海南',value: randomData() },{name: '台湾',value: randomData() },  
+                // {name: '香港',value: randomData() },{name: '澳门',value: randomData() }  
+            ];
+        // var myl1 = {{l1|tojson}};
         // myChart.showLoading();
 
         // 指定图表的配置项和数据
         var option = {
+            backgroundColor: '#FFFFFF',
             title: {
-                text: 'North Port Carryout'
+                text: '辽宁大数据'
             },
             tooltip: {
-                trigger: 'axis',
-                axisPointer:{
-                    type:'cross'
-                }
+                trigger: 'item',
+                // axisPointer:{
+                //     type:'cross'
+                // }
             },
+            //左侧小导航图标
+            visualMap: {  
+                min: 0,
+                max: 500,
+                left: 'left',
+                top: 'bottom',
+                text:['高','低'],           // 文本，默认为数值文本
+                calculable : true
+            },  
             // emphasis: {
             //     itemStyle: {
             //         color: 'blue'
@@ -47,88 +183,82 @@
             //         formatter: 'This is a emphasis label.'
             //     
             // },
-            legend: {
-                data:['NorthCarryouy', 'NorthCarryouyChange', 'JinzhouPrice']
-            },
-            xAxis: {
-                type:'category',
-                axisLabel:{
-                    // formatter:'{{value}}kg'
-                    formatter: function (value, index) {
-                        // 格式化成月/日，只在第一个刻度显示年份
-                        var date = new Date(value);
-                        var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
-                        // var texts = [date.getMonth()+1, date.getDate()];
-                        // if (index === 0) {
-                        //     texts.unshift(date.getFullYear());
-                        // }
-                        return texts.join('/');
-                    }
-                }
-                // data: []
-            },
-            yAxis: [
-                {
-                    // name:'NorthCarryouy',
-                    type:'value',
-                    min:function(value){
-                        return value.min-20
-                    },
-                    position:'left'
-                },
-                {
-                    // name:'NorthCarryouyChange',
-                    type:'value',
-                    position:'right',
-                    offset:50
-                },
-                {
-                    // name:'JinzhouPrice',
-                    type:'value',
-                    min:function(value){
-                        return value.min-50
-                    },
-                    position:'right'
-                }
-            ],
-            dataZoom: [
-                {
-                    type: 'slider',
-                    start:0,
-                    end:100
-                }
-            ],
-            dataset:{
-                dimensions: ['date', 'NorthCarryouy', 'NorthCarryouyChange', 'JinzhouPrice'],
-                source: myl1
-            },
-            series: [
-                {
-                    name: 'NorthCarryouy',
-                    yAxisIndex:0,
-                    type: 'line',
-                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
-                    // data: {{l4}}
-                },
-                {
-                    name: 'NorthCarryouyChange',
-                    yAxisIndex:1,
-                    type: 'bar',
-                    color:'green'
-                    // data: {{l4s}}
-                },
-                {
-                    name: 'JinzhouPrice',
-                    yAxisIndex:2,
-                    type: 'line'
-                    // data: {{l4s}}
-                }
-            ]
-        };
+            // legend: {
+            //     data:['NorthCarryouy', 'NorthCarryouyChange', 'JinzhouPrice']
+            // },
+            // xAxis: {
+            //     type:'category',
+            //     axisLabel:{
+            //         // formatter:'{{value}}kg'
+            //         formatter: function (value, index) {
+            //             // 格式化成月/日，只在第一个刻度显示年份
+            //             var date = new Date(value);
+            //             var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+            //             // var texts = [date.getMonth()+1, date.getDate()];
+            //             // if (index === 0) {
+            //             //     texts.unshift(date.getFullYear());
+            //             // }
+            //             return texts.join('/');
+            //         }
+            //     }
+            //     // data: []
+            // },
+            // yAxis: [
+            //     {
+            //         // name:'NorthCarryouy',
+            //         type:'value',
+            //         min:function(value){
+            //             return value.min-20
+            //         },
+            //         position:'left'
+            //     },
+            //     {
+            //         // name:'NorthCarryouyChange',
+            //         type:'value',
+            //         position:'right',
+            //         offset:50
+            //     },
+            //     {
+            //         // name:'JinzhouPrice',
+            //         type:'value',
+            //         min:function(value){
+            //             return value.min-50
+            //         },
+            //         position:'right'
+            //     }
+            // ],
+            // dataZoom: [
+            //     {
+            //         type: 'slider',
+            //         start:0,
+            //         end:100
+            //     }
+            // ],
+            // dataset:{
+            //     dimensions: ['date', 'NorthCarryouy', 'NorthCarryouyChange', 'JinzhouPrice'],
+            //     source: myl1
+            // },
+            //配置属性
+            series: [{  
+                name: '数据',  
+                type: 'map', 
+                mapType: '辽宁',
+                roam: true,  
+                label: {  
+                    normal: {  
+                        show: true  //省份名称  
+                    },  
+                    emphasis: {  
+                        show: true  
+                    }  
+                },  
+                data:mydata1  //数据
+            }]  
+            };
 
 
         // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
+        myChart1.setOption(option);
 
         // fetchData(function (data) {
         //     myChart.hideLoading();
@@ -156,6 +286,5 @@
         //     })
         // })
     </script>
-
 </body>
 </html>
