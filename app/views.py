@@ -654,16 +654,16 @@ def deepProcessing():
 @app.route('/priceSummarize')
 def priceSummarize():
     df = pd.read_excel(app.config['EXCEL_CORNDATA'], sheet_name='summarize', header=None)
-    region_df = df.ix[:7, :8]
+    region_df = df.ix[:7, :7]
     region_df.iloc[0,0] = region_df.iloc[0,0].date()
 
-    deepcarryout_df = df.ix[:16, 10:14]
+    deepcarryout_df = df.ix[:16, 9:13]
     deepcarryout_df.iloc[0,3] = deepcarryout_df.iloc[0,3].date()
     deepcarryout_df.iloc[0,4] = deepcarryout_df.iloc[0,4].date()
     for i in range(deepcarryout_df.shape[0]-1):
         deepcarryout_df.iloc[i+1,2] = '%.2f%%' % (deepcarryout_df.iloc[i+1,2]*100)
 
-    feedcarryout_df = df.ix[:12, 15:20]
+    feedcarryout_df = df.ix[:12, 14:19]
     feedcarryout_df.iloc[0,3] = feedcarryout_df.iloc[0,3].date()
     feedcarryout_df.iloc[0,4] = feedcarryout_df.iloc[0,4].date()
     for i in range(feedcarryout_df.shape[0]-1):
@@ -834,4 +834,12 @@ def temptest():
     # elif request.method == 'GET':
     #     print 22222
     return render_template("temptest.html", l1=l1, l2=l2, l3=l3)
+
+#------------------------------------------------------------------------------
+# temptest
+@app.route('/temptest2', methods=['GET', 'POST'])
+def temptest2():
+    return render_template("temptest2.html")
+
+
 

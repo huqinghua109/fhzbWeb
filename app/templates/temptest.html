@@ -8,14 +8,16 @@
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
     <script src="../static/js/china.js"></script>
     <script src="../static/js/liaoning.js"></script>
+    <script src="../static/js/bmap.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=8hV5Hx3q8CqFy30POxPZTCY6YWyKVHVL"></script>
 
 </head>
 <body>
     <!-- <p>{{l1}}</p> -->
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div id="main" style="width: 100vw;height:40vw;"></div>
-    <div id="liaoning" style="width: 1200px;height:500px;"></div>
-    <div id="heilongjiang" style="width: 1200px;height:500px;"></div>
+    <div id="liaoning" style="width: 100vw;height:40vw;"></div>
+    <div id="baidumap" style="width: 1200px;height:500px;"></div>
 
     <script type="text/javascript">
         // function fetchData(cb) {
@@ -39,7 +41,7 @@
                 {name: '吉林市',value: '307' },{name: '四平市',value: '710' },
                 {name: '辽源市',value: '139' },{name: '通化市',value: '121' },
                 {name: '白山市',value: '213' },{name: '松原市',value: '596' },
-                {name: '白城市',value: '240' },{name: '延边朝鲜族自治州',value: '988' },
+                {name: '白城市',value: '240' },{name: '延边朝鲜族自治州',value: '99' },
                 {name: '哈尔滨市',value: '887' },{name: '齐齐哈尔市',value: '700' },
                 {name: '鸡西市',value: '148' },{name: '鹤岗市',value: '44' },
                 {name: '双鸭山市',value: '185' },{name: '大庆市',value: '320' },
@@ -63,7 +65,7 @@
                 },
                 tooltip: {
                     trigger: 'item',
-                    // showDelay: 0,
+                    showDelay: 0,
                     // transitionDuration: 0.2,
                     // formatter: function (params) {
                     //     var value = (params.value + '').split('.');
@@ -100,7 +102,7 @@
                         roam: true,
                         map: 'cornchina',
                         itemStyle:{
-                            normal:{label:{show:true}},
+                            normal:{label:{show:false}},
                             emphasis:{label:{show:true}}
                         },
                         // 文本位置修正
@@ -285,6 +287,254 @@
         //         }]
         //     })
         // })
+    </script>
+
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart2 = echarts.init(document.getElementById('baidumap'), 'vintage');
+        var mydata2 = [  
+                {name: '大连市',value: '100'},{name: '锦州市',value: '200'},  
+                {name: '盘锦市',value: '300'},{name: '丹东市',value: '400'},  
+                // {name: '河北',value: randomData() },{name: '河南',value: randomData() },  
+                // {name: '云南',value: randomData() },{name: '辽宁',value: randomData() },  
+                // {name: '黑龙江',value: randomData() },{name: '湖南',value: randomData() },  
+                // {name: '安徽',value: randomData() },{name: '山东',value: randomData() },  
+                // {name: '新疆',value: randomData() },{name: '江苏',value: randomData() },  
+                // {name: '浙江',value: randomData() },{name: '江西',value: randomData() },  
+                // {name: '湖北',value: randomData() },{name: '广西',value: randomData() },  
+                // {name: '甘肃',value: randomData() },{name: '山西',value: randomData() },  
+                // {name: '内蒙古',value: randomData() },{name: '陕西',value: randomData() },  
+                // {name: '吉林',value: randomData() },{name: '福建',value: randomData() },  
+                // {name: '贵州',value: randomData() },{name: '广东',value: randomData() },  
+                // {name: '青海',value: randomData() },{name: '西藏',value: randomData() },  
+                // {name: '四川',value: randomData() },{name: '宁夏',value: randomData() },  
+                // {name: '海南',value: randomData() },{name: '台湾',value: randomData() },  
+                // {name: '香港',value: randomData() },{name: '澳门',value: randomData() }  
+            ];
+        var option = {
+            // backgroundColor: '#404a59',
+            title: {
+                text: '全国主要城市空气质量',
+                subtext: 'data from PM25.in',
+                sublink: 'http://www.pm25.in',
+                left: 'center',
+                textStyle: {
+                    color: '#fff'
+                }
+            },
+            tooltip : {
+                trigger: 'item'
+            },
+            bmap: {
+                center: [122.846772,45.647388],
+                zoom: 5,
+                roam: true,
+                mapStyle: {
+                    styleJson: [
+                            {
+                                "featureType": "water",
+                                "elementType": "all",
+                                "stylers": {
+                                    "color": "#044161"
+                                }
+                            },
+                            {
+                                "featureType": "land",
+                                "elementType": "all",
+                                "stylers": {
+                                    "color": "#004981"
+                                }
+                            },
+                            {
+                                "featureType": "boundary",
+                                "elementType": "geometry",
+                                "stylers": {
+                                    "color": "#064f85"
+                                }
+                            },
+                            {
+                                "featureType": "railway",
+                                "elementType": "all",
+                                "stylers": {
+                                    "visibility": "off"
+                                }
+                            },
+                            {
+                                "featureType": "highway",
+                                "elementType": "geometry",
+                                "stylers": {
+                                    "color": "#004981"
+                                }
+                            },
+                            {
+                                "featureType": "highway",
+                                "elementType": "geometry.fill",
+                                "stylers": {
+                                    "color": "#005b96",
+                                    "lightness": 1
+                                }
+                            },
+                            {
+                                "featureType": "highway",
+                                "elementType": "labels",
+                                "stylers": {
+                                    "visibility": "off"
+                                }
+                            },
+                            {
+                                "featureType": "arterial",
+                                "elementType": "geometry",
+                                "stylers": {
+                                    "color": "#004981"
+                                }
+                            },
+                            {
+                                "featureType": "arterial",
+                                "elementType": "geometry.fill",
+                                "stylers": {
+                                    "color": "#00508b"
+                                }
+                            },
+                            {
+                                "featureType": "poi",
+                                "elementType": "all",
+                                "stylers": {
+                                    "visibility": "off"
+                                }
+                            },
+                            {
+                                "featureType": "green",
+                                "elementType": "all",
+                                "stylers": {
+                                    "color": "#056197",
+                                    "visibility": "off"
+                                }
+                            },
+                            {
+                                "featureType": "subway",
+                                "elementType": "all",
+                                "stylers": {
+                                    "visibility": "off"
+                                }
+                            },
+                            {
+                                "featureType": "manmade",
+                                "elementType": "all",
+                                "stylers": {
+                                    "visibility": "off"
+                                }
+                            },
+                            {
+                                "featureType": "local",
+                                "elementType": "all",
+                                "stylers": {
+                                    "visibility": "off"
+                                }
+                            },
+                            {
+                                "featureType": "arterial",
+                                "elementType": "labels",
+                                "stylers": {
+                                    "visibility": "off"
+                                }
+                            },
+                            {
+                                "featureType": "boundary",
+                                "elementType": "geometry.fill",
+                                "stylers": {
+                                    "color": "#029fd4"
+                                }
+                            },
+                            {
+                                "featureType": "building",
+                                "elementType": "all",
+                                "stylers": {
+                                    "color": "#1a5787"
+                                }
+                            },
+                            {
+                                "featureType": "label",
+                                "elementType": "all",
+                                "stylers": {
+                                    "visibility": "off"
+                                }
+                            }
+                    ]
+                }
+            },
+            series : [
+                // {
+                //     name: 'pm2.5',
+                //     type: 'scatter',
+                //     coordinateSystem: 'bmap',
+                //     data: mydata2,
+                //     symbolSize: function (val) {
+                //         return val[2] / 10;
+                //     },
+                //     label: {
+                //         normal: {
+                //             formatter: '{b}',
+                //             position: 'right',
+                //             show: false
+                //         },
+                //         emphasis: {
+                //             show: true
+                //         }
+                //     },
+                //     itemStyle: {
+                //         normal: {
+                //             color: '#ddb926'
+                //         }
+                //     }
+                // },
+                // {
+                //     name: 'Top 5',
+                //     type: 'effectScatter',
+                //     coordinateSystem: 'bmap',
+                //     data: convertData(data.sort(function (a, b) {
+                //         return b.value - a.value;
+                //     }).slice(0, 6)),
+                //     symbolSize: function (val) {
+                //         return val[2] / 10;
+                //     },
+                //     showEffectOn: 'emphasis',
+                //     rippleEffect: {
+                //         brushType: 'stroke'
+                //     },
+                //     hoverAnimation: true,
+                //     label: {
+                //         normal: {
+                //             formatter: '{b}',
+                //             position: 'right',
+                //             show: true
+                //         }
+                //     },
+                //     itemStyle: {
+                //         normal: {
+                //             color: '#f4e925',
+                //             shadowBlur: 10,
+                //             shadowColor: '#333'
+                //         }
+                //     },
+                //     zlevel: 1
+                // },
+                // {
+                //     type: 'custom',
+                //     coordinateSystem: 'bmap',
+                //     renderItem: renderItem,
+                //     itemStyle: {
+                //         normal: {
+                //             opacity: 0.5
+                //         }
+                //     },
+                //     animation: false,
+                //     silent: true,
+                //     data: [0],
+                //     z: -10
+                // }
+            ]
+        }
+        myChart2.setOption(option);
     </script>
 </body>
 </html>
