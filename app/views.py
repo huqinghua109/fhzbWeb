@@ -615,7 +615,29 @@ def portcarryout():
         d5['outS_2018_2019'] = outS_df.ix[date,'2018/2019']
         l5.append(d5)
 
-    return render_template("portcarryout.html", l1=l1, l2=l2, l3=l3, l4=l4, l5=l5)
+    gatherBBW_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='gatherBBW_year_df')
+    gatherZZ_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='gatherZZ_year_df')
+    outBBW_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='outBBW_year_df')
+    outZZ_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='outZZ_year_df')
+    l6 = []
+    for date in gatherBBW_df.index:
+        d6 = OrderedDict()
+        d6['date'] = date
+        d6['gatherBBW_2016_2017'] = gatherBBW_df.ix[date,'2016/2017']
+        d6['gatherBBW_2017_2018'] = gatherBBW_df.ix[date,'2017/2018']
+        d6['gatherBBW_2018_2019'] = gatherBBW_df.ix[date,'2018/2019']
+        d6['gatherZZ_2016_2017'] = gatherZZ_df.ix[date,'2016/2017']
+        d6['gatherZZ_2017_2018'] = gatherZZ_df.ix[date,'2017/2018']
+        d6['gatherZZ_2018_2019'] = gatherZZ_df.ix[date,'2018/2019']
+        d6['outBBW_2016_2017'] = outBBW_df.ix[date,'2016/2017']
+        d6['outBBW_2017_2018'] = outBBW_df.ix[date,'2017/2018']
+        d6['outBBW_2018_2019'] = outBBW_df.ix[date,'2018/2019']
+        d6['outZZ_2016_2017'] = outZZ_df.ix[date,'2016/2017']
+        d6['outZZ_2017_2018'] = outZZ_df.ix[date,'2017/2018']
+        d6['outZZ_2018_2019'] = outZZ_df.ix[date,'2018/2019']
+        l6.append(d6)
+
+    return render_template("portcarryout.html", l1=l1, l2=l2, l3=l3, l4=l4, l5=l5, l6=l6)
 #------------------------------------------------------------------------------
 # deepprocessing
 @app.route('/deepprocessing')
@@ -803,8 +825,7 @@ def shouliangjindu():
 # temptest
 @app.route('/temptest', methods=['GET', 'POST'])
 def temptest():
-    excel_path = "E:\\Desktop\\fhzbWeb\\report\\CornData.xlsx"
-    df = pd.read_excel(excel_path, sheet_name='NSPort')
+    df = pd.read_excel(app.config['EXCEL_CORNDATA'], sheet_name='NSPort')
     df = df[1:-1]
     # corn_year_basis_df = corn_year_basis_df.fillna(0)
     l1 = []
