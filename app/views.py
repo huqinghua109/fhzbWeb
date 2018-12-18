@@ -420,35 +420,35 @@ def cornbasischart():
     for date in corn_year_basis1_df.index:
         d = OrderedDict()
         d['date'] = date
-        d['2019basis1'] = corn_year_basis1_df.ix[date,'2019basis1']
-        d['2018basis1'] = corn_year_basis1_df.ix[date,'2018basis1']
-        d['2017basis1'] = corn_year_basis1_df.ix[date,'2017basis1']
-        d['2016basis1'] = corn_year_basis1_df.ix[date,'2016basis1']
-        d['2015basis1'] = corn_year_basis1_df.ix[date,'2015basis1']
-        # d['2014basis1'] = corn_year_basis1_df.ix[date,'2014basis1']
+        d['2019basis1'] = corn_year_basis1_df.loc[date,'2019basis1']
+        d['2018basis1'] = corn_year_basis1_df.loc[date,'2018basis1']
+        d['2017basis1'] = corn_year_basis1_df.loc[date,'2017basis1']
+        d['2016basis1'] = corn_year_basis1_df.loc[date,'2016basis1']
+        d['2015basis1'] = corn_year_basis1_df.loc[date,'2015basis1']
+        # d['2014basis1'] = corn_year_basis1_df.loc[date,'2014basis1']
         corn_year_basis1_l.append(d)
 
     corn_year_basis5_l = []
     for date in corn_year_basis5_df.index:
         d = OrderedDict()
         d['date'] = date
-        d['2019basis5'] = corn_year_basis5_df.ix[date,'2019basis5']
-        d['2018basis5'] = corn_year_basis5_df.ix[date,'2018basis5']
-        d['2017basis5'] = corn_year_basis5_df.ix[date,'2017basis5']
-        d['2016basis5'] = corn_year_basis5_df.ix[date,'2016basis5']
-        d['2015basis5'] = corn_year_basis5_df.ix[date,'2015basis5']
-        # d['2014basis5'] = corn_year_basis5_df.ix[date,'2014basis5']
+        d['2019basis5'] = corn_year_basis5_df.loc[date,'2019basis5']
+        d['2018basis5'] = corn_year_basis5_df.loc[date,'2018basis5']
+        d['2017basis5'] = corn_year_basis5_df.loc[date,'2017basis5']
+        d['2016basis5'] = corn_year_basis5_df.loc[date,'2016basis5']
+        d['2015basis5'] = corn_year_basis5_df.loc[date,'2015basis5']
+        # d['2014basis5'] = corn_year_basis5_df.loc[date,'2014basis5']
         corn_year_basis5_l.append(d)
 
     corn_year_basis9_l = []
     for date in corn_year_basis9_df.index:
         d = OrderedDict()
         d['date'] = date
-        d['2019basis9'] = corn_year_basis9_df.ix[date,'2019basis9']
-        d['2018basis9'] = corn_year_basis9_df.ix[date,'2018basis9']
-        d['2017basis9'] = corn_year_basis9_df.ix[date,'2017basis9']
-        d['2016basis9'] = corn_year_basis9_df.ix[date,'2016basis9']
-        d['2015basis9'] = corn_year_basis9_df.ix[date,'2015basis9']
+        d['2019basis9'] = corn_year_basis9_df.loc[date,'2019basis9']
+        d['2018basis9'] = corn_year_basis9_df.loc[date,'2018basis9']
+        d['2017basis9'] = corn_year_basis9_df.loc[date,'2017basis9']
+        d['2016basis9'] = corn_year_basis9_df.loc[date,'2016basis9']
+        d['2015basis9'] = corn_year_basis9_df.loc[date,'2015basis9']
         corn_year_basis9_l.append(d)
 
     corn_basis_l = []
@@ -481,65 +481,65 @@ def cornspreadchart():
     for date in corn_cs_spread1_year.index:
         d = OrderedDict()
         d['date'] = date
-        d['2016c_cs1'] = corn_cs_spread1_year.ix[date,'2016c-cs1']
-        d['2017c_cs1'] = corn_cs_spread1_year.ix[date,'2017c-cs1']
-        d['2018c_cs1'] = corn_cs_spread1_year.ix[date,'2018c-cs1']
-        d['2019c_cs1'] = corn_cs_spread1_year.ix[date,'2019c-cs1']
+        d['2016c_cs1'] = corn_cs_spread1_year.loc[date,'2016c-cs1']
+        d['2017c_cs1'] = corn_cs_spread1_year.loc[date,'2017c-cs1']
+        d['2018c_cs1'] = corn_cs_spread1_year.loc[date,'2018c-cs1']
+        d['2019c_cs1'] = corn_cs_spread1_year.loc[date,'2019c-cs1']
         corn_cs_spread1_year_l.append(d)
 
     corn_cs_spread5_year_l = []
     for date in corn_cs_spread5_year.index:
         d = OrderedDict()
         d['date'] = date
-        d['2015c_cs5'] = corn_cs_spread5_year.ix[date,'2015c-cs5']
-        d['2016c_cs5'] = corn_cs_spread5_year.ix[date,'2016c-cs5']
-        d['2017c_cs5'] = corn_cs_spread5_year.ix[date,'2017c-cs5']
-        d['2018c_cs5'] = corn_cs_spread5_year.ix[date,'2018c-cs5']
-        d['2019c_cs5'] = corn_cs_spread5_year.ix[date,'2019c-cs5']
+        d['2015c_cs5'] = corn_cs_spread5_year.loc[date,'2015c-cs5']
+        d['2016c_cs5'] = corn_cs_spread5_year.loc[date,'2016c-cs5']
+        d['2017c_cs5'] = corn_cs_spread5_year.loc[date,'2017c-cs5']
+        d['2018c_cs5'] = corn_cs_spread5_year.loc[date,'2018c-cs5']
+        d['2019c_cs5'] = corn_cs_spread5_year.loc[date,'2019c-cs5']
         corn_cs_spread5_year_l.append(d)
 
     corn_cs_spread9_year_l = []
     for date in corn_cs_spread9_year.index:
         d = OrderedDict()
         d['date'] = date
-        d['2015c_cs9'] = corn_cs_spread9_year.ix[date,'2015c-cs9']
-        d['2016c_cs9'] = corn_cs_spread9_year.ix[date,'2016c-cs9']
-        d['2017c_cs9'] = corn_cs_spread9_year.ix[date,'2017c-cs9']
-        d['2018c_cs9'] = corn_cs_spread9_year.ix[date,'2018c-cs9']
-        d['2019c_cs9'] = corn_cs_spread9_year.ix[date,'2019c-cs9']
+        d['2015c_cs9'] = corn_cs_spread9_year.loc[date,'2015c-cs9']
+        d['2016c_cs9'] = corn_cs_spread9_year.loc[date,'2016c-cs9']
+        d['2017c_cs9'] = corn_cs_spread9_year.loc[date,'2017c-cs9']
+        d['2018c_cs9'] = corn_cs_spread9_year.loc[date,'2018c-cs9']
+        d['2019c_cs9'] = corn_cs_spread9_year.loc[date,'2019c-cs9']
         corn_cs_spread9_year_l.append(d)
 
     corn_91_year_l = []
     for date in corn_91_spread_df.index:
         d = OrderedDict()
         d['date'] = date
-        d['1809_1901'] = corn_91_spread_df.ix[date,'20189_1']
-        d['1709_1801'] = corn_91_spread_df.ix[date,'20179_1']
-        d['1609_1701'] = corn_91_spread_df.ix[date,'20169_1']
-        d['1509_1601'] = corn_91_spread_df.ix[date,'20159_1']
-        d['1409_1501'] = corn_91_spread_df.ix[date,'20149_1']
+        d['1809_1901'] = corn_91_spread_df.loc[date,'20189_1']
+        d['1709_1801'] = corn_91_spread_df.loc[date,'20179_1']
+        d['1609_1701'] = corn_91_spread_df.loc[date,'20169_1']
+        d['1509_1601'] = corn_91_spread_df.loc[date,'20159_1']
+        d['1409_1501'] = corn_91_spread_df.loc[date,'20149_1']
         corn_91_year_l.append(d)
 
     corn_15_year_l = []
     for date in corn_15_spread_df.index:
         d = OrderedDict()
         d['date'] = date
-        d['1901_1905'] = corn_15_spread_df.ix[date,'20191_5']
-        d['1801_1805'] = corn_15_spread_df.ix[date,'20181_5']
-        d['1701_1705'] = corn_15_spread_df.ix[date,'20171_5']
-        d['1601_1605'] = corn_15_spread_df.ix[date,'20161_5']
-        d['1501_1505'] = corn_15_spread_df.ix[date,'20151_5']
+        d['1901_1905'] = corn_15_spread_df.loc[date,'20191_5']
+        d['1801_1805'] = corn_15_spread_df.loc[date,'20181_5']
+        d['1701_1705'] = corn_15_spread_df.loc[date,'20171_5']
+        d['1601_1605'] = corn_15_spread_df.loc[date,'20161_5']
+        d['1501_1505'] = corn_15_spread_df.loc[date,'20151_5']
         corn_15_year_l.append(d)
 
     corn_59_year_l = []
     for date in corn_59_spread_df.index:
         d = OrderedDict()
         d['date'] = date
-        d['1905_1909'] = corn_59_spread_df.ix[date,'20195_9']
-        d['1805_1809'] = corn_59_spread_df.ix[date,'20185_9']
-        d['1705_1709'] = corn_59_spread_df.ix[date,'20175_9']
-        d['1605_1609'] = corn_59_spread_df.ix[date,'20165_9']
-        d['1505_1509'] = corn_59_spread_df.ix[date,'20155_9']
+        d['1905_1909'] = corn_59_spread_df.loc[date,'20195_9']
+        d['1805_1809'] = corn_59_spread_df.loc[date,'20185_9']
+        d['1705_1709'] = corn_59_spread_df.loc[date,'20175_9']
+        d['1605_1609'] = corn_59_spread_df.loc[date,'20165_9']
+        d['1505_1509'] = corn_59_spread_df.loc[date,'20155_9']
         corn_59_year_l.append(d)
 
     corn_cs_spread_df_l = []
@@ -566,30 +566,30 @@ def portcarryout():
     for date in df.index:
         d1 = OrderedDict()
         d1['date'] = date
-        d1['NorthCarryout'] = df.ix[date,'Unnamed: 20']
-        d1['NorthCarryoutChange'] = df.ix[date,'Unnamed: 21']
-        d1['JinzhouPrice'] = df.ix[date,'Unnamed: 4']
+        d1['NorthCarryout'] = df.loc[date,'Unnamed: 20']
+        d1['NorthCarryoutChange'] = df.loc[date,'Unnamed: 21']
+        d1['JinzhouPrice'] = df.loc[date,'Unnamed: 4']
         l1.append(d1)
 
         d2 = OrderedDict()
         d2['date'] = date
-        d2['GDCarryout'] = df.ix[date,'Unnamed: 25']
-        d2['GDCarryoutChange'] = df.ix[date,'Unnamed: 26']
-        d2['GDPrice'] = df.ix[date,'Unnamed: 27']
+        d2['GDCarryout'] = df.loc[date,'Unnamed: 25']
+        d2['GDCarryoutChange'] = df.loc[date,'Unnamed: 26']
+        d2['GDPrice'] = df.loc[date,'Unnamed: 27']
         l2.append(d2)
 
         d3 = OrderedDict()
         d3['date'] = date
         d3['CarryoutSpread'] = d2['GDCarryout']/d1['NorthCarryout']
-        d3['profit'] = df.ix[date,'Unnamed: 30']
+        d3['profit'] = df.loc[date,'Unnamed: 30']
         l3.append(d3)
 
         d4 = OrderedDict()
         d4['date'] = date
-        d4['GDPrice'] = df.ix[date,'Unnamed: 27']
-        d4['InportCorn'] = df.ix[date,'Unnamed: 31']
-        d4['Sorghum'] = df.ix[date,'Unnamed: 32']
-        d4['Barley'] = df.ix[date,'Unnamed: 33']
+        d4['GDPrice'] = df.loc[date,'Unnamed: 27']
+        d4['InportCorn'] = df.loc[date,'Unnamed: 31']
+        d4['Sorghum'] = df.loc[date,'Unnamed: 32']
+        d4['Barley'] = df.loc[date,'Unnamed: 33']
         d4['GDInportSpread'] = d4['GDPrice']-d4['InportCorn']
         l4.append(d4)
 
@@ -601,18 +601,18 @@ def portcarryout():
     for date in gatherN_df.index:
         d5 = OrderedDict()
         d5['date'] = date
-        d5['gatherN_2016_2017'] = gatherN_df.ix[date,'2016/2017']
-        d5['gatherN_2017_2018'] = gatherN_df.ix[date,'2017/2018']
-        d5['gatherN_2018_2019'] = gatherN_df.ix[date,'2018/2019']
-        d5['gatherS_2016_2017'] = gatherS_df.ix[date,'2016/2017']
-        d5['gatherS_2017_2018'] = gatherS_df.ix[date,'2017/2018']
-        d5['gatherS_2018_2019'] = gatherS_df.ix[date,'2018/2019']
-        d5['outN_2016_2017'] = outN_df.ix[date,'2016/2017']
-        d5['outN_2017_2018'] = outN_df.ix[date,'2017/2018']
-        d5['outN_2018_2019'] = outN_df.ix[date,'2018/2019']
-        d5['outS_2016_2017'] = outS_df.ix[date,'2016/2017']
-        d5['outS_2017_2018'] = outS_df.ix[date,'2017/2018']
-        d5['outS_2018_2019'] = outS_df.ix[date,'2018/2019']
+        d5['gatherN_2016_2017'] = gatherN_df.loc[date,'2016/2017']
+        d5['gatherN_2017_2018'] = gatherN_df.loc[date,'2017/2018']
+        d5['gatherN_2018_2019'] = gatherN_df.loc[date,'2018/2019']
+        d5['gatherS_2016_2017'] = gatherS_df.loc[date,'2016/2017']
+        d5['gatherS_2017_2018'] = gatherS_df.loc[date,'2017/2018']
+        d5['gatherS_2018_2019'] = gatherS_df.loc[date,'2018/2019']
+        d5['outN_2016_2017'] = outN_df.loc[date,'2016/2017']
+        d5['outN_2017_2018'] = outN_df.loc[date,'2017/2018']
+        d5['outN_2018_2019'] = outN_df.loc[date,'2018/2019']
+        d5['outS_2016_2017'] = outS_df.loc[date,'2016/2017']
+        d5['outS_2017_2018'] = outS_df.loc[date,'2017/2018']
+        d5['outS_2018_2019'] = outS_df.loc[date,'2018/2019']
         l5.append(d5)
 
     gatherBBW_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='gatherBBW_year_df')
@@ -623,18 +623,18 @@ def portcarryout():
     for date in gatherBBW_df.index:
         d6 = OrderedDict()
         d6['date'] = date
-        d6['gatherBBW_2016_2017'] = gatherBBW_df.ix[date,'2016/2017']
-        d6['gatherBBW_2017_2018'] = gatherBBW_df.ix[date,'2017/2018']
-        d6['gatherBBW_2018_2019'] = gatherBBW_df.ix[date,'2018/2019']
-        d6['gatherZZ_2016_2017'] = gatherZZ_df.ix[date,'2016/2017']
-        d6['gatherZZ_2017_2018'] = gatherZZ_df.ix[date,'2017/2018']
-        d6['gatherZZ_2018_2019'] = gatherZZ_df.ix[date,'2018/2019']
-        d6['outBBW_2016_2017'] = outBBW_df.ix[date,'2016/2017']
-        d6['outBBW_2017_2018'] = outBBW_df.ix[date,'2017/2018']
-        d6['outBBW_2018_2019'] = outBBW_df.ix[date,'2018/2019']
-        d6['outZZ_2016_2017'] = outZZ_df.ix[date,'2016/2017']
-        d6['outZZ_2017_2018'] = outZZ_df.ix[date,'2017/2018']
-        d6['outZZ_2018_2019'] = outZZ_df.ix[date,'2018/2019']
+        d6['gatherBBW_2016_2017'] = gatherBBW_df.loc[date,'2016/2017']
+        d6['gatherBBW_2017_2018'] = gatherBBW_df.loc[date,'2017/2018']
+        d6['gatherBBW_2018_2019'] = gatherBBW_df.loc[date,'2018/2019']
+        d6['gatherZZ_2016_2017'] = gatherZZ_df.loc[date,'2016/2017']
+        d6['gatherZZ_2017_2018'] = gatherZZ_df.loc[date,'2017/2018']
+        d6['gatherZZ_2018_2019'] = gatherZZ_df.loc[date,'2018/2019']
+        d6['outBBW_2016_2017'] = outBBW_df.loc[date,'2016/2017']
+        d6['outBBW_2017_2018'] = outBBW_df.loc[date,'2017/2018']
+        d6['outBBW_2018_2019'] = outBBW_df.loc[date,'2018/2019']
+        d6['outZZ_2016_2017'] = outZZ_df.loc[date,'2016/2017']
+        d6['outZZ_2017_2018'] = outZZ_df.loc[date,'2017/2018']
+        d6['outZZ_2018_2019'] = outZZ_df.loc[date,'2018/2019']
         l6.append(d6)
 
     return render_template("portcarryout.html", l1=l1, l2=l2, l3=l3, l4=l4, l5=l5, l6=l6)
@@ -651,22 +651,22 @@ def deepProcessing():
         # print(date)
         d1 = OrderedDict()
         d1['date'] = date
-        # d1['68cs_qg_kgl'] = deepprocessing_df.ix[date,'68cs_qg_kgl']
-        d1['68cs_db_kgl'] = deepprocessing_df.ix[date,'68cs_db_kgl']
-        d1['68cs_sd_kgl'] = deepprocessing_df.ix[date,'68cs_sd_kgl']
-        # d1['68cs_hb_kgl'] = deepprocessing_df.ix[date,'68cs_hb_kgl']
-        d1['cs_hlj_lr'] = deepprocessing_df.ix[date,'cs_hlj_lr']
-        d1['cs_jl_lr'] = deepprocessing_df.ix[date,'cs_jl_lr']
-        # d1['cs_ln_lr'] = deepprocessing_df.ix[date,'cs_ln_lr']
-        # d1['cs_hb_lr'] = deepprocessing_df.ix[date,'cs_hb_lr']
-        d1['cs_sd_lr'] = deepprocessing_df.ix[date,'cs_sd_lr']
-        # d1['35jj_qg_kgl'] = deepprocessing_df.ix[date,'35jj_qg_kgl']
-        d1['35jj_db_kgl'] = deepprocessing_df.ix[date,'35jj_db_kgl']
-        d1['35jj_hn_kgl'] = deepprocessing_df.ix[date,'35jj_hn_kgl']
-        d1['jj_jl_lr'] = deepprocessing_df.ix[date,'jj_jl_lr']
-        d1['jj_hlj_lr'] = deepprocessing_df.ix[date,'jj_hlj_lr']
-        # d1['jj_hb_lr'] = deepprocessing_df.ix[date,'jj_hb_lr']
-        d1['jj_hn_lr'] = deepprocessing_df.ix[date,'jj_hn_lr']
+        # d1['68cs_qg_kgl'] = deepprocessing_df.loc[date,'68cs_qg_kgl']
+        d1['68cs_db_kgl'] = deepprocessing_df.loc[date,'68cs_db_kgl']
+        d1['68cs_sd_kgl'] = deepprocessing_df.loc[date,'68cs_sd_kgl']
+        # d1['68cs_hb_kgl'] = deepprocessing_df.loc[date,'68cs_hb_kgl']
+        d1['cs_hlj_lr'] = deepprocessing_df.loc[date,'cs_hlj_lr']
+        d1['cs_jl_lr'] = deepprocessing_df.loc[date,'cs_jl_lr']
+        # d1['cs_ln_lr'] = deepprocessing_df.loc[date,'cs_ln_lr']
+        # d1['cs_hb_lr'] = deepprocessing_df.loc[date,'cs_hb_lr']
+        d1['cs_sd_lr'] = deepprocessing_df.loc[date,'cs_sd_lr']
+        # d1['35jj_qg_kgl'] = deepprocessing_df.loc[date,'35jj_qg_kgl']
+        d1['35jj_db_kgl'] = deepprocessing_df.loc[date,'35jj_db_kgl']
+        d1['35jj_hn_kgl'] = deepprocessing_df.loc[date,'35jj_hn_kgl']
+        d1['jj_jl_lr'] = deepprocessing_df.loc[date,'jj_jl_lr']
+        d1['jj_hlj_lr'] = deepprocessing_df.loc[date,'jj_hlj_lr']
+        # d1['jj_hb_lr'] = deepprocessing_df.loc[date,'jj_hb_lr']
+        d1['jj_hn_lr'] = deepprocessing_df.loc[date,'jj_hn_lr']
         l1.append(d1)
     # print(l1)
     return render_template("deepprocessing.html", l1=l1)
@@ -676,16 +676,17 @@ def deepProcessing():
 @app.route('/priceSummarize')
 def priceSummarize():
     df = pd.read_excel(app.config['EXCEL_CORNDATA'], sheet_name='summarize', header=None)
-    region_df = df.ix[:7, :7]
+    region_df = df.iloc[:8, :8]
     region_df.iloc[0,0] = region_df.iloc[0,0].date()
 
-    deepcarryout_df = df.ix[:16, 9:13]
+    deepcarryout_df = df.iloc[:17, 9:14]
+    # print(deepcarryout_df)
     deepcarryout_df.iloc[0,3] = deepcarryout_df.iloc[0,3].date()
     deepcarryout_df.iloc[0,4] = deepcarryout_df.iloc[0,4].date()
     for i in range(deepcarryout_df.shape[0]-1):
         deepcarryout_df.iloc[i+1,2] = '%.2f%%' % (deepcarryout_df.iloc[i+1,2]*100)
 
-    feedcarryout_df = df.ix[:12, 14:19]
+    feedcarryout_df = df.iloc[:12, 14:19]
     feedcarryout_df.iloc[0,3] = feedcarryout_df.iloc[0,3].date()
     feedcarryout_df.iloc[0,4] = feedcarryout_df.iloc[0,4].date()
     for i in range(feedcarryout_df.shape[0]-1):
@@ -834,9 +835,9 @@ def temptest():
     for date in df.index:
         d = OrderedDict()
         d['date'] = date
-        d['NorthCarryout'] = df.ix[date,'Unnamed: 20']
-        d['NorthCarryoutChange'] = df.ix[date,'Unnamed: 21']
-        d['JinzhouPrice'] = df.ix[date,'Unnamed: 4']
+        d['NorthCarryout'] = df.loc[date,'Unnamed: 20']
+        d['NorthCarryoutChange'] = df.loc[date,'Unnamed: 21']
+        d['JinzhouPrice'] = df.loc[date,'Unnamed: 4']
         l1.append(d)
     # for i in range(len(corn_basis_df.index)):
     #     d = OrderedDict()

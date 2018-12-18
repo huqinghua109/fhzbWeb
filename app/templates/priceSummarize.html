@@ -23,14 +23,15 @@
     </div>
     <script type="text/javascript">
         var tb = document.getElementById("originprice"); 
-        tb.rows[3].cells[7].style.display='none';
-        tb.rows[2].cells[7].rowSpan = 2;
-        tb.rows[3].cells[8].style.display='none';
-        tb.rows[2].cells[8].rowSpan = 2;
+        // tb.rows[3].cells[7].style.display='none';
+        // tb.rows[2].cells[7].rowSpan = 2;
+        // tb.rows[3].cells[8].style.display='none';
+        // tb.rows[2].cells[8].rowSpan = 2;
 
         var length = tb.rows.length;
         console.log(length);
         for(var i=0;i<length+1;i++){
+            tb.rows[0].cells[i].style.background='LightSteelBlue';
             tb.rows[7].cells[i].style.color='red';
         }
     </script>
