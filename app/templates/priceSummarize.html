@@ -36,6 +36,38 @@
         }
     </script>
 
+    <div>
+        <table id="price_summarize" border="1" cellpadding="10" align="center">
+            {% for row in summarize_df.values %}
+            <tr>
+                {% for cell in row %}
+                <td align="center">{{cell |  replace('nan','')}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <script type="text/javascript">
+        var tb = document.getElementById("price_summarize"); 
+        // tb.rows[3].cells[7].style.display='none';
+        // tb.rows[2].cells[7].rowSpan = 2;
+        // tb.rows[3].cells[8].style.display='none';
+        // tb.rows[2].cells[8].rowSpan = 2;
+
+        var length = tb.rows.length;
+        console.log(length);
+        for(var i=0;i<length+1;i++){
+            tb.rows[0].cells[i].style.background='LightSteelBlue';
+            if (i>3) {
+                tb.rows[13].cells[i].style.background='LightSteelBlue';
+                tb.rows[21].cells[i].style.background='LightSteelBlue';
+                tb.rows[24].cells[i].style.background='LightSteelBlue';
+            }
+            
+            // tb.rows[7].cells[i].style.color='red';
+        }
+    </script>
+
     <font size="6" color="blue"><p align="center">深加工企业库存（天）</p></font>
 <!--     <div>
         <table id="deepco" border="1" cellpadding="10" align="center">

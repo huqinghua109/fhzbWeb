@@ -297,7 +297,7 @@ def download_file(filename):
     if request.method=="GET":
         # if os.path.isfile(os.path.join('static', filename)):
         return send_from_directory(dirpath,filename,as_attachment=True)
-        abort(404)
+        # abort(404)
 
 @app.route('/delete/<filename>')
 def delete_file(filename):
@@ -680,11 +680,16 @@ def priceSummarize():
     region_df.iloc[0,0] = region_df.iloc[0,0].date()
 
     deepcarryout_df = df.iloc[:17, 9:14]
-    # print(deepcarryout_df)
     deepcarryout_df.iloc[0,3] = deepcarryout_df.iloc[0,3].date()
     deepcarryout_df.iloc[0,4] = deepcarryout_df.iloc[0,4].date()
     for i in range(deepcarryout_df.shape[0]-1):
         deepcarryout_df.iloc[i+1,2] = '%.2f%%' % (deepcarryout_df.iloc[i+1,2]*100)
+
+    summarize_df = df.iloc[19:48, :9]
+    summarize_df.iloc[0,0] = summarize_df.iloc[0,0].date()
+    # summarize_df.iloc[14:21,[6,8]].round(2)
+    summarize_df.iloc[22,8] = '%.2f%%' % (summarize_df.iloc[22,8]*100)
+    summarize_df.iloc[23,8] = '%.2f%%' % (summarize_df.iloc[23,8]*100)
 
     feedcarryout_df = df.iloc[:12, 14:19]
     feedcarryout_df.iloc[0,3] = feedcarryout_df.iloc[0,3].date()
@@ -694,7 +699,7 @@ def priceSummarize():
     # region_df = region_df.to_html(header=None, index=None, na_rep='', col_space=20, bold_rows=True)
     # carryout_df = carryout_df.to_html(header=None, index=None, na_rep='', col_space=20, bold_rows=True)
     # region_df = region_df.to_json()
-    return render_template("priceSummarize.html", region_df=region_df, deepcarryout_df=deepcarryout_df, feedcarryout_df=feedcarryout_df)
+    return render_template("priceSummarize.html", region_df=region_df, deepcarryout_df=deepcarryout_df, feedcarryout_df=feedcarryout_df, summarize_df=summarize_df)
     # return carryout_df
 #------------------------------------------------------------------------------
 # corntempres
