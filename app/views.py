@@ -267,10 +267,6 @@ def cornAnalysisReport():
         mydata = [random.randrange(100,900) for i in range(12)],
         title = 'Corn Analysis Report')
 #------------------------------------------------------------------------------
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
-#------------------------------------------------------------------------------
 obj = UploadSet('obj', ALL)
 configure_uploads(app, obj)
 patch_request_class(app)  # set maximum file size, default is 16MB
@@ -420,35 +416,39 @@ def cornbasischart():
     for date in corn_year_basis1_df.index:
         d = OrderedDict()
         d['date'] = date
+        d['2020basis1'] = corn_year_basis1_df.loc[date,'2020basis1']
         d['2019basis1'] = corn_year_basis1_df.loc[date,'2019basis1']
         d['2018basis1'] = corn_year_basis1_df.loc[date,'2018basis1']
         d['2017basis1'] = corn_year_basis1_df.loc[date,'2017basis1']
         d['2016basis1'] = corn_year_basis1_df.loc[date,'2016basis1']
         d['2015basis1'] = corn_year_basis1_df.loc[date,'2015basis1']
-        # d['2014basis1'] = corn_year_basis1_df.loc[date,'2014basis1']
+        d['2014basis1'] = corn_year_basis1_df.loc[date,'2014basis1']
         corn_year_basis1_l.append(d)
 
     corn_year_basis5_l = []
     for date in corn_year_basis5_df.index:
         d = OrderedDict()
         d['date'] = date
+        d['2020basis5'] = corn_year_basis5_df.loc[date,'2020basis5']
         d['2019basis5'] = corn_year_basis5_df.loc[date,'2019basis5']
         d['2018basis5'] = corn_year_basis5_df.loc[date,'2018basis5']
         d['2017basis5'] = corn_year_basis5_df.loc[date,'2017basis5']
         d['2016basis5'] = corn_year_basis5_df.loc[date,'2016basis5']
         d['2015basis5'] = corn_year_basis5_df.loc[date,'2015basis5']
-        # d['2014basis5'] = corn_year_basis5_df.loc[date,'2014basis5']
+        d['2014basis5'] = corn_year_basis5_df.loc[date,'2014basis5']
         corn_year_basis5_l.append(d)
 
     corn_year_basis9_l = []
     for date in corn_year_basis9_df.index:
         d = OrderedDict()
         d['date'] = date
+        d['2020basis9'] = corn_year_basis9_df.loc[date,'2020basis9']
         d['2019basis9'] = corn_year_basis9_df.loc[date,'2019basis9']
         d['2018basis9'] = corn_year_basis9_df.loc[date,'2018basis9']
         d['2017basis9'] = corn_year_basis9_df.loc[date,'2017basis9']
         d['2016basis9'] = corn_year_basis9_df.loc[date,'2016basis9']
         d['2015basis9'] = corn_year_basis9_df.loc[date,'2015basis9']
+        d['2014basis9'] = corn_year_basis9_df.loc[date,'2014basis9']
         corn_year_basis9_l.append(d)
 
     corn_basis_l = []
@@ -485,6 +485,7 @@ def cornspreadchart():
         d['2017c_cs1'] = corn_cs_spread1_year.loc[date,'2017c-cs1']
         d['2018c_cs1'] = corn_cs_spread1_year.loc[date,'2018c-cs1']
         d['2019c_cs1'] = corn_cs_spread1_year.loc[date,'2019c-cs1']
+        d['2020c_cs1'] = corn_cs_spread1_year.loc[date,'2020c-cs1']
         corn_cs_spread1_year_l.append(d)
 
     corn_cs_spread5_year_l = []
@@ -513,6 +514,7 @@ def cornspreadchart():
     for date in corn_91_spread_df.index:
         d = OrderedDict()
         d['date'] = date
+        d['1909_2001'] = corn_91_spread_df.loc[date,'20199_1']
         d['1809_1901'] = corn_91_spread_df.loc[date,'20189_1']
         d['1709_1801'] = corn_91_spread_df.loc[date,'20179_1']
         d['1609_1701'] = corn_91_spread_df.loc[date,'20169_1']
@@ -524,6 +526,7 @@ def cornspreadchart():
     for date in corn_15_spread_df.index:
         d = OrderedDict()
         d['date'] = date
+        d['2001_2005'] = corn_15_spread_df.loc[date,'20201_5']
         d['1901_1905'] = corn_15_spread_df.loc[date,'20191_5']
         d['1801_1805'] = corn_15_spread_df.loc[date,'20181_5']
         d['1701_1705'] = corn_15_spread_df.loc[date,'20171_5']

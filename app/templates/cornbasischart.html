@@ -56,7 +56,7 @@
             //     
             // },
             legend: {
-                data:['2019', '2018', '2017', '2016', '2015'],
+                data:['2020', '2019', '2018', '2017', '2016', '2015'],
                 y:30
             },
             xAxis: {
@@ -94,32 +94,45 @@
             //     }
             // ],
             dataset:{
-                dimensions: ['date', '2019basis1', '2018basis1', '2017basis1', '2016basis1', '2015basis1'],
+                dimensions: ['date', '2020basis1', '2019basis1', '2018basis1', '2017basis1', '2016basis1', '2015basis1'],
                 source: my_corn_year_basis1_l
             },
             series: [
                 {
+                    name: '2020',
+                    type: 'line',
+                    // color:'black',
+                    // symbol:'none',
+                    // symbolSize:8,
+                    lineStyle:{
+                        width:4,
+                        type:"solid"
+                    },
+                    connectNulls:true,
+                    // data: {{l4}}
+                },
+                {
                     name: '2019',
                     type: 'line',
-                    color:'black',
-                    symbol:'triangle',
-                    symbolSize:8,
+                    // color:'black',
+                    // symbol:'none',
+                    // symbolSize:8,
                     connectNulls:true,
                     // data: {{l4}}
                 },
                 {
                     name: '2018',
                     type: 'line',
-                    symbol:'rect',
-                    symbolSize:6,
+                    // symbol:'none',
+                    // symbolSize:6,
                     connectNulls:true,
                     // data: {{l4}}
                 },
                 {
                     name: '2017',
                     type: 'line',
-                    symbol:'diamond',
-                    symbolSize:8,
+                    // symbol:'none',
+                    // symbolSize:8,
                     connectNulls:true,
                     // data: {{l4s}}
                 },
@@ -242,9 +255,13 @@
                 {
                     name: '2019',
                     type: 'line',
-                    color:'black',
-                    symbol:'triangle',
-                    symbolSize:8,
+                    // color:'black',
+                    // symbol:'none',
+                    // symbolSize:8,
+                    lineStyle:{
+                        width:4,
+                        type:"solid"
+                    },
                     connectNulls:true,
                     // data: {{l4}}
                 },
@@ -353,9 +370,13 @@
                 {
                     name: '2019',
                     type: 'line',
-                    color:'black',
-                    symbol:'triangle',
-                    symbolSize:8,
+                    // color:'black',
+                    // symbol:'none',
+                    // symbolSize:8,
+                    lineStyle:{
+                        width:4,
+                        type:"solid",
+                    },
                     connectNulls:true,
                     // data: {{l4}}
                 },

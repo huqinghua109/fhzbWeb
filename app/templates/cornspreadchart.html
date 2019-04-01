@@ -59,7 +59,7 @@
             //     
             // },
             legend: {
-                data:['c_cs1601', 'c_cs1701', 'c_cs1801', 'c_cs1901'],
+                data:['c_cs1601', 'c_cs1701', 'c_cs1801', 'c_cs1901', 'c_cs2001'],
                 y:30
             },
             xAxis: {
@@ -97,7 +97,7 @@
             //     }
             // ],
             dataset:{
-                dimensions: ['date', '2016c_cs1', '2017c_cs1', '2018c_cs1', '2019c_cs1'],
+                dimensions: ['date', '2016c_cs1', '2017c_cs1', '2018c_cs1', '2019c_cs1', '2020c_cs1'],
                 source: my_corn_cs_spread1_year_l
             },
             series: [
@@ -128,11 +128,20 @@
                 {
                     name: 'c_cs1901',
                     type: 'line',
-                    color:'black',
-                    symbol:'triangle',
-                    symbolSize:10,
+                    // color:'black',
+                    // symbol:'triangle',
+                    // symbolSize:10,
                     connectNulls:true,
                     // data: {{l4s}}
+                },
+                {
+                    name: 'c_cs2001',
+                    type: 'line',
+                    lineStyle:{
+                        width:4,
+                        type:"solid"
+                    },
+                    connectNulls:true,
                 }
             ]
         };
@@ -265,9 +274,13 @@
                 {
                     name: 'c_cs1905',
                     type: 'line',
-                    color:'black',
-                    symbol:'triangle',
-                    symbolSize:10,
+                    // color:'black',
+                    // symbol:'triangle',
+                    // symbolSize:10,
+                    lineStyle:{
+                        width:4,
+                        type:"solid"
+                    },
                     connectNulls:true,
                     // data: {{l4s}}
                 }
@@ -376,9 +389,13 @@
                 {
                     name: 'c_cs1909',
                     type: 'line',
-                    color:'black',
-                    symbol:'triangle',
-                    symbolSize:10,
+                    // color:'black',
+                    // symbol:'triangle',
+                    // symbolSize:10,
+                    lineStyle:{
+                        width:4,
+                        type:"solid"
+                    },
                     connectNulls:true,
                     // data: {{l4s}}
                 }
@@ -418,7 +435,7 @@
             //     
             // },
             legend: {
-                data:['1809_1901', '1709_1801', '1609_1701', '1509_1601', '1409_1501'],
+                data:['1909_2001', '1809_1901', '1709_1801', '1609_1701', '1509_1601', '1409_1501'],
                 y:30
             },
             xAxis: {
@@ -456,16 +473,29 @@
             //     }
             // ],
             dataset:{
-                dimensions: ['date', '1809_1901', '1709_1801', '1609_1701', '1509_1601', '1409_1501'],
+                dimensions: ['date', '1909_2001', '1809_1901', '1709_1801', '1609_1701', '1509_1601', '1409_1501'],
                 source: my_corn_91_year_l
             },
             series: [
                 {
+                    name: '1909_2001',
+                    type: 'line',
+                    // color:'black',
+                    // symbol:'triangle',
+                    // symbolSize:10,
+                    lineStyle:{
+                        width:4,
+                        type:"solid"
+                    },
+                    connectNulls:true,
+                    // data: {{l4}}
+                },
+                {
                     name: '1809_1901',
                     type: 'line',
-                    color:'black',
-                    symbol:'triangle',
-                    symbolSize:10,
+                    // color:'black',
+                    // symbol:'triangle',
+                    // symbolSize:10,
                     connectNulls:true,
                     // data: {{l4}}
                 },
@@ -574,9 +604,13 @@
                 {
                     name: '1901_1905',
                     type: 'line',
-                    color:'black',
-                    symbol:'triangle',
-                    symbolSize:10,
+                    // color:'black',
+                    // symbol:'triangle',
+                    // symbolSize:10,
+                    lineStyle:{
+                        width:4,
+                        type:"solid"
+                    },
                     connectNulls:true,
                     // data: {{l4}}
                 },
@@ -686,9 +720,13 @@
                 {
                     name: '1905_1909',
                     type: 'line',
-                    color:'black',
-                    symbol:'triangle',
-                    symbolSize:10,
+                    // color:'black',
+                    // symbol:'triangle',
+                    // symbolSize:10,
+                    lineStyle:{
+                        width:4,
+                        type:"solid"
+                    },
                     connectNulls:true,
                     // data: {{l4}}
                 },
