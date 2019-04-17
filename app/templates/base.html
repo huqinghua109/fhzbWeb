@@ -7,13 +7,19 @@
     {% else %}
     <title>Welcome to LGT-INVESTMENT's World</title>
     {% endif%}
+
+    <link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+ 
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div align="center">
-	    <hl>
-	    	<b><font size="6", color="red">Welcome To The LGT-INVESTMENT's World !</font></b> 
-	    </hl>
-	    <p><b>真 诚 地 提 示 您 ： 交 易 有 风 险 ， 投 资 需 谨 慎 ！</b></p>
+	    <h2 class="h_home">Welcome To The LGT-INVESTMENT's World !</h2>
+	    <p class="p_home">真 诚 地 提 示 您 ： 交 易 有 风 险 ， 投 资 需 谨 慎 ！</p>
     </div>   
     {% block content %}{% endblock %}
 </body>
