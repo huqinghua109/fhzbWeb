@@ -8,6 +8,7 @@ from collections import OrderedDict
 from flask import render_template, request, redirect, url_for,  Flask, url_for, send_from_directory, abort
 from flask_uploads import UploadSet, configure_uploads, IMAGES, patch_request_class, DEFAULTS,ALL
 from flask_wtf import FlaskForm
+from flask_login import UserMixin, LoginManager, login_required, login_user
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 from wtforms import SubmitField
 
@@ -45,6 +46,64 @@ dbDetailLog = STRATEGY_DETAILLOG
 TradeMaxCount = 100
 DetailMaxCount = 100
 
+#--------------------------------------------------------------------
+# 登录与登出功能实现
+# 如果需要页面是授权用户才可见，在相应视图函数前加上 @login_required 装饰器进行声明即可，@login_required 装饰器对于未登录用户访问，默认处理是重定向到 LoginManager.login_view 所指定的视图
+class User(UserMixin):
+    pass
+
+
+users = [
+    {'id':'dean', 'username':'dean', 'password':'123456'},
+    {'id':'guest', 'username':'guest', 'password':'123456'}
+]    
+
+def query_user(user_id):
+    for user in users:
+        if user_id == user['id']:
+            return user
+
+login_manager = LoginManager()
+login_manager.login_view = 'login'
+login_manager.login_message_category = 'info'
+login_manager.login_message = 'Access denied.'
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    if query_user(user_id) is not None:
+        curr_user = User()
+        curr_user.id = user_id
+
+        return curr_user
+# 登入功能实现
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        user_id = request.form.get('userid')
+        user = query_user(user_id)
+        if user is not None and request.form['password'] == user['password']:
+
+            curr_user = User()
+            curr_user.id = user_id
+
+            # 通过Flask-Login的login_user方法登录用户
+            login_user(curr_user)
+            return render_template('home.html')
+
+        else:
+            error = '用户名或密码错误!'
+            return render_template('login.html', error=error)
+
+    # GET 请求
+    return render_template('login.html')
+
+# 登出功能实现
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return 'Logged out successfully!'
 #--------------------------------------------------------------------
 def getStrategyTradeData():
     strategyTradeLogs = []  # 分策略成交分组
@@ -149,95 +208,48 @@ def getStrategyStatusData():
 
 ############################################################################
 ############################################################################
-# @app.route('/login', methods=['POST','GET'])
-# def login():
-#     error = None
-#     if request.method == 'POST':
-#         if request.form['username']=='admin':
-#             return redirect(url_for('home.html',username=request.form['username']))
-#         else:
-#             error = 'Invalid username/password'
-#     return render_template("login.html", error=error)
-
-    # return render_template("home.html", username='SomeOne')
-AuthList = ['Dean', 'He', 'Mochi', 'Dong', 'Ayang']
 @app.route('/')
 def home():
     return render_template("home.html")
 
-# @app.route('/login', methods=['POST','GET'])
-# def login():
-#     error = None
-#     if request.method == 'POST':
-#         if request.form['username'] in AuthList:
-#             return render_template("home.html", username=request.form['username'])
-#             # return redirect(url_for('home',username=request.form['username']))
-#         else:
-#             error = 'Invalid username/password'
-#     return render_template("login.html", error=error)
 #------------------------------------------------------------------------------
 # 分策略成交，按时间顺序显示
 @app.route('/StrategyTrade', methods=['POST','GET'])
+@login_required
 def trade_strategy():
-    error = None
-    if request.method == 'POST':
-        if request.form['username'] in AuthList:
-            strategyTradeLogs = getStrategyTradeData()
-            return render_template("Trade_Strategy.html", title = 'strategy trade', strategyTradeLogs = strategyTradeLogs)
-        else:
-            error = 'Invalid username/password'
-    return render_template("login.html", error=error)
+    strategyTradeLogs = getStrategyTradeData()
+    return render_template("Trade_Strategy.html", title = 'strategy trade', strategyTradeLogs = strategyTradeLogs)
 
 #------------------------------------------------------------------------------
 # 分策略细节，按时间顺序显示
 @app.route('/StrategyDetail', methods=['POST','GET'])
+@login_required
 def detail_strategy():
-    error = None
-    if request.method == 'POST':
-        if request.form['username'] in AuthList:
-            strategyDetailLogs = getStrategyDetailLog()
-            return render_template("Detail_Strategy.html", title = 'strategy detailLogs', strategyDetailLogs = strategyDetailLogs)
-        else:
-            error = 'Invalid username/password'
-    return render_template("login.html", error=error)
+    strategyDetailLogs = getStrategyDetailLog()
+    return render_template("Detail_Strategy.html", title = 'strategy detailLogs', strategyDetailLogs = strategyDetailLogs)
 #------------------------------------------------------------------------------
 # 分策略状态信息
 @app.route('/strategyInfo', methods=['POST','GET'])
+@login_required
 def strategy_info():
-    error = None
-    if request.method == 'POST':
-        if request.form['username'] in AuthList:
-            myposts = getStrategyStatusData()
-            return render_template("Status_Strategy.html", title = 'strategy position', myposts = myposts)
-        else:
-            error = 'Invalid username/password'
-    return render_template("login.html", error=error)
+    myposts = getStrategyStatusData()
+    return render_template("Status_Strategy.html", title = 'strategy position', myposts = myposts)
 
 #------------------------------------------------------------------------------
 # 分策略变量信息
 @app.route('/strategyVars', methods=['POST','GET'])
+@login_required
 def strategy_vars():
-    error = None
-    if request.method == 'POST':
-        if request.form['username'] in AuthList:
-            mytradeVars = getStrategyVarData()
-            return render_template("Var_Strategy.html", title = 'strategy vars', mytradeVars = mytradeVars)
-        else:
-            error = 'Invalid username/password'
-    return render_template("login.html", error=error)
+    mytradeVars = getStrategyVarData()
+    return render_template("Var_Strategy.html", title = 'strategy vars', mytradeVars = mytradeVars)
 
 #------------------------------------------------------------------------------
 # 分策略历史数据
 @app.route('/strategyHistoryData', methods=['POST','GET'])
+@login_required
 def strategy_history():
-    error = None
-    if request.method == 'POST':
-        if request.form['username'] in AuthList:
-            myhistoryData = getStrategyHistoryData()
-            return render_template("historyData_Strategy.html", title = 'strategy histortData', myhistoryData = myhistoryData)
-        else:
-            error = 'Invalid username/password'
-    return render_template("login.html", error=error)
+    myhistoryData = getStrategyHistoryData()
+    return render_template("historyData_Strategy.html", title = 'strategy histortData', myhistoryData = myhistoryData)
 
 #------------------------------------------------------------------------------
 # 玉米潮干粮价格折算
@@ -277,6 +289,7 @@ class UploadForm(FlaskForm):
     submit = SubmitField(u'Upload')
 
 @app.route('/manage')
+@login_required
 def manage_file():
     files_list = os.listdir(app.config['UPLOADED_OBJ_DEST'])
     return render_template('manageReport.html', files_list=files_list)
@@ -404,6 +417,7 @@ def aboutus():
 #------------------------------------------------------------------------------
 # basis chart
 @app.route('/cornbasischart', methods=['GET', 'POST'])
+# @login_required
 def cornbasischart():
     # excel_path = "C:\\Users\\dell\\Desktop\\Quant\\fhzbWeb\\report\\CornBasisChart1.xlsx"
     corn_year_basis1_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='cornyearbasis1')
@@ -465,6 +479,7 @@ def cornbasischart():
 #------------------------------------------------------------------------------
 # corn spread month & cs
 @app.route('/cornspreadchart', methods=['GET', 'POST'])
+# @login_required
 def cornspreadchart():
     # excel_path = "C:\\Users\\dell\\Desktop\\Quant\\fhzbWeb\\report\\CornBasisChart1.xlsx"
     # corn_year_basis_df = corn_year_basis_df.fillna(0)
