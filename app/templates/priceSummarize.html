@@ -8,9 +8,10 @@
     <script type="text/javascript" src="http://echarts.baidu.com/dist/echarts.js"></script>
     <link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">
 </head>
+
 <body>
     <font size="6" color="blue"><p align="center">产区价格信息</p></font>
-    <div>
+    <div class="container">
         <table id="originprice" border="1" cellpadding="10" align="center">
             {% for row in region_df.values %}
             <tr>
@@ -36,7 +37,7 @@
         }
     </script>
 
-    <div>
+    <div class="container">
         <table id="price_summarize" border="1" cellpadding="10" align="center">
             {% for row in summarize_df.values %}
             <tr>
