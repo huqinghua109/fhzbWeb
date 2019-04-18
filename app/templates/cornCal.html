@@ -43,43 +43,50 @@
 	}
 
 </script>
+<div class="container">
+	<div class="div_comment">
+		<h3>潮粮折算干粮价格</h3>
+		<p>
+			潮粮价格: <input type="number" value="1400" id="mpriceid" size="4">&nbsp;&nbsp;
+			潮粮水分：<input type="number" value="30.0" id="mwaterid1" maxlength="4">
+		</p>
+		<p>
+			干粮水分(%): <input type="number" value="14.5" id="dwaterid1" maxlength="4">&nbsp;&nbsp;
+			折扣比例： <input type="number" value="1.2" id="r1" maxlength="4">&nbsp;&nbsp;
+			烘干费用： <input type="number" value="50" id="cost1" maxlength="4">
+		</p>
+		<button onclick="calculator1()">干粮价格</button>
+		<p id = "pid1"></p>
+	</div>
 
-<h3>潮粮折算干粮价格</h3>
-<p>
-	潮粮价格: <input type="number" value="1400" id="mpriceid" size="4">&nbsp;&nbsp;
-	潮粮水分：<input type="number" value="30.0" id="mwaterid1" maxlength="4">
-</p>
-<p>
-	干粮水分(%): <input type="number" value="14.5" id="dwaterid1" maxlength="4">&nbsp;&nbsp;
-	折扣比例： <input type="number" value="1.2" id="r1" maxlength="4">&nbsp;&nbsp;
-	烘干费用： <input type="number" value="50" id="cost1" maxlength="4">
-</p>
-<button onclick="calculator1()">干粮价格</button>
-<p id = "pid1"></p>
-<p>------------------------------------------------------</p>
-<h3>干粮折算潮粮价格</h3>
-<p>
-	干粮价格: <input type="number" value="1700" id="dpriceid">&nbsp;&nbsp;
-	干粮水分：<input type="number" value="14.5" id="dwaterid2">
-</p>
-<p>
-	潮粮水分(%): <input type="number" value="30.0" id="mwaterid2">&nbsp;&nbsp;
-	折扣比例： <input type="number" value="1.2" id="r2">&nbsp;&nbsp;
-	烘干费用： <input type="number" value="50" id="cost2">
-</p>
-<button onclick="calculator2()">潮粮价格</button>
-<p id = "pid2"></p>
-<p>------------------------------------------------------</p>
-<h3>交割成本测算</h3>
-<p>
-	运费: <input type="number" value="120" id="trancost">&nbsp;&nbsp;
-	入库费：<input type="number" value="15" id="incost">&nbsp;&nbsp;
-	贴水：<input type="number" value="5" id="sp">&nbsp;&nbsp;
-	检验发票：<input type="number" value="20" id="q_b">&nbsp;&nbsp;
-</p>
-<button onclick="calculator3()">潮粮交割成本</button>&nbsp;&nbsp;<button onclick="calculator4()">干粮交割成本</button>
-<p id = "pid3"></p>
-<p>------------------------------------------------------</p>
-<button onclick="showtime()">ShowTime</button>
-<p id = "timeid"></p>
+	<div class="div_comment">
+		<h3>干粮折算潮粮价格</h3>
+		<p>
+			干粮价格: <input type="number" value="1700" id="dpriceid">&nbsp;&nbsp;
+			干粮水分：<input type="number" value="14.5" id="dwaterid2">
+		</p>
+		<p>
+			潮粮水分(%): <input type="number" value="30.0" id="mwaterid2">&nbsp;&nbsp;
+			折扣比例： <input type="number" value="1.2" id="r2">&nbsp;&nbsp;
+			烘干费用： <input type="number" value="50" id="cost2">
+		</p>
+		<button onclick="calculator2()">潮粮价格</button>
+		<p id = "pid2"></p>
+	</div>
+
+	<div class="div_comment">
+		<h3>交割成本测算</h3>
+		<p>
+			运费: <input type="number" value="120" id="trancost">&nbsp;&nbsp;
+			入库费：<input type="number" value="15" id="incost">&nbsp;&nbsp;
+			贴水：<input type="number" value="5" id="sp">&nbsp;&nbsp;
+			检验发票：<input type="number" value="20" id="q_b">&nbsp;&nbsp;
+		</p>
+		<button onclick="calculator3()">潮粮交割成本</button>&nbsp;&nbsp;<button onclick="calculator4()">干粮交割成本</button>
+		<p id = "pid3"></p>
+	</div>
+	
+	<button onclick="showtime()">ShowTime</button>
+	<p id = "timeid"></p>
+</div>
 {% endblock %}

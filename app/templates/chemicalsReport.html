@@ -1,32 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
 
-<font size="6" color="red"><p>注意：上传的文件名请确保为英文或数字，不要含有中文！！！</p></font>
-<form method="POST" enctype="multipart/form-data">
-    {{ form.hidden_tag() }}
-    {{ form.obj(multiple="multiple")}}
-    {% for error in form.obj.errors %}
-        <span style="color: red;">{{ error }}</span>
+<div class="container">
+
+    <font size="6" color="red"><p>注意：上传的文件名请确保为英文或数字，不要含有中文！！！</p></font>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        {{ form.obj(multiple="multiple")}}
+        {% for error in form.obj.errors %}
+            <span style="color: red;">{{ error }}</span>
+        {% endfor %}
+        {{ form.submit }}
+    </form>
+
+    {% if success %}
+    <br>
+    <p>Upload Success!</p>
+    {% endif %}
+
+    <ol>
+    {% for obj in files_list %}
+        <li>{{ obj }}
+        <!-- <a href="{{ url_for('open_file', filename=obj) }}">open</a> -->
+        <a href="{{ url_for('download_file', filename=obj) }}">download</a>
+        <a href="{{ url_for('delete_file', filename=obj) }}">delete</a><br>
+        </li>
     {% endfor %}
-    {{ form.submit }}
-</form>
+    </ol>
 
-{% if success %}
-<br>
-<p>Upload Success!</p>
-{% endif %}
-
-<ol>
-{% for obj in files_list %}
-    <li>{{ obj }}
-    <!-- <a href="{{ url_for('open_file', filename=obj) }}">open</a> -->
-    <a href="{{ url_for('download_file', filename=obj) }}">download</a>
-    <a href="{{ url_for('delete_file', filename=obj) }}">delete</a><br>
-    </li>
-{% endfor %}
-</ol>
-
-<p>请下载后阅读,请不要随意删除他人上传的报告</p>
-<a href="{{ url_for('manage_file') }}">ManageFiles</a>
-
+    <p>请下载后阅读,请不要随意删除他人上传的报告</p>
+    <a href="{{ url_for('manage_file') }}">ManageFiles</a>
+    
+</div>
 {% endblock %}

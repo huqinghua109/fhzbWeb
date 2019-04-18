@@ -1,16 +1,25 @@
-.h_home{
+.h_style{
 	color: red;
 	font-weight: bold;
 }
-.p_home{
-	font-size: 1.3em;
+.content_fontsize{
+	font-size: 16px;
+}
+.head1_style{
+	font-size: 24px;
+	color: red;
+	font-weight: bold;
 }
 .p_test{
 	text-align:right;
 }
-.div_home{
+.div_comment{
+	border: 1px solid;
 	width: 80vw;
+	padding-left: 2%;
+	padding-right: 2%;
 	margin: 0 auto;
+	margin-bottom:10px;
 }
 .chart618{
 	width: 80vw;

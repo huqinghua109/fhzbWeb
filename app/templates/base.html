@@ -2,11 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    {% if title %}
-    <title>{{title}}</title>
-    {% else %}
-    <title>Welcome to LGT-INVESTMENT's World</title>
-    {% endif%}
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+    <title>Welcome To The LGT-INVESTMENT's World</title>
 
     <link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -18,9 +16,11 @@
 </head>
 <body>
 	<div align="center">
-	    <h2 class="h_home">Welcome To The LGT-INVESTMENT's World !</h2>
-	    <p class="p_home">真 诚 地 提 示 您 ： 交 易 有 风 险 ， 投 资 需 谨 慎 ！</p>
+	    <h2 class="h_style">Welcome To The LGT-INVESTMENT's World !</h2>
+	    <p class="content_fontsize">真 诚 地 提 示 您 ： 交 易 有 风 险 ， 投 资 需 谨 慎 ！</p>
     </div>   
-    {% block content %}{% endblock %}
+    {% block content %}
+    
+    {% endblock %}
 </body>
 </html>
