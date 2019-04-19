@@ -708,6 +708,13 @@ def priceSummarize():
     # summarize_df.iloc[14:21,[6,8]].round(2)
     summarize_df.iloc[22,8] = '%.2f%%' % (summarize_df.iloc[22,8]*100)
     summarize_df.iloc[23,8] = '%.2f%%' % (summarize_df.iloc[23,8]*100)
+    for i in range(14,21,1):
+        for j in range(5,9,1):
+            summarize_df.iloc[i,j] = round((summarize_df.iloc[i,j]),1)
+    summarize_df.iloc[22,6] = round((summarize_df.iloc[22,6]),1)
+    summarize_df.iloc[22,7] = round((summarize_df.iloc[22,7]),1)
+    summarize_df.iloc[23,6] = round((summarize_df.iloc[23,6]),1)
+    summarize_df.iloc[23,7] = round((summarize_df.iloc[23,7]),1)
 
     feedcarryout_df = df.iloc[:12, 14:19]
     feedcarryout_df.iloc[0,3] = feedcarryout_df.iloc[0,3].date()
@@ -716,7 +723,6 @@ def priceSummarize():
         feedcarryout_df.iloc[i+1,2] = '%.2f%%' % (feedcarryout_df.iloc[i+1,2]*100)
     # region_df = region_df.to_html(header=None, index=None, na_rep='', col_space=20, bold_rows=True)
     # carryout_df = carryout_df.to_html(header=None, index=None, na_rep='', col_space=20, bold_rows=True)
-    # region_df = region_df.to_json()
     return render_template("priceSummarize.html", region_df=region_df, deepcarryout_df=deepcarryout_df, feedcarryout_df=feedcarryout_df, summarize_df=summarize_df)
     # return carryout_df
 #------------------------------------------------------------------------------

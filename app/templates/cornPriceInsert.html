@@ -1,25 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="container">
+	<form class="form-horizontal" method="post">
+		<div class="panel panel-default">
+				<h3>玉米现货价格</h3>
+				<span>日期:</span><input type="date" value="2018-08-08" name="date1" id="date1" size="10">
+				<span>黑龙江价格:</span><input type="number" value="1400" name="heiPrice" id="heiPrice" size="4">
+				<span>锦州港价格:</span><input type="number" value="1600" name="jinzhouPrice" id="jinzhouPrice" maxlength="4"><br/>
+				<span>现状评论:</span><input type="text" value="偏强" name="pinglun" id="pinglun" maxlength="40">
+		</div>
 
-<form  style="margin:2cm 5cm 2cm 5cm;border:1px solid red" method="post">
-	<h3>玉米现货价格</h3>
-		<p>
-			<span>日期:</span><input type="date" value="2018-08-08" name="date1" id="date1" size="10">&nbsp;&nbsp;
-			<span>黑龙江价格:</span><input type="number" value="1400" name="heiPrice" id="heiPrice" size="4">&nbsp;&nbsp;
-			<span>锦州港价格:</span><input type="number" value="1600" name="jinzhouPrice" id="jinzhouPrice" maxlength="4"><br/>
-			<span>现状评论:</span><input type="text" value="偏强" name="pinglun" id="pinglun" maxlength="40">
-		</p>
-		<p>------------------------------------------------------</p>
+		<div class="panel panel-default">
+				<h3>大豆现货价格</h3>
+				<span>日期:</span><input type="date" value="2018-08-08" name="date2" id="date2" size="10">
+				<span>嫩江价格:</span><input type="number" value="3400" name="nenPrice" id="nenPrice" size="4">
+				<span>大连价格:</span><input type="number" value="3600" name="dalianPrice" id="dalianPrice" maxlength="4">
+		</div>
 
-	<h3>大豆现货价格</h3>
-		<p>
-			<span>日期:</span><input type="date" value="2018-08-08" name="date2" id="date2" size="10">&nbsp;&nbsp;
-			<span>嫩江价格:</span><input type="number" value="3400" name="nenPrice" id="nenPrice" size="4">&nbsp;&nbsp;
-			<span>大连价格:</span><input type="number" value="3600" name="dalianPrice" id="dalianPrice" maxlength="4">
-		</p>
-		<p>------------------------------------------------------</p>
-	<button type="submit" id="loginBtn" style="height:30px;width:100px;"><font size="2">提交</font></button>
-</form>
+		<button type="submit" id="loginBtn" style="height:30px;width:100px;"><font size="2">提交</font></button>
+	</form>
 
 <p id = "timeid"></p>
+</div>
 {% endblock %}

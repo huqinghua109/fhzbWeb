@@ -1,18 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>信息概览</title>
-    <!-- 引入 echarts.js -->
-    <!-- <script src="js/echarts.js"></script> -->
-    <script type="text/javascript" src="http://echarts.baidu.com/dist/echarts.js"></script>
-    <link rel="stylesheet" type="text/css" href="../static/css/mystyle.css">
-</head>
+{% extends "base.html" %}
+{% block content %}
 
-<body>
     <font size="6" color="blue"><p align="center">产区价格信息</p></font>
     <div class="container">
-        <table id="originprice" border="1" cellpadding="10" align="center">
+        <table id="originprice" class="table table-striped table-bordered">
             {% for row in region_df.values %}
             <tr>
                 {% for cell in row %}
@@ -20,8 +11,12 @@
                 {% endfor %}
             </tr>
             {% endfor %}
-        </table>
+        </table> 
     </div>
+    <script type="text/javascript">
+        
+    </script>
+
     <script type="text/javascript">
         var tb = document.getElementById("originprice"); 
         // tb.rows[3].cells[7].style.display='none';
@@ -38,7 +33,7 @@
     </script>
 
     <div class="container">
-        <table id="price_summarize" border="1" cellpadding="10" align="center">
+        <table class="table table-striped table-bordered table-condensed" id="price_summarize">
             {% for row in summarize_df.values %}
             <tr>
                 {% for cell in row %}
@@ -128,6 +123,4 @@
         tb2.rows[12].cells[0].style.display='none';
         tb2.rows[9].cells[0].rowSpan = 4;
     </script> -->
-
-</body>
-</html>
+{% endblock %}
