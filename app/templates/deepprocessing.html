@@ -92,9 +92,10 @@
                 axisPointer: {
                     label: {
                         formatter: function (params) {
+                            // console.log(params)
                             var date = new Date(params.value);
                             var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
-                            return texts.join('/');
+                            return texts.join('');
                         },
                     }
                 },

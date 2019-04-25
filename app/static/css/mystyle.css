@@ -31,6 +31,7 @@
 	margin: 0 auto;
 }
 .chart600{
+	max-width: 100%;
 	width: 98vw;
 	height: 45vw;
 	margin: 0 auto;
@@ -39,6 +40,11 @@
 	background-size: 50%;
 	background-position: 50% 5%;
 	opacity: 1;
+}
+.chart_home{
+	max-width: 100%;
+	width: 800px;
+	height: 600px;
 }
 .chart600noyin{
 	width: 98vw;

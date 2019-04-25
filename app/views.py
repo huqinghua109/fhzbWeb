@@ -210,7 +210,8 @@ def getStrategyStatusData():
 ############################################################################
 @app.route('/')
 def home():
-    return render_template("home.html")
+    b9= getCornYearBasis09()
+    return render_template("home.html", corn_year_basis9_l=b9)
 
 #------------------------------------------------------------------------------
 # 分策略成交，按时间顺序显示
@@ -415,10 +416,61 @@ def aboutus():
     return render_template("aboutus.html",
         title = 'aboutus')
 #------------------------------------------------------------------------------
-# basis chart
-@app.route('/cornbasischart', methods=['GET', 'POST'])
-# @login_required
-def cornbasischart():
+def getCornYearBasis01():
+    corn_year_basis1_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='cornyearbasis1')
+
+    corn_year_basis1_l = []
+    for date in corn_year_basis1_df.index:
+        d = OrderedDict()
+        d['date'] = date
+        d['2020basis1'] = corn_year_basis1_df.loc[date,'2020basis1']
+        d['2019basis1'] = corn_year_basis1_df.loc[date,'2019basis1']
+        d['2018basis1'] = corn_year_basis1_df.loc[date,'2018basis1']
+        d['2017basis1'] = corn_year_basis1_df.loc[date,'2017basis1']
+        d['2016basis1'] = corn_year_basis1_df.loc[date,'2016basis1']
+        d['2015basis1'] = corn_year_basis1_df.loc[date,'2015basis1']
+        d['2014basis1'] = corn_year_basis1_df.loc[date,'2014basis1']
+        corn_year_basis1_l.append(d)
+
+    return corn_year_basis1_l
+#------------------------------------------------------------------------------
+def getCornYearBasis05():
+    corn_year_basis5_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='cornyearbasis5')
+
+    corn_year_basis5_l = []
+    for date in corn_year_basis5_df.index:
+        d = OrderedDict()
+        d['date'] = date
+        d['2020basis5'] = corn_year_basis5_df.loc[date,'2020basis5']
+        d['2019basis5'] = corn_year_basis5_df.loc[date,'2019basis5']
+        d['2018basis5'] = corn_year_basis5_df.loc[date,'2018basis5']
+        d['2017basis5'] = corn_year_basis5_df.loc[date,'2017basis5']
+        d['2016basis5'] = corn_year_basis5_df.loc[date,'2016basis5']
+        d['2015basis5'] = corn_year_basis5_df.loc[date,'2015basis5']
+        d['2014basis5'] = corn_year_basis5_df.loc[date,'2014basis5']
+        corn_year_basis5_l.append(d)
+
+    return corn_year_basis5_l
+#------------------------------------------------------------------------------
+def getCornYearBasis09():
+    corn_year_basis9_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='cornyearbasis9')
+
+    corn_year_basis9_l = []
+    for date in corn_year_basis9_df.index:
+        d = OrderedDict()
+        d['date'] = date
+        d['2020basis9'] = corn_year_basis9_df.loc[date,'2020basis9']
+        d['2019basis9'] = corn_year_basis9_df.loc[date,'2019basis9']
+        d['2018basis9'] = corn_year_basis9_df.loc[date,'2018basis9']
+        d['2017basis9'] = corn_year_basis9_df.loc[date,'2017basis9']
+        d['2016basis9'] = corn_year_basis9_df.loc[date,'2016basis9']
+        d['2015basis9'] = corn_year_basis9_df.loc[date,'2015basis9']
+        d['2014basis9'] = corn_year_basis9_df.loc[date,'2014basis9']
+        corn_year_basis9_l.append(d)
+
+    return corn_year_basis9_l
+#------------------------------------------------------------------------------
+def getCornBasis():
     # excel_path = "C:\\Users\\dell\\Desktop\\Quant\\fhzbWeb\\report\\CornBasisChart1.xlsx"
     corn_year_basis1_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='cornyearbasis1')
     corn_year_basis5_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='cornyearbasis5')
@@ -473,6 +525,14 @@ def cornbasischart():
         d['basis5'] = corn_basis_df.iloc[i,1]
         d['basis9'] = corn_basis_df.iloc[i,2]
         corn_basis_l.append(d)
+
+    return corn_year_basis1_l, corn_year_basis5_l, corn_year_basis9_l, corn_basis_l
+#------------------------------------------------------------------------------
+# basis chart
+@app.route('/cornbasischart', methods=['GET', 'POST'])
+# @login_required
+def cornbasischart():
+    corn_year_basis1_l, corn_year_basis5_l, corn_year_basis9_l, corn_basis_l = getCornBasis()
 
     return render_template("cornbasischart.html", corn_year_basis1_l=corn_year_basis1_l, corn_year_basis5_l=corn_year_basis5_l, corn_year_basis9_l=corn_year_basis9_l, corn_basis_l=corn_basis_l)
 
@@ -584,21 +644,21 @@ def portcarryout():
     for date in df.index:
         d1 = OrderedDict()
         d1['date'] = date
-        d1['NorthCarryout'] = df.loc[date,'Unnamed: 20']
-        d1['NorthCarryoutChange'] = df.loc[date,'Unnamed: 21']
+        d1['NorthCarryout'] = round(df.loc[date,'Unnamed: 20'],2)
+        d1['NorthCarryoutChange'] = round(df.loc[date,'Unnamed: 21'],2)
         d1['JinzhouPrice'] = df.loc[date,'Unnamed: 4']
         l1.append(d1)
 
         d2 = OrderedDict()
         d2['date'] = date
-        d2['GDCarryout'] = df.loc[date,'Unnamed: 25']
-        d2['GDCarryoutChange'] = df.loc[date,'Unnamed: 26']
+        d2['GDCarryout'] = round(df.loc[date,'Unnamed: 25'],2)
+        d2['GDCarryoutChange'] = round(df.loc[date,'Unnamed: 26'],2)
         d2['GDPrice'] = df.loc[date,'Unnamed: 27']
         l2.append(d2)
 
         d3 = OrderedDict()
         d3['date'] = date
-        d3['CarryoutSpread'] = d2['GDCarryout']/d1['NorthCarryout']
+        d3['CarryoutSpread'] = round(d2['GDCarryout']/d1['NorthCarryout'],2)
         d3['profit'] = df.loc[date,'Unnamed: 30']
         l3.append(d3)
 
@@ -851,6 +911,26 @@ def shouliangjindu():
 
     return render_template("shouliangjindu.html", l1=l1)
     # return salerate_df.to_html()
+#------------------------------------------------------------------------------
+def getPigPriceData():
+    df = pd.read_excel(app.config['EXCEL_CORNDATA'], sheet_name='PigPrice')
+    pigPrice_l = []
+    for i in range(df.shape[0]):
+        d1 = OrderedDict()
+        d1['date'] = df.index[i]
+        d1['zizhuPrice'] = df.iloc[i,0]
+        d1['baitiaozhuPrice'] = df.iloc[i,1]
+        d1['zaihoujunzhong'] = df.iloc[i,2]
+        d1['gdCornPrice'] = df.iloc[i,3]
+        pigPrice_l.append(d1)
+
+    return pigPrice_l
+#------------------------------------------------------------------------------
+@app.route('/pigprice')
+def pigprice():
+    pigPrice_l = getPigPriceData()
+    # print(pigPrice_l)
+    return render_template("PigPrice.html", pigPrice_l=pigPrice_l)
 #------------------------------------------------------------------------------
 # temptest
 @app.route('/temptest', methods=['GET', 'POST'])
