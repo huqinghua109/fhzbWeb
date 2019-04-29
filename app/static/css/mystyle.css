@@ -21,34 +21,37 @@
 	margin: 0 auto;
 	margin-bottom:10px;
 }
-.chart618{
-	width: 80vw;
-	height: 49.44vw;
-	margin: 0 auto;
-}
 .loginform{
 	width: 30vw;
 	margin: 0 auto;
 }
 .chart600{
-	max-width: 100%;
-	width: 98vw;
-	height: 45vw;
+	max-width: 98vw;
+	max-height: 98vh;
+	width: 100vw;
+	height: 60vw;
 	margin: 0 auto;
-	background-image: url('/static/wtny.png');
+	background-image: url('/static/img/wtny.png');
 	background-repeat: no-repeat;
 	background-size: 50%;
 	background-position: 50% 5%;
 	opacity: 1;
 }
+.wrapper{
+	position : relative;
+  	padding-bottom : 75%;
+}
 .chart_home{
 	max-width: 100%;
-	width: 800px;
-	height: 600px;
+	width: 500px;
+	height: 250px;
+	border: 1px dashed #000;
 }
 .chart600noyin{
-	width: 98vw;
-	height: 45vw;
+	max-width: 98vw;
+	max-height: 98vh;
+	width: 100vw;
+	height: 60vw;
 	margin: 0 auto;
 }
 .temp{
