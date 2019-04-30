@@ -11,6 +11,7 @@
                 <div class="row">
                     <ul class="list-inline content_fontsize">
                         <li><a href="/priceSummarize" target="_blank">产区价格与工厂库存</a></li>
+                        <li><a href="/tianqiqingkuang" target="_blank">天气情况</a></li>
                         <li><a href="/shouliangjindu" target="_blank">售粮进度</a></li>
                         <li><a href="/portcarryout" target="_blank">南北港库存与价格</a></li>
                         <li><a href="/deepprocessing" target="_blank">深加工开工率与利润</a></li>
@@ -96,10 +97,13 @@
                     <div id="basis9" class="chart_home"></div>
                 </div>
                 <div class="row">
-                    <img class="img-responsive" src="https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_20190427_00000000.png">
+                    <img id="qixiangganhan" class="img-responsive" src="https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_20190427_00000000.png">
                 </div>
                 <div class="row">
-                    <img class="img-responsive" src="http://image.nmc.cn/product/2019/04/29/AMDF/medium/SEVP_NMC_AMDF_SFER_EDRF_ACHN_L88_P9_20190429000000000.jpg?v=1556501827262">
+                    <img id="qixiangganhan_1" class="img-responsive" src="https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_20190427_00000000.png">
+                </div>
+                <div class="row">
+                    <img id="qixiangganhan_2" class="img-responsive" src="https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_20190427_00000000.png">
                 </div>
             </div>
         </div>
@@ -113,6 +117,15 @@
         <p class="p_test"><a href="/temptest" target="_blank">临时测试1</a></p>
         <p class="p_test"><a href="/temptest2" target="_blank">临时测试2</a></p>
     </div>
+    <script type="text/javascript">
+        var url = {{url|tojson}};
+        var url_1 = {{url_1|tojson}};
+        var url_2 = {{url_2|tojson}};
+        // console.log(url);
+        document.getElementById('qixiangganhan').setAttribute("src", url);
+        document.getElementById('qixiangganhan_1').setAttribute("src", url_1);
+        document.getElementById('qixiangganhan_2').setAttribute("src", url_2);
+    </script>
 
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例

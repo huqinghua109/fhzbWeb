@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+	<h3 class="h_style">降水距平分布图</h3>
+	<div class="row">
+		<div class="col-sm-6 col-md-4">
+			<img id="rainfall_today" class="img-responsive">
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<img id="rainfall_5" class="img-responsive">
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<img id="rainfall_10" class="img-responsive">
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<img id="rainfall_365" class="img-responsive">
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<img id="rainfall_730" class="img-responsive">
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<img id="rainfall_1095" class="img-responsive">
+		</div>
+	</div>
+
+	<h3 class="h_style">全国气象干旱综合监测图</h3>
+	<div class="row">
+		<div class="col-sm-6 col-md-4">
+			<img id="drought_today" class="img-responsive">
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<img id="drought_5" class="img-responsive">
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<img id="drought_10" class="img-responsive">
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<img id="drought_365" class="img-responsive">
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<img id="drought_730" class="img-responsive">
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<img id="drought_1095" class="img-responsive">
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var rainFallUrl_l = {{rainFallUrl_l|tojson}}
+	document.getElementById('rainfall_today').setAttribute("src", rainFallUrl_l[0]);
+	document.getElementById('rainfall_5').setAttribute("src", rainFallUrl_l[1]);
+	document.getElementById('rainfall_10').setAttribute("src", rainFallUrl_l[2]);
+	document.getElementById('rainfall_365').setAttribute("src", rainFallUrl_l[3]);
+	document.getElementById('rainfall_730').setAttribute("src", rainFallUrl_l[4]);
+	document.getElementById('rainfall_1095').setAttribute("src", rainFallUrl_l[5]);
+	var droughtUrl_l = {{droughtUrl_l|tojson}}
+	document.getElementById('drought_today').setAttribute("src", droughtUrl_l[0]);
+	document.getElementById('drought_5').setAttribute("src", droughtUrl_l[1]);
+	document.getElementById('drought_10').setAttribute("src", droughtUrl_l[2]);
+	document.getElementById('drought_365').setAttribute("src", droughtUrl_l[3]);
+	document.getElementById('drought_730').setAttribute("src", droughtUrl_l[4]);
+	document.getElementById('drought_1095').setAttribute("src", droughtUrl_l[5]);
+</script>
+{% endblock %}

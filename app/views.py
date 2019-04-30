@@ -1,6 +1,7 @@
 # encoding: UTF-8
 import os
-import time, random
+import random
+import datetime as dtt
 import pandas as pd
 import numpy as np
 from collections import OrderedDict
@@ -206,13 +207,56 @@ def getStrategyStatusData():
 
     return myposts
 
+#--------------------------------------------------------------------
+def getDroughtUrl():
+    datestr = (dtt.datetime.now()-dtt.timedelta(1)).strftime("%Y%m%d")
+    date5str = (dtt.datetime.now()-dtt.timedelta(6)).strftime("%Y%m%d")
+    date10str = (dtt.datetime.now()-dtt.timedelta(11)).strftime("%Y%m%d")
+    date365str = (dtt.datetime.now()-dtt.timedelta(366)).strftime("%Y%m%d")
+    date730str = (dtt.datetime.now()-dtt.timedelta(731)).strftime("%Y%m%d")
+    date1095str = (dtt.datetime.now()-dtt.timedelta(1096)).strftime("%Y%m%d")
+    urlToday = "https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_"+datestr+"_00000000.png"
+    url5 = "https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_"+date5str+"_00000000.png"
+    url10 = "https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_"+date10str+"_00000000.png"
+    url365 = "https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_"+date365str+"_00000000.png"
+    url730 = "https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_"+date730str+"_00000000.png"
+    url1095 = "https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_"+date1095str+"_00000000.png"
+    return [urlToday, url5, url10, url365, url730, url1095]
+#--------------------------------------------------------------------
+def getRainfallUrl():
+    datestr = dtt.datetime.now().strftime("%Y%m%d")[2:]
+    date5str = (dtt.datetime.now()-dtt.timedelta(5)).strftime("%Y%m%d")[2:]
+    date10str = (dtt.datetime.now()-dtt.timedelta(10)).strftime("%Y%m%d")[2:]
+    date365str = (dtt.datetime.now()-dtt.timedelta(365)).strftime("%Y%m%d")[2:]
+    date730str = (dtt.datetime.now()-dtt.timedelta(730)).strftime("%Y%m%d")[2:]
+    date1095str = (dtt.datetime.now()-dtt.timedelta(1095)).strftime("%Y%m%d")[2:]
+    urlToday = "https://cmdp.ncc-cma.net/Monitoring/DailyMonitoring/ra20_/ra20_"+datestr+".gif"
+    url5 = "https://cmdp.ncc-cma.net/Monitoring/DailyMonitoring/ra20_/ra20_"+date5str+".gif"
+    url10 = "https://cmdp.ncc-cma.net/Monitoring/DailyMonitoring/ra20_/ra20_"+date10str+".gif"
+    url365 = "https://cmdp.ncc-cma.net/Monitoring/DailyMonitoring/ra20_/ra20_"+date365str+".gif"
+    url730 = "https://cmdp.ncc-cma.net/Monitoring/DailyMonitoring/ra20_/ra20_"+date730str+".gif"
+    url1095 = "https://cmdp.ncc-cma.net/Monitoring/DailyMonitoring/ra20_/ra20_"+date1095str+".gif"
+    return [urlToday, url5, url10, url365, url730, url1095]
 ############################################################################
 ############################################################################
 @app.route('/')
 def home():
     b9= getCornYearBasis09()
-    return render_template("home.html", corn_year_basis9_l=b9)
+    datestr = (dtt.datetime.now()-dtt.timedelta(1)).strftime("%Y%m%d")
+    datestr_1 = (dtt.datetime.now()-dtt.timedelta(366)).strftime("%Y%m%d")
+    datestr_2 = (dtt.datetime.now()-dtt.timedelta(731)).strftime("%Y%m%d")
+    url = "https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_"+datestr+"_00000000.png"
+    url_1 = "https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_"+datestr_1+"_00000000.png"
+    url_2 = "https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_"+datestr_2+"_00000000.png"
+    return render_template("home.html", corn_year_basis9_l=b9, url=url, url_1=url_1, url_2=url_2)
 
+#------------------------------------------------------------------------------
+# 天气情况
+@app.route('/tianqiqingkuang')
+def tianqiqingkuang():
+    rainFallUrl_l = getRainfallUrl()
+    droughtUrl_l = getDroughtUrl()
+    return render_template("tianqiqingkuang.html", rainFallUrl_l=rainFallUrl_l, droughtUrl_l=droughtUrl_l)
 #------------------------------------------------------------------------------
 # 分策略成交，按时间顺序显示
 @app.route('/StrategyTrade', methods=['POST','GET'])
@@ -757,11 +801,11 @@ def priceSummarize():
     region_df = df.iloc[:8, :8]
     region_df.iloc[0,0] = region_df.iloc[0,0].date()
 
-    deepcarryout_df = df.iloc[:17, 9:14]
-    deepcarryout_df.iloc[0,3] = deepcarryout_df.iloc[0,3].date()
-    deepcarryout_df.iloc[0,4] = deepcarryout_df.iloc[0,4].date()
-    for i in range(deepcarryout_df.shape[0]-1):
-        deepcarryout_df.iloc[i+1,2] = '%.2f%%' % (deepcarryout_df.iloc[i+1,2]*100)
+    # deepcarryout_df = df.iloc[:17, 9:14]
+    # deepcarryout_df.iloc[0,3] = deepcarryout_df.iloc[0,3].date()
+    # deepcarryout_df.iloc[0,4] = deepcarryout_df.iloc[0,4].date()
+    # for i in range(deepcarryout_df.shape[0]-1):
+    #     deepcarryout_df.iloc[i+1,2] = '%.2f%%' % (deepcarryout_df.iloc[i+1,2]*100)
 
     summarize_df = df.iloc[19:48, :9]
     summarize_df.iloc[0,0] = summarize_df.iloc[0,0].date()
@@ -776,14 +820,14 @@ def priceSummarize():
     summarize_df.iloc[23,6] = round((summarize_df.iloc[23,6]),1)
     summarize_df.iloc[23,7] = round((summarize_df.iloc[23,7]),1)
 
-    feedcarryout_df = df.iloc[:12, 14:19]
-    feedcarryout_df.iloc[0,3] = feedcarryout_df.iloc[0,3].date()
-    feedcarryout_df.iloc[0,4] = feedcarryout_df.iloc[0,4].date()
-    for i in range(feedcarryout_df.shape[0]-1):
-        feedcarryout_df.iloc[i+1,2] = '%.2f%%' % (feedcarryout_df.iloc[i+1,2]*100)
+    feedcarryout_df = df.iloc[:12, 20:26]
+    # feedcarryout_df.iloc[0,3] = feedcarryout_df.iloc[0,3].date()
+    # feedcarryout_df.iloc[0,4] = feedcarryout_df.iloc[0,4].date()
+    # for i in range(feedcarryout_df.shape[0]-1):
+    #     feedcarryout_df.iloc[i+1,2] = '%.2f%%' % (feedcarryout_df.iloc[i+1,2]*100)
     # region_df = region_df.to_html(header=None, index=None, na_rep='', col_space=20, bold_rows=True)
     # carryout_df = carryout_df.to_html(header=None, index=None, na_rep='', col_space=20, bold_rows=True)
-    return render_template("priceSummarize.html", region_df=region_df, deepcarryout_df=deepcarryout_df, feedcarryout_df=feedcarryout_df, summarize_df=summarize_df)
+    return render_template("priceSummarize.html", region_df=region_df, feedcarryout_df=feedcarryout_df, summarize_df=summarize_df)
     # return carryout_df
 #------------------------------------------------------------------------------
 # corntempres
