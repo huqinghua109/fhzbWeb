@@ -17,6 +17,9 @@ from app import app
 
 from pymongo import MongoClient
 
+from bs4 import BeautifulSoup
+import urllib.request
+
 
 # 数据库名称
 SETTING_DB_NAME = 'VnTrader_Setting_Db'
@@ -237,18 +240,25 @@ def getRainfallUrl():
     url730 = "https://cmdp.ncc-cma.net/Monitoring/DailyMonitoring/ra20_/ra20_"+date730str+".gif"
     url1095 = "https://cmdp.ncc-cma.net/Monitoring/DailyMonitoring/ra20_/ra20_"+date1095str+".gif"
     return [urlToday, url5, url10, url365, url730, url1095]
+#--------------------------------------------------------------------
+def getNongyeDroughtUrl():
+    nmcurl = "http://www.nmc.cn/publish/agro/disastersmonitoring/Agricultural_Drought_Monitoring.htm"
+    response = urllib.request.urlopen(nmcurl)
+    soup = BeautifulSoup(response, "html.parser")
+    nongyeDroughturl = soup.find('img', id='imgpath').get('src')
+    return nongyeDroughturl
 ############################################################################
 ############################################################################
 @app.route('/')
 def home():
     b9= getCornYearBasis09()
+    
     datestr = (dtt.datetime.now()-dtt.timedelta(1)).strftime("%Y%m%d")
-    datestr_1 = (dtt.datetime.now()-dtt.timedelta(366)).strftime("%Y%m%d")
-    datestr_2 = (dtt.datetime.now()-dtt.timedelta(731)).strftime("%Y%m%d")
-    url = "https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_"+datestr+"_00000000.png"
-    url_1 = "https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_"+datestr_1+"_00000000.png"
-    url_2 = "https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_"+datestr_2+"_00000000.png"
-    return render_template("home.html", corn_year_basis9_l=b9, url=url, url_1=url_1, url_2=url_2)
+    droughturl = "https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_"+datestr+"_00000000.png"
+
+    nongyeDroughturl = getNongyeDroughtUrl()
+
+    return render_template("home.html", corn_year_basis9_l=b9, droughturl=droughturl, nongyeDroughturl=nongyeDroughturl)
 
 #------------------------------------------------------------------------------
 # 天气情况

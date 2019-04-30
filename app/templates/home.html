@@ -97,13 +97,10 @@
                     <div id="basis9" class="chart_home"></div>
                 </div>
                 <div class="row">
-                    <img id="qixiangganhan" class="img-responsive" src="https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_20190427_00000000.png">
+                    <img id="qixiangganhan" class="img-responsive">
                 </div>
                 <div class="row">
-                    <img id="qixiangganhan_1" class="img-responsive" src="https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_20190427_00000000.png">
-                </div>
-                <div class="row">
-                    <img id="qixiangganhan_2" class="img-responsive" src="https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_20190427_00000000.png">
+                    <img id="nongyeganhan" class="img-responsive">
                 </div>
             </div>
         </div>
@@ -118,13 +115,11 @@
         <p class="p_test"><a href="/temptest2" target="_blank">临时测试2</a></p>
     </div>
     <script type="text/javascript">
-        var url = {{url|tojson}};
-        var url_1 = {{url_1|tojson}};
-        var url_2 = {{url_2|tojson}};
+        var droughturl = {{droughturl|tojson}};
+        var nongyeDroughturl = {{nongyeDroughturl|tojson}};
         // console.log(url);
-        document.getElementById('qixiangganhan').setAttribute("src", url);
-        document.getElementById('qixiangganhan_1').setAttribute("src", url_1);
-        document.getElementById('qixiangganhan_2').setAttribute("src", url_2);
+        document.getElementById('qixiangganhan').setAttribute("src", droughturl);
+        document.getElementById('nongyeganhan').setAttribute("src", nongyeDroughturl);
     </script>
 
     <script type="text/javascript">
