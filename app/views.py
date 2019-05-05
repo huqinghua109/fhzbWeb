@@ -217,14 +217,14 @@ def getDroughtUrl():
     date10str = (dtt.datetime.now()-dtt.timedelta(11)).strftime("%Y%m%d")
     date365str = (dtt.datetime.now()-dtt.timedelta(366)).strftime("%Y%m%d")
     date730str = (dtt.datetime.now()-dtt.timedelta(731)).strftime("%Y%m%d")
-    date1095str = (dtt.datetime.now()-dtt.timedelta(1096)).strftime("%Y%m%d")
+    # date1095str = (dtt.datetime.now()-dtt.timedelta(1096)).strftime("%Y%m%d")
     urlToday = "https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_"+datestr+"_00000000.png"
     url5 = "https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_"+date5str+"_00000000.png"
     url10 = "https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_"+date10str+"_00000000.png"
     url365 = "https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_"+date365str+"_00000000.png"
     url730 = "https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_"+date730str+"_00000000.png"
-    url1095 = "https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_"+date1095str+"_00000000.png"
-    return [urlToday, url5, url10, url365, url730, url1095]
+    nongyeDroughturl = getNongyeDroughtUrl()
+    return [urlToday, url5, url10, url365, url730, nongyeDroughturl]
 #--------------------------------------------------------------------
 def getRainfallUrl():
     datestr = dtt.datetime.now().strftime("%Y%m%d")[2:]
