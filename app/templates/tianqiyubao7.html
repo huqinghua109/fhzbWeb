@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+	
+	<h3 class="h_style">降水量预报-未来7天</h3>
+	<div class="row">
+		<div class="col-sm-6 col-md-4">
+			<img id="precipitation1" class="img-responsive">
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<img id="precipitation2" class="img-responsive">
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<img id="precipitation3" class="img-responsive">
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<img id="precipitation4" class="img-responsive">
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<img id="precipitation5" class="img-responsive">
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<img id="precipitation6" class="img-responsive">
+		</div>
+	</div>
+
+	<h3 class="h_style">气温预报-未来7天</h3>
+	<div class="row">
+		<div class="col-sm-6 col-md-4">
+			<img id="temperature1" class="img-responsive">
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<img id="temperature2" class="img-responsive">
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<img id="temperature3" class="img-responsive">
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<img id="temperature4" class="img-responsive">
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<img id="temperature5" class="img-responsive">
+		</div>
+		<div class="col-sm-6 col-md-4">
+			<img id="temperature6" class="img-responsive">
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var precipitationUrl_l = {{precipitationUrl_l|tojson}}
+	document.getElementById('precipitation1').setAttribute("src", precipitationUrl_l[0]);
+	document.getElementById('precipitation2').setAttribute("src", precipitationUrl_l[1]);
+	document.getElementById('precipitation3').setAttribute("src", precipitationUrl_l[2]);
+	document.getElementById('precipitation4').setAttribute("src", precipitationUrl_l[3]);
+	document.getElementById('precipitation5').setAttribute("src", precipitationUrl_l[4]);
+	document.getElementById('precipitation6').setAttribute("src", precipitationUrl_l[5]);
+	var temperatureUrl_l = {{temperatureUrl_l|tojson}}
+	document.getElementById('temperature1').setAttribute("src", temperatureUrl_l[0]);
+	document.getElementById('temperature2').setAttribute("src", temperatureUrl_l[1]);
+	document.getElementById('temperature3').setAttribute("src", temperatureUrl_l[2]);
+	document.getElementById('temperature4').setAttribute("src", temperatureUrl_l[3]);
+	document.getElementById('temperature5').setAttribute("src", temperatureUrl_l[4]);
+	document.getElementById('temperature6').setAttribute("src", temperatureUrl_l[5]);
+</script>
+{% endblock %}

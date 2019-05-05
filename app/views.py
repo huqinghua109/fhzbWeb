@@ -247,6 +247,38 @@ def getNongyeDroughtUrl():
     soup = BeautifulSoup(response, "html.parser")
     nongyeDroughturl = soup.find('img', id='imgpath').get('src')
     return nongyeDroughturl
+#--------------------------------------------------------------------
+def getPrecipitationUrl():
+    baseUrl = "http://www.nmc.cn/publish/precipitation/1-day.html"
+    response = urllib.request.urlopen(baseUrl)
+    soup = BeautifulSoup(response, "html.parser")
+
+    # res = soup.find('ul', id='mycarousel').get("data-original")
+    res = soup.find('ul', id='mycarousel')
+    # res = soup.find_all('li')
+    # select = soup.select("#mycarousel")
+    # print(len(res.find_all('img')))
+    precipitationUrl_l = []
+    for i in range(7):
+        preurl = res.find_all('img')[i].get("data-original")
+        precipitationUrl_l.append(preurl)
+    return precipitationUrl_l
+#--------------------------------------------------------------------
+def getTemperatureUrl():
+    baseUrl = "http://www.nmc.cn/publish/temperature/hight/24hour.html"
+    response = urllib.request.urlopen(baseUrl)
+    soup = BeautifulSoup(response, "html.parser")
+
+    res = soup.find('ul', id='mycarousel')
+    temperatureUrl_l = []
+    for i in range(7):
+        temurl = res.find_all('img')[i].get("data-original")
+        temperatureUrl_l.append(temurl)
+    return temperatureUrl_l
+
+#--------------------------------------------------------------------
+#--------------------------------------------------------------------
+#--------------------------------------------------------------------
 ############################################################################
 ############################################################################
 @app.route('/')
@@ -267,6 +299,13 @@ def tianqiqingkuang():
     rainFallUrl_l = getRainfallUrl()
     droughtUrl_l = getDroughtUrl()
     return render_template("tianqiqingkuang.html", rainFallUrl_l=rainFallUrl_l, droughtUrl_l=droughtUrl_l)
+#------------------------------------------------------------------------------
+# 降水与气温7天预报
+@app.route('/tianqiyubao7')
+def tianqiyubao7():
+    precipitationUrl_l = getPrecipitationUrl()
+    temperatureUrl_l = getTemperatureUrl()
+    return render_template("tianqiyubao7.html", precipitationUrl_l=precipitationUrl_l, temperatureUrl_l=temperatureUrl_l)
 #------------------------------------------------------------------------------
 # 分策略成交，按时间顺序显示
 @app.route('/StrategyTrade', methods=['POST','GET'])
