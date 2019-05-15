@@ -283,14 +283,15 @@ def getTemperatureUrl():
 ############################################################################
 @app.route('/')
 def home():
-    b9= getCornYearBasis09()
+    # b9= getCornYearBasis09()
     
-    datestr = (dtt.datetime.now()-dtt.timedelta(1)).strftime("%Y%m%d")
-    droughturl = "https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_"+datestr+"_00000000.png"
+    # datestr = (dtt.datetime.now()-dtt.timedelta(1)).strftime("%Y%m%d")
+    # droughturl = "https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_"+datestr+"_00000000.png"
 
-    nongyeDroughturl = getNongyeDroughtUrl()
+    # nongyeDroughturl = getNongyeDroughtUrl()
 
-    return render_template("home.html", corn_year_basis9_l=b9, droughturl=droughturl, nongyeDroughturl=nongyeDroughturl)
+    # return render_template("home.html", corn_year_basis9_l=b9, droughturl=droughturl, nongyeDroughturl=nongyeDroughturl)
+    return render_template("home.html")
 
 #------------------------------------------------------------------------------
 # 天气情况
@@ -510,7 +511,7 @@ def aboutus():
         title = 'aboutus')
 #------------------------------------------------------------------------------
 def getCornYearBasis01():
-    corn_year_basis1_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='cornyearbasis1')
+    corn_year_basis1_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='cornyearbasis1')
 
     corn_year_basis1_l = []
     for date in corn_year_basis1_df.index:
@@ -528,7 +529,7 @@ def getCornYearBasis01():
     return corn_year_basis1_l
 #------------------------------------------------------------------------------
 def getCornYearBasis05():
-    corn_year_basis5_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='cornyearbasis5')
+    corn_year_basis5_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='cornyearbasis5')
 
     corn_year_basis5_l = []
     for date in corn_year_basis5_df.index:
@@ -546,7 +547,7 @@ def getCornYearBasis05():
     return corn_year_basis5_l
 #------------------------------------------------------------------------------
 def getCornYearBasis09():
-    corn_year_basis9_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='cornyearbasis9')
+    corn_year_basis9_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='cornyearbasis9')
 
     corn_year_basis9_l = []
     for date in corn_year_basis9_df.index:
@@ -565,10 +566,10 @@ def getCornYearBasis09():
 #------------------------------------------------------------------------------
 def getCornBasis():
     # excel_path = "C:\\Users\\dell\\Desktop\\Quant\\fhzbWeb\\report\\CornBasisChart1.xlsx"
-    corn_year_basis1_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='cornyearbasis1')
-    corn_year_basis5_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='cornyearbasis5')
-    corn_year_basis9_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='cornyearbasis9')
-    corn_basis_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='cornbasis')
+    corn_year_basis1_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='cornyearbasis1')
+    corn_year_basis5_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='cornyearbasis5')
+    corn_year_basis9_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='cornyearbasis9')
+    corn_basis_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='cornbasis', index_col =0)
     # corn_year_basis_df = corn_year_basis_df.fillna(0)
 
     corn_year_basis1_l = []
@@ -636,14 +637,14 @@ def cornbasischart():
 def cornspreadchart():
     # excel_path = "C:\\Users\\dell\\Desktop\\Quant\\fhzbWeb\\report\\CornBasisChart1.xlsx"
     # corn_year_basis_df = corn_year_basis_df.fillna(0)
-    corn_cs_spread1_year = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='corncsspread1year')
-    corn_cs_spread5_year = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='corncsspread5year')
-    corn_cs_spread9_year = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='corncsspread9year')
-    corn_cs_spread_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='corncsspread')
+    corn_cs_spread1_year = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='corncsspread1year')
+    corn_cs_spread5_year = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='corncsspread5year')
+    corn_cs_spread9_year = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='corncsspread9year')
+    corn_cs_spread_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='corncsspread', index_col =0)
 
-    corn_91_spread_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='c9_1_year')
-    corn_15_spread_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='c1_5_year')
-    corn_59_spread_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='c5_9_year')
+    corn_91_spread_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='c9_1_year')
+    corn_15_spread_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='c1_5_year')
+    corn_59_spread_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='c5_9_year')
 
     corn_cs_spread1_year_l = []
     for date in corn_cs_spread1_year.index:
@@ -727,47 +728,47 @@ def cornspreadchart():
 # North Port Carryout & Price
 @app.route('/portcarryout', methods=['GET', 'POST'])
 def portcarryout():
-    df = pd.read_excel(app.config['EXCEL_CORNDATA'], sheet_name='NSPort')
-    df = df[1:-1]
-    # corn_year_basis_df = corn_year_basis_df.fillna(0)
+    north_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='northPort', index_col=0)
+    GD_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='GDPort', index_col=0)
     l1 = []
     l2 = []
     l3 = []
     l4 = []
-    for date in df.index:
+    for date in north_df.index:
         d1 = OrderedDict()
         d1['date'] = date
-        d1['NorthCarryout'] = round(df.loc[date,'Unnamed: 20'],2)
-        d1['NorthCarryoutChange'] = round(df.loc[date,'Unnamed: 21'],2)
-        d1['JinzhouPrice'] = df.loc[date,'Unnamed: 4']
+        d1['NorthCarryout'] = round(north_df.loc[date,'northCarryOutSum'],2)
+        d1['NorthCarryoutChange'] = round(north_df.loc[date,'weekchange'],2)
+        d1['JinzhouPrice'] = north_df.loc[date,'jinzhou']
         l1.append(d1)
-
+    for date in GD_df.index:
         d2 = OrderedDict()
         d2['date'] = date
-        d2['GDCarryout'] = round(df.loc[date,'Unnamed: 25'],2)
-        d2['GDCarryoutChange'] = round(df.loc[date,'Unnamed: 26'],2)
-        d2['GDPrice'] = df.loc[date,'Unnamed: 27']
+        d2['GDCarryout'] = round(GD_df.loc[date,'GDCarryOutSum'],2)
+        d2['GDCarryoutChange'] = round(GD_df.loc[date,'weekchange'],2)
+        d2['GDPrice'] = GD_df.loc[date,'guangdong']
         l2.append(d2)
 
         d3 = OrderedDict()
         d3['date'] = date
-        d3['CarryoutSpread'] = round(d2['GDCarryout']/d1['NorthCarryout'],2)
-        d3['profit'] = df.loc[date,'Unnamed: 30']
+        d3['CarryoutSpread'] = round(GD_df.loc[date,'GDCarryOutSum']/GD_df.loc[date,'northCarryOutSum'],2)
+        d3['profit'] = GD_df.loc[date,'ntosProfit']
         l3.append(d3)
 
-        d4 = OrderedDict()
-        d4['date'] = date
-        d4['GDPrice'] = df.loc[date,'Unnamed: 27']
-        d4['InportCorn'] = df.loc[date,'Unnamed: 31']
-        d4['Sorghum'] = df.loc[date,'Unnamed: 32']
-        d4['Barley'] = df.loc[date,'Unnamed: 33']
-        d4['GDInportSpread'] = d4['GDPrice']-d4['InportCorn']
-        l4.append(d4)
+        if date > dtt.datetime(2017,1,1):
+            d4 = OrderedDict()
+            d4['date'] = date
+            d4['GDPrice'] = GD_df.loc[date,'guangdong']
+            d4['InportCorn'] = GD_df.loc[date,'importcorn']
+            d4['Sorghum'] = GD_df.loc[date,'importUSAsorghum']
+            d4['Barley'] = GD_df.loc[date,'importbarley']
+            d4['GDInportSpread'] = GD_df.loc[date,'guangdong'] - GD_df.loc[date,'importcorn']
+            l4.append(d4)
 
-    gatherN_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='gatherN_year_df')
-    gatherS_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='gatherS_year_df')
-    outN_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='outN_year_df')
-    outS_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='outS_year_df')
+    gatherN_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='gatherN_year')
+    gatherS_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='gatherGD_year')
+    outN_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='outN_year')
+    outS_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='outGD_year')
     l5 = []
     for date in gatherN_df.index:
         d5 = OrderedDict()
@@ -786,10 +787,10 @@ def portcarryout():
         d5['outS_2018_2019'] = outS_df.loc[date,'2018/2019']
         l5.append(d5)
 
-    gatherBBW_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='gatherBBW_year_df')
-    gatherZZ_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='gatherZZ_year_df')
-    outBBW_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='outBBW_year_df')
-    outZZ_df = pd.read_excel(app.config['EXCEL_BASIS'], sheet_name='outZZ_year_df')
+    gatherBBW_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='gatherBBW_year')
+    gatherZZ_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='gatherZZ_year')
+    outBBW_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='outBBW_year')
+    outZZ_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='outZZ_year')
     l6 = []
     for date in gatherBBW_df.index:
         d6 = OrderedDict()
@@ -813,7 +814,7 @@ def portcarryout():
 # deepprocessing
 @app.route('/deepprocessing')
 def deepProcessing():
-    df = pd.read_excel(app.config['EXCEL_CORNDATA'], sheet_name='DeepProcessing')
+    df = pd.read_excel(app.config['EXCEL_DEEPPROCESS'], sheet_name='DeepProcessing')
     deepprocessing_df = df.iloc[1:,:16]
     deepprocessing_df.columns = ['68cs_qg_kgl', '68cs_db_kgl', '68cs_sd_kgl', '68cs_hb_kgl', 'cs_hlj_lr', 'cs_jl_lr', 'cs_ln_lr', 'cs_hb_lr', 'cs_sd_lr', '35jj_qg_kgl', '35jj_db_kgl', '35jj_hn_kgl', 'jj_jl_lr', 'jj_hlj_lr', 'jj_hb_lr', 'jj_hn_lr']
     # print(deepprocessing_df.columns)
@@ -846,7 +847,7 @@ def deepProcessing():
 # priceSummarize
 @app.route('/priceSummarize')
 def priceSummarize():
-    df = pd.read_excel(app.config['EXCEL_CORNDATA'], sheet_name='summarize', header=None)
+    df = pd.read_excel(app.config['EXCEL_CORNPRICE'], sheet_name='summarize', header=None)
     region_df = df.iloc[:8, :8]
     region_df.iloc[0,0] = region_df.iloc[0,0].date()
 
@@ -876,7 +877,20 @@ def priceSummarize():
     #     feedcarryout_df.iloc[i+1,2] = '%.2f%%' % (feedcarryout_df.iloc[i+1,2]*100)
     # region_df = region_df.to_html(header=None, index=None, na_rep='', col_space=20, bold_rows=True)
     # carryout_df = carryout_df.to_html(header=None, index=None, na_rep='', col_space=20, bold_rows=True)
-    return render_template("priceSummarize.html", region_df=region_df, feedcarryout_df=feedcarryout_df, summarize_df=summarize_df)
+    factory115_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='factory115', index_col=0)
+    factory115_l = []
+    for i in range(factory115_df.shape[0]):
+        d1 = OrderedDict()
+        d1['date'] = factory115_df.index[i]
+        d1['zongkucun'] = factory115_df.iloc[i,0]
+        d1['changnei'] = factory115_df.iloc[i,1]
+        d1['waiku'] = factory115_df.iloc[i,2]
+        d1['weizhixing'] = factory115_df.iloc[i,3]
+        d1['weiyunhui'] = factory115_df.iloc[i,4]
+        d1['weekchange'] = round(factory115_df.iloc[i,6],1)
+        d1['jinzhou'] = factory115_df.iloc[i,5]
+        factory115_l.append(d1)
+    return render_template("priceSummarize.html", region_df=region_df, feedcarryout_df=feedcarryout_df, summarize_df=summarize_df, factory115_l=factory115_l)
     # return carryout_df
 #------------------------------------------------------------------------------
 # corntempres
@@ -938,75 +952,75 @@ def corntempres():
 # shou liang jin du
 @app.route('/shouliangjindu')
 def shouliangjindu():
-    df1 = pd.read_excel(app.config['EXCEL_CORNDATA'], sheet_name='salerate')
-    salerate_df = df1[1:]
-    salerate_df.columns = list(range(1,df1.shape[1]+1))
+    salerate_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='salerate_avg', index_col=0)
+    salerate_df.columns = list(range(1,salerate_df.shape[1]+1))
     l1 = []
     for i in salerate_df.index:
         d1 = OrderedDict()
         d1['date'] = i
-        d1['hlg_5ave'] = salerate_df.loc[i,1]
-        d1['jl_5ave'] = salerate_df.loc[i,2]
-        d1['ln_5ave'] = salerate_df.loc[i,3]
-        d1['nm_5ave'] = salerate_df.loc[i,4]
-        d1['hb_5ave'] = salerate_df.loc[i,5]
-        d1['sd_5ave'] = salerate_df.loc[i,6]
-        d1['hn_5ave'] = salerate_df.loc[i,7]
+        d1['hlg_5ave'] = salerate_df.loc[i,49]
+        d1['jl_5ave'] = salerate_df.loc[i,50]
+        d1['ln_5ave'] = salerate_df.loc[i,51]
+        d1['nm_5ave'] = salerate_df.loc[i,52]
+        d1['hb_5ave'] = salerate_df.loc[i,53]
+        d1['sd_5ave'] = salerate_df.loc[i,54]
+        d1['hn_5ave'] = salerate_df.loc[i,55]
 
-        d1['hlg_1314'] = salerate_df.loc[i,25]
-        d1['jl_1314'] = salerate_df.loc[i,26]
-        d1['ln_1314'] = salerate_df.loc[i,27]
-        d1['nm_1314'] = salerate_df.loc[i,28]
-        d1['hb_1314'] = salerate_df.loc[i,29]
-        d1['sd_1314'] = salerate_df.loc[i,30]
-        d1['hn_1314'] = salerate_df.loc[i,31]
+        d1['hlg_1314'] = salerate_df.loc[i,2]
+        d1['jl_1314'] = salerate_df.loc[i,3]
+        d1['ln_1314'] = salerate_df.loc[i,4]
+        d1['nm_1314'] = salerate_df.loc[i,5]
+        d1['hb_1314'] = salerate_df.loc[i,6]
+        d1['sd_1314'] = salerate_df.loc[i,7]
+        d1['hn_1314'] = salerate_df.loc[i,8]
 
-        d1['hlg_1415'] = salerate_df.loc[i,33]
-        d1['jl_1415'] = salerate_df.loc[i,34]
-        d1['ln_1415'] = salerate_df.loc[i,35]
-        d1['nm_1415'] = salerate_df.loc[i,36]
-        d1['hb_1415'] = salerate_df.loc[i,37]
-        d1['sd_1415'] = salerate_df.loc[i,38]
-        d1['hn_1415'] = salerate_df.loc[i,39]
+        d1['hlg_1415'] = salerate_df.loc[i,10]
+        d1['jl_1415'] = salerate_df.loc[i,11]
+        d1['ln_1415'] = salerate_df.loc[i,12]
+        d1['nm_1415'] = salerate_df.loc[i,13]
+        d1['hb_1415'] = salerate_df.loc[i,14]
+        d1['sd_1415'] = salerate_df.loc[i,15]
+        d1['hn_1415'] = salerate_df.loc[i,16]
 
-        d1['hlg_1516'] = salerate_df.loc[i,41]
-        d1['jl_1516'] = salerate_df.loc[i,42]
-        d1['ln_1516'] = salerate_df.loc[i,43]
-        d1['nm_1516'] = salerate_df.loc[i,44]
-        d1['hb_1516'] = salerate_df.loc[i,45]
-        d1['sd_1516'] = salerate_df.loc[i,46]
-        d1['hn_1516'] = salerate_df.loc[i,47]
+        d1['hlg_1516'] = salerate_df.loc[i,18]
+        d1['jl_1516'] = salerate_df.loc[i,19]
+        d1['ln_1516'] = salerate_df.loc[i,20]
+        d1['nm_1516'] = salerate_df.loc[i,21]
+        d1['hb_1516'] = salerate_df.loc[i,22]
+        d1['sd_1516'] = salerate_df.loc[i,23]
+        d1['hn_1516'] = salerate_df.loc[i,24]
 
-        d1['hlg_1617'] = salerate_df.loc[i,49]
-        d1['jl_1617'] = salerate_df.loc[i,50]
-        d1['ln_1617'] = salerate_df.loc[i,51]
-        d1['nm_1617'] = salerate_df.loc[i,52]
-        d1['hb_1617'] = salerate_df.loc[i,53]
-        d1['sd_1617'] = salerate_df.loc[i,54]
-        d1['hn_1617'] = salerate_df.loc[i,55]
+        d1['hlg_1617'] = salerate_df.loc[i,26]
+        d1['jl_1617'] = salerate_df.loc[i,27]
+        d1['ln_1617'] = salerate_df.loc[i,28]
+        d1['nm_1617'] = salerate_df.loc[i,29]
+        d1['hb_1617'] = salerate_df.loc[i,30]
+        d1['sd_1617'] = salerate_df.loc[i,31]
+        d1['hn_1617'] = salerate_df.loc[i,32]
 
-        d1['hlg_1718'] = salerate_df.loc[i,57]
-        d1['jl_1718'] = salerate_df.loc[i,58]
-        d1['ln_1718'] = salerate_df.loc[i,59]
-        d1['nm_1718'] = salerate_df.loc[i,60]
-        d1['hb_1718'] = salerate_df.loc[i,61]
-        d1['sd_1718'] = salerate_df.loc[i,62]
-        d1['hn_1718'] = salerate_df.loc[i,63]
+        d1['hlg_1718'] = salerate_df.loc[i,34]
+        d1['jl_1718'] = salerate_df.loc[i,35]
+        d1['ln_1718'] = salerate_df.loc[i,36]
+        d1['nm_1718'] = salerate_df.loc[i,37]
+        d1['hb_1718'] = salerate_df.loc[i,38]
+        d1['sd_1718'] = salerate_df.loc[i,39]
+        d1['hn_1718'] = salerate_df.loc[i,40]
 
-        d1['hlg_1819'] = salerate_df.loc[i,65]
-        d1['jl_1819'] = salerate_df.loc[i,66]
-        d1['ln_1819'] = salerate_df.loc[i,67]
-        d1['nm_1819'] = salerate_df.loc[i,68]
-        d1['hb_1819'] = salerate_df.loc[i,69]
-        d1['sd_1819'] = salerate_df.loc[i,70]
-        d1['hn_1819'] = salerate_df.loc[i,71]
+        d1['hlg_1819'] = salerate_df.loc[i,42]
+        d1['jl_1819'] = salerate_df.loc[i,43]
+        d1['ln_1819'] = salerate_df.loc[i,44]
+        d1['nm_1819'] = salerate_df.loc[i,45]
+        d1['hb_1819'] = salerate_df.loc[i,46]
+        d1['sd_1819'] = salerate_df.loc[i,47]
+        d1['hn_1819'] = salerate_df.loc[i,48]
         l1.append(d1)
 
     return render_template("shouliangjindu.html", l1=l1)
     # return salerate_df.to_html()
 #------------------------------------------------------------------------------
 def getPigPriceData():
-    df = pd.read_excel(app.config['EXCEL_CORNDATA'], sheet_name='PigPrice')
+    df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='pigPrice', index_col=0)
+    # print(df)
     pigPrice_l = []
     for i in range(df.shape[0]):
         d1 = OrderedDict()

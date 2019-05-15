@@ -64,6 +64,151 @@
         }
     </script>
 
+    <div id="factory115" class="chart600"></div>
+
+    <script type="text/javascript">
+        var myChart1 = echarts.init(document.getElementById('factory115'), 'vintage');
+        var factory115_l = {{factory115_l|tojson}};
+        var option = {
+            title: {
+                text: '115家深加工厂玉米库存',
+                left:'center'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer:{
+                    type:'cross'
+                }
+            },
+            legend: {
+                data:['总库存', '场内库存', '外库库存', '未执行合同', '未运回拍卖粮', '周度变化', '锦州港价格', ],
+                y:30
+            },
+            xAxis: {
+                type:'category',
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        // 格式化成月/日，只在第一个刻度显示年份
+                        var date = new Date(value);
+                        var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                        // if (index === 0) {
+                        //     texts.unshift(date.getFullYear());
+                        // }
+                        return texts.join('/');
+                    }
+                },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },
+                // data: []
+            },
+            yAxis: [
+            {
+                name:'万吨',
+                type:'value',
+                min:function(value){
+                    min = value.min*0.95
+                    return min.toFixed(0)
+                }
+            },
+            // {
+            //     name:'万吨',
+            //     type:'value',
+            //     min:function(value){
+            //         min = value.min*0.99
+            //         return min.toFixed(0)
+            //     }
+            // },
+            {
+                name:'元/吨',
+                type:'value',
+                offset:30,
+                min:function(value){
+                    min = value.min*0.99
+                    return min.toFixed(0)
+                }
+            }
+            ],
+            // dataZoom: [
+            //     {
+            //         type: 'slider',
+            //         start:0,
+            //         end:100
+            //     }
+            // ],
+            dataset:{
+                dimensions: ['date', 'zongkucun', 'changnei', 'waiku', 'weizhixing', 'weiyunhui', 'weekchange', 'jinzhou'],
+                source: factory115_l
+            },
+            series: [
+                {
+                    name: '总库存',
+                    yAxisIndex:0,
+                    type: 'line',
+                    connectNulls:true,
+                    symbol:'none',
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    // data: {{l4s}}
+                },
+                {
+                    name: '场内库存',
+                    yAxisIndex:0,
+                    type: 'bar',
+                    stack: '总库存',
+                },
+                {
+                    name: '外库库存',
+                    yAxisIndex:0,
+                    type: 'bar',
+                    stack: '总库存',
+                },
+                {
+                    name: '未执行合同',
+                    yAxisIndex:0,
+                    type: 'bar',
+                    color:"Purple",
+                    stack: '总库存',
+                },
+                {
+                    name: '未运回拍卖粮',
+                    yAxisIndex:0,
+                    type: 'bar',
+                    color:"LightCyan",
+                    stack: '总库存',
+                },
+                {
+                    name: '周度变化',
+                    yAxisIndex:0,
+                    type: 'bar',
+                    color:"yellowgreen",
+                },
+                {
+                    name: '锦州港价格',
+                    yAxisIndex:1,
+                    type: 'line',
+                    connectNulls:true,
+                    color:"SteelBlue",
+                    itemStyle: {normal: {lineStyle: {width: 3}}},
+                    // data: {{l4}}
+                },
+            ]
+        };
+        myChart1.setOption(option);
+    </script>
+
+    <script type="text/javascript">
+        window.onresize = function(){
+            myChart1.resize();
+        }
+    </script>
+
     <font size="6" color="blue"><p align="center">饲料厂库存（天）</p></font>
     <div class="container">
         <table id="feedco" class="table table-striped table-bordered" border="1" cellpadding="10" align="center">
