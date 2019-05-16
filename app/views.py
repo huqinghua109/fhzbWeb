@@ -847,8 +847,8 @@ def deepProcessing():
 # priceSummarize
 @app.route('/priceSummarize')
 def priceSummarize():
-    df = pd.read_excel(app.config['EXCEL_CORNPRICE'], sheet_name='summarize', header=None)
-    region_df = df.iloc[:8, :8]
+    df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='visual', index_col=0)
+    region_df = df.iloc[13:21, :8]
     region_df.iloc[0,0] = region_df.iloc[0,0].date()
 
     # deepcarryout_df = df.iloc[:17, 9:14]
@@ -857,7 +857,7 @@ def priceSummarize():
     # for i in range(deepcarryout_df.shape[0]-1):
     #     deepcarryout_df.iloc[i+1,2] = '%.2f%%' % (deepcarryout_df.iloc[i+1,2]*100)
 
-    summarize_df = df.iloc[19:48, :9]
+    summarize_df = df.iloc[30:59, :9]
     summarize_df.iloc[0,0] = summarize_df.iloc[0,0].date()
     # summarize_df.iloc[14:21,[6,8]].round(2)
     summarize_df.iloc[22,8] = '%.2f%%' % (summarize_df.iloc[22,8]*100)
@@ -870,7 +870,7 @@ def priceSummarize():
     summarize_df.iloc[23,6] = round((summarize_df.iloc[23,6]),1)
     summarize_df.iloc[23,7] = round((summarize_df.iloc[23,7]),1)
 
-    feedcarryout_df = df.iloc[:12, 20:26]
+    feedcarryout_df = df.iloc[:12, :6]
     # feedcarryout_df.iloc[0,3] = feedcarryout_df.iloc[0,3].date()
     # feedcarryout_df.iloc[0,4] = feedcarryout_df.iloc[0,4].date()
     # for i in range(feedcarryout_df.shape[0]-1):
