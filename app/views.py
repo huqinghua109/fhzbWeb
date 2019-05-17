@@ -765,10 +765,31 @@ def portcarryout():
             d4['GDInportSpread'] = GD_df.loc[date,'guangdong'] - GD_df.loc[date,'importcorn']
             l4.append(d4)
 
+    return render_template("portcarryout.html", l1=l1, l2=l2, l3=l3, l4=l4)
+#------------------------------------------------------------------------------
+# gather and out
+@app.route('/gatherandout', methods=['GET', 'POST'])
+def gatherandout():
     gatherN_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='gatherN_year')
+    gatherN_df = gatherN_df.round(decimals=2)
+    gatherNcumsum_df = gatherN_df.cumsum(0)
+    gatherNcumsum_df = gatherNcumsum_df.round(decimals=2)
+
     gatherS_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='gatherGD_year')
+    gatherS_df = gatherS_df.round(decimals=2)
+    gatherScumsum_df = gatherS_df.cumsum(0)
+    gatherScumsum_df = gatherScumsum_df.round(decimals=2)
+
     outN_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='outN_year')
+    outN_df = outN_df.round(decimals=2)
+    outNcumsum_df = outN_df.cumsum(0)
+    outNcumsum_df = outNcumsum_df.round(decimals=2)
+
     outS_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='outGD_year')
+    outS_df = outS_df.round(decimals=2)
+    outScumsum_df = outS_df.cumsum(0)
+    outScumsum_df = outScumsum_df.round(decimals=2)
+
     l5 = []
     for date in gatherN_df.index:
         d5 = OrderedDict()
@@ -786,11 +807,44 @@ def portcarryout():
         d5['outS_2017_2018'] = outS_df.loc[date,'2017/2018']
         d5['outS_2018_2019'] = outS_df.loc[date,'2018/2019']
         l5.append(d5)
+    l1 = []
+    for date in gatherNcumsum_df.index:
+        d1 = OrderedDict()
+        d1['date'] = date
+        d1['gatherN_2016_2017'] = gatherNcumsum_df.loc[date,'2016/2017']
+        d1['gatherN_2017_2018'] = gatherNcumsum_df.loc[date,'2017/2018']
+        d1['gatherN_2018_2019'] = gatherNcumsum_df.loc[date,'2018/2019']
+        d1['gatherS_2016_2017'] = gatherScumsum_df.loc[date,'2016/2017']
+        d1['gatherS_2017_2018'] = gatherScumsum_df.loc[date,'2017/2018']
+        d1['gatherS_2018_2019'] = gatherScumsum_df.loc[date,'2018/2019']
+        d1['outN_2016_2017'] = outNcumsum_df.loc[date,'2016/2017']
+        d1['outN_2017_2018'] = outNcumsum_df.loc[date,'2017/2018']
+        d1['outN_2018_2019'] = outNcumsum_df.loc[date,'2018/2019']
+        d1['outS_2016_2017'] = outScumsum_df.loc[date,'2016/2017']
+        d1['outS_2017_2018'] = outScumsum_df.loc[date,'2017/2018']
+        d1['outS_2018_2019'] = outScumsum_df.loc[date,'2018/2019']
+        l1.append(d1)
 
     gatherBBW_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='gatherBBW_year')
+    gatherBBW_df = gatherBBW_df.round(decimals=2)
+    gatherBBWcumsum_df = gatherBBW_df.cumsum(0)
+    gatherBBWcumsum_df = gatherBBWcumsum_df.round(decimals=2)
+
     gatherZZ_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='gatherZZ_year')
+    gatherZZ_df = gatherZZ_df.round(decimals=2)
+    gatherZZcumsum_df = gatherZZ_df.cumsum(0)
+    gatherZZcumsum_df = gatherZZcumsum_df.round(decimals=2)
+
     outBBW_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='outBBW_year')
+    outBBW_df = outBBW_df.round(decimals=2)
+    outBBWcumsum_df = outBBW_df.cumsum(0)
+    outBBWcumsum_df = outBBWcumsum_df.round(decimals=2)
+
     outZZ_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='outZZ_year')
+    outZZ_df = outZZ_df.round(decimals=2)
+    outZZcumsum_df = outZZ_df.cumsum(0)
+    outZZcumsum_df = outZZcumsum_df.round(decimals=2)
+
     l6 = []
     for date in gatherBBW_df.index:
         d6 = OrderedDict()
@@ -808,8 +862,25 @@ def portcarryout():
         d6['outZZ_2017_2018'] = outZZ_df.loc[date,'2017/2018']
         d6['outZZ_2018_2019'] = outZZ_df.loc[date,'2018/2019']
         l6.append(d6)
+    l2 = []
+    for date in gatherBBW_df.index:
+        d2 = OrderedDict()
+        d2['date'] = date
+        # d2['gatherBBW_2016_2017'] = gatherBBWcumsum_df.loc[date,'2016/2017']
+        # d2['gatherBBW_2017_2018'] = gatherBBWcumsum_df.loc[date,'2017/2018']
+        d2['gatherBBW_2018_2019'] = gatherBBWcumsum_df.loc[date,'2018/2019']
+        # d2['gatherZZ_2016_2017'] = gatherZZcumsum_df.loc[date,'2016/2017']
+        d2['gatherZZ_2017_2018'] = gatherZZcumsum_df.loc[date,'2017/2018']
+        d2['gatherZZ_2018_2019'] = gatherZZcumsum_df.loc[date,'2018/2019']
+        # d2['outBBW_2016_2017'] = outBBWcumsum_df.loc[date,'2016/2017']
+        # d2['outBBW_2017_2018'] = outBBWcumsum_df.loc[date,'2017/2018']
+        d2['outBBW_2018_2019'] = outBBWcumsum_df.loc[date,'2018/2019']
+        # d2['outZZ_2016_2017'] = outZZcumsum_df.loc[date,'2016/2017']
+        d2['outZZ_2017_2018'] = outZZcumsum_df.loc[date,'2017/2018']
+        d2['outZZ_2018_2019'] = outZZcumsum_df.loc[date,'2018/2019']
+        l2.append(d2)
 
-    return render_template("portcarryout.html", l1=l1, l2=l2, l3=l3, l4=l4, l5=l5, l6=l6)
+    return render_template("gatherandout.html",l1=l1, l2=l2, l5=l5, l6=l6)
 #------------------------------------------------------------------------------
 # deepprocessing
 @app.route('/deepprocessing')

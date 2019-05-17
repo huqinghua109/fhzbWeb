@@ -111,7 +111,6 @@
             },
             yAxis: [
             {
-                name:'万吨',
                 type:'value',
                 min:function(value){
                     min = value.min*0.95
@@ -127,7 +126,6 @@
             //     }
             // },
             {
-                name:'元/吨',
                 type:'value',
                 offset:30,
                 min:function(value){
@@ -154,6 +152,7 @@
                     type: 'line',
                     connectNulls:true,
                     symbol:'none',
+                    color:"DarkKhaki",
                     itemStyle: {normal: {areaStyle: {type: 'default'}}},
                     // data: {{l4s}}
                 },
@@ -173,14 +172,14 @@
                     name: '未执行合同',
                     yAxisIndex:0,
                     type: 'bar',
-                    color:"Purple",
+                    color:"LightCyan",
                     stack: '总库存',
                 },
                 {
                     name: '未运回拍卖粮',
                     yAxisIndex:0,
                     type: 'bar',
-                    color:"LightCyan",
+                    color:"Purple",
                     stack: '总库存',
                 },
                 {
@@ -194,8 +193,8 @@
                     yAxisIndex:1,
                     type: 'line',
                     connectNulls:true,
-                    color:"SteelBlue",
-                    itemStyle: {normal: {lineStyle: {width: 3}}},
+                    color:"Black",
+                    itemStyle: {normal: {lineStyle: {width: 4}}},
                     // data: {{l4}}
                 },
             ]
