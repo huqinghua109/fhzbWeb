@@ -949,6 +949,7 @@ def priceSummarize():
     # region_df = region_df.to_html(header=None, index=None, na_rep='', col_space=20, bold_rows=True)
     # carryout_df = carryout_df.to_html(header=None, index=None, na_rep='', col_space=20, bold_rows=True)
     factory115_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='factory115', index_col=0)
+    factory115_df = factory115_df.round(decimals=2)
     factory115_l = []
     for i in range(factory115_df.shape[0]):
         d1 = OrderedDict()
@@ -1024,6 +1025,7 @@ def corntempres():
 @app.route('/shouliangjindu')
 def shouliangjindu():
     salerate_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='salerate_avg', index_col=0)
+    salerate_df = salerate_df.round(decimals=2)
     salerate_df.columns = list(range(1,salerate_df.shape[1]+1))
     l1 = []
     for i in salerate_df.index:
