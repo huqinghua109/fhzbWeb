@@ -47,6 +47,11 @@
 	height: 250px;
 	border: 1px dashed #000;
 }
+.img_home{
+	max-width: 100%;
+	width: 500px;
+	height: 250px;
+}
 .chart600noyin{
 	max-width: 98vw;
 	max-height: 98vh;

@@ -93,7 +93,9 @@ def login():
 
             # 通过Flask-Login的login_user方法登录用户
             login_user(curr_user)
-            return render_template('home.html')
+
+            next = request.args.get('next')
+            return redirect(next)
 
         else:
             error = '用户名或密码错误!'
@@ -283,15 +285,15 @@ def getTemperatureUrl():
 ############################################################################
 @app.route('/')
 def home():
-    # b9= getCornYearBasis09()
+    b9= getCornYearBasis09()
     
-    # datestr = (dtt.datetime.now()-dtt.timedelta(1)).strftime("%Y%m%d")
-    # droughturl = "https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_"+datestr+"_00000000.png"
+    datestr = (dtt.datetime.now()-dtt.timedelta(1)).strftime("%Y%m%d")
+    droughturl = "https://cmdp.ncc-cma.net/download/Drought/MCI/CMDP_DSTR_ACHN_L88_DATA_ELEMENT_PDAY_YMD_107578_"+datestr+"_00000000.png"
 
-    # nongyeDroughturl = getNongyeDroughtUrl()
+    nongyeDroughturl = getNongyeDroughtUrl()
 
-    # return render_template("home.html", corn_year_basis9_l=b9, droughturl=droughturl, nongyeDroughturl=nongyeDroughturl)
-    return render_template("home.html")
+    return render_template("home.html", corn_year_basis9_l=b9, droughturl=droughturl, nongyeDroughturl=nongyeDroughturl)
+    # return render_template("home.html")
 
 #------------------------------------------------------------------------------
 # 天气情况
@@ -881,6 +883,46 @@ def gatherandout():
         l2.append(d2)
 
     return render_template("gatherandout.html",l1=l1, l2=l2, l5=l5, l6=l6)
+#------------------------------------------------------------------------------
+# import and export
+@app.route('/importandexport')
+def importandexport():
+    import_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='importcumsum')
+    import_df = import_df.astype('float')
+    # import_df = import_df.fillna(0)
+    # import_df = import_df.round(decimals=2)
+
+    l1 = []
+    for month in import_df.index:
+        d1 = OrderedDict()
+        d1['month'] = month
+        print(type(import_df.loc[month,'2018cassava']))
+        d1['2014corn'] = import_df.loc[month,'2014corn']
+        d1['2015corn'] = import_df.loc[month,'2015corn']
+        d1['2016corn'] = import_df.loc[month,'2016corn']
+        d1['2017corn'] = import_df.loc[month,'2017corn']
+        d1['2018corn'] = import_df.loc[month,'2018corn']
+
+        d1['2014barley'] = import_df.loc[month,'2014barley']
+        d1['2015barley'] = import_df.loc[month,'2015barley']
+        d1['2016barley'] = import_df.loc[month,'2016barley']
+        d1['2017barley'] = import_df.loc[month,'2017barley']
+        d1['2018barley'] = import_df.loc[month,'2018barley']
+
+        d1['2014sorghum'] = import_df.loc[month,'2014sorghum']
+        d1['2015sorghum'] = import_df.loc[month,'2015sorghum']
+        d1['2016sorghum'] = import_df.loc[month,'2016sorghum']
+        d1['2017sorghum'] = import_df.loc[month,'2017sorghum']
+        d1['2018sorghum'] = import_df.loc[month,'2018sorghum']
+
+        d1['2014cassava'] = import_df.loc[month,'2014cassava']
+        d1['2015cassava'] = import_df.loc[month,'2015cassava']
+        d1['2016cassava'] = import_df.loc[month,'2016cassava']
+        d1['2017cassava'] = import_df.loc[month,'2017cassava']
+        d1['2018cassava'] = import_df.loc[month,'2018cassava']
+        l1.append(d1)
+    print(l1)
+    return render_template("importandexport.html",l1=l1)
 #------------------------------------------------------------------------------
 # deepprocessing
 @app.route('/deepprocessing')

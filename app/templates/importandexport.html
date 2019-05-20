@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% block content %}
+    <div id="factory115" class="chart600"></div>
+
+    <script type="text/javascript">
+        var myChart1 = echarts.init(document.getElementById('factory115'), 'vintage');
+        var my_l1 = {{l1|tojson}};
+        var option = {
+            title: {
+                text: '玉米及替代品进口量',
+                left:'center'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer:{
+                    type:'cross'
+                }
+            },
+            // legend: {
+            //     data:['2014corn', '2015corn', '2016corn', '2017corn', '2018corn',
+            //     '2014barley', '2015barley', '2016barley', '2017barley', '2018barley',
+            //     '2014sorghum', '2015sorghum', '2016sorghum', '2017sorghum', '2018sorghum',
+            //     '2014cassava', '2015cassava', '2016cassava', '2017cassava', '2018cassava'],
+            //     y:30
+            // },
+            xAxis: {
+                type:'category',
+            },
+            yAxis: {
+                type:'value',
+                min:function(value){
+                    min = value.min*0.95
+                    return min.toFixed(0)
+                }
+            },
+            dataset:{
+                dimensions: ['month', '2014corn', '2015corn', '2016corn', '2017corn', '2018corn',
+                '2014barley', '2015barley', '2016barley', '2017barley', '2018barley',
+                '2014sorghum', '2015sorghum', '2016sorghum', '2017sorghum', '2018sorghum',
+                '2014cassava', '2015cassava', '2016cassava', '2017cassava', '2018cassava'],
+                source: my_l1,
+            },
+            series: [
+                {
+                    name: '2014corn',
+                    type: 'bar',
+                    stack: '14/15',
+                },
+                {
+                    name: '2015corn',
+                    type: 'bar',
+                    stack: '15/16',
+                },
+                {
+                    name: '2016corn',
+                    type: 'bar',
+                    stack: '16/17',
+                },
+                {
+                    name: '2017corn',
+                    type: 'bar',
+                    stack: '17/18',
+                },
+                {
+                    name: '2018corn',
+                    type: 'bar',
+                    stack: '18/19',
+                },
+                {
+                    name: '2014barley',
+                    type: 'bar',
+                    stack: '14/15',
+                },
+                {
+                    name: '2015barley',
+                    type: 'bar',
+                    stack: '15/16',
+                },
+                {
+                    name: '2016barley',
+                    type: 'bar',
+                    stack: '16/17',
+                },
+                {
+                    name: '2017barley',
+                    type: 'bar',
+                    stack: '17/18',
+                },
+                {
+                    name: '2018barley',
+                    type: 'bar',
+                    stack: '18/19',
+                },
+                {
+                    name: '2014sorghum',
+                    type: 'bar',
+                    stack: '14/15',
+                },
+                {
+                    name: '2015sorghum',
+                    type: 'bar',
+                    stack: '15/16',
+                },
+                {
+                    name: '2016sorghum',
+                    type: 'bar',
+                    stack: '16/17',
+                },
+                {
+                    name: '2017sorghum',
+                    type: 'bar',
+                    stack: '17/18',
+                },
+                {
+                    name: '2018sorghum',
+                    type: 'bar',
+                    stack: '18/19',
+                },
+                {
+                    name: '2014cassava',
+                    type: 'bar',
+                    stack: '14/15',
+                },
+                {
+                    name: '2015cassava',
+                    type: 'bar',
+                    stack: '15/16',
+                },
+                {
+                    name: '2016cassava',
+                    type: 'bar',
+                    stack: '16/17',
+                },
+                {
+                    name: '2017cassava',
+                    type: 'bar',
+                    stack: '17/18',
+                },
+                {
+                    name: '2018cassava',
+                    type: 'bar',
+                    stack: '18/19',
+                },
+            ]
+        };
+        myChart1.setOption(option);
+    </script>
+
+    <script type="text/javascript">
+        window.onresize = function(){
+            myChart1.resize();
+        }
+    </script>
+
+{% endblock %}
