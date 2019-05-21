@@ -1,0 +1,411 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- <p>{{corn_basis_l}}</p> -->
+    <div id="cftc_corn_opi" class="chart600"></div>
+    <div id="cftc_soybean_opi" class="chart600"></div>
+    <div id="cftc_wheat_opi" class="chart600"></div>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <script type="text/javascript">
+        var myChart1 = echarts.init(document.getElementById('cftc_corn_opi'), 'vintage');
+        var cftc_l = {{cftc_l|tojson}};
+        var option = {
+            title: {
+                text: '美玉米CFTC管理基金持仓',
+                left:80
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer:{
+                    type:'cross'
+                }
+            },
+            legend: {
+                data:['管理基金净多', '持仓', '净多比例', '主连价格']
+            },
+            xAxis: {
+                type:'category',
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        // 格式化成月/日，只在第一个刻度显示年份
+                        var date = new Date(value);
+                        var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                        // if (index === 0) {
+                        //     texts.unshift(date.getFullYear());
+                        // }
+                        return texts.join('/');
+                    }
+                },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },
+                // data: []
+            },
+            yAxis: [
+            {
+                name:'净多',
+                type:'value',
+                min:function(value){
+                    min = value.min*0.95
+                    return min.toFixed(0)
+                }
+            },
+            {
+                name:'比例',
+                type:'value',
+                min:function(value){
+                    min = value.min
+                    return min.toFixed(2)
+                }
+            },
+            {
+                name:'价格',
+                type:'value',
+                offset:30,
+                min:function(value){
+                    min = value.min*0.99
+                    return min.toFixed(2)
+                }
+            },
+            {
+                name:'持仓',
+                type:'value',
+                offset:60,
+                min:function(value){
+                    min = value.min*0.95
+                    return min.toFixed(0)
+                }
+            },
+            ],
+            dataZoom: [
+                {
+                    type: 'slider',
+                    start:50,
+                    end:100
+                }
+            ],
+            dataset:{
+                dimensions: ['date', 'corn_opi', 'corn_netlong_ratio', 'corn_netlong', 'cornprice'],
+                source: cftc_l
+            },
+            series: [
+                {
+                    name: '持仓',
+                    type: 'line',
+                    yAxisIndex:3,
+                    // connectNulls:true,
+                    symbol:'none',
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                },
+                {
+                    name: '净多比例',
+                    type: 'line',
+                    yAxisIndex:1,
+                    symbol:'none',
+                    lineStyle:{
+                        type:"bash"
+                    },
+                    // connectNulls:true,
+                    // data: {{l4s}}
+                },
+                {
+                    name: '管理基金净多',
+                    type: 'bar',
+                    yAxisIndex:0,
+                    // connectNulls:true,
+                    // data: {{l4}}
+                },
+                {
+                    name: '主连价格',
+                    type: 'line',
+                    yAxisIndex:2,
+                    color: 'DarkBlue',
+                    itemStyle: {normal: {lineStyle: {width: 3}}},
+                    // connectNulls:true,
+                    // data: {{l4}}
+                },
+            ]
+        };
+        myChart1.setOption(option);
+    </script>
+    <script type="text/javascript">
+        var myChart2 = echarts.init(document.getElementById('cftc_soybean_opi'), 'vintage');
+        var cftc_l = {{cftc_l|tojson}};
+        var option = {
+            title: {
+                text: '美豆CFTC管理基金持仓',
+                left:80
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer:{
+                    type:'cross'
+                }
+            },
+            legend: {
+                data:['管理基金净多', '持仓', '净多比例', '主连价格']
+            },
+            xAxis: {
+                type:'category',
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        // 格式化成月/日，只在第一个刻度显示年份
+                        var date = new Date(value);
+                        var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                        // if (index === 0) {
+                        //     texts.unshift(date.getFullYear());
+                        // }
+                        return texts.join('/');
+                    }
+                },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },
+                // data: []
+            },
+            yAxis: [
+            {
+                name:'净多',
+                type:'value',
+                min:function(value){
+                    min = value.min*0.95
+                    return min.toFixed(0)
+                }
+            },
+            {
+                name:'比例',
+                type:'value',
+                min:function(value){
+                    min = value.min
+                    return min.toFixed(2)
+                }
+            },
+            {
+                name:'价格',
+                type:'value',
+                offset:30,
+                min:function(value){
+                    min = value.min*0.99
+                    return min.toFixed(2)
+                }
+            },
+            {
+                name:'持仓',
+                type:'value',
+                offset:60,
+                min:function(value){
+                    min = value.min*0.95
+                    return min.toFixed(0)
+                }
+            },
+            ],
+            dataZoom: [
+                {
+                    type: 'slider',
+                    start:50,
+                    end:100
+                }
+            ],
+            dataset:{
+                dimensions: ['date', 'soy_opi', 'soy_netlong_ratio', 'soy_netlong', 'soyprice'],
+                source: cftc_l
+            },
+            series: [
+                {
+                    name: '持仓',
+                    type: 'line',
+                    yAxisIndex:3,
+                    // connectNulls:true,
+                    symbol:'none',
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                },
+                {
+                    name: '净多比例',
+                    type: 'line',
+                    yAxisIndex:1,
+                    symbol:'none',
+                    lineStyle:{
+                        type:"bash"
+                    },
+                    // connectNulls:true,
+                    // data: {{l4s}}
+                },
+                {
+                    name: '管理基金净多',
+                    type: 'bar',
+                    yAxisIndex:0,
+                    // connectNulls:true,
+                    // data: {{l4}}
+                },
+                {
+                    name: '主连价格',
+                    type: 'line',
+                    yAxisIndex:2,
+                    color: 'DarkBlue',
+                    itemStyle: {normal: {lineStyle: {width: 3}}},
+                    // connectNulls:true,
+                    // data: {{l4}}
+                },
+            ]
+        };
+        myChart2.setOption(option);
+    </script>
+
+    <script type="text/javascript">
+        var myChart3 = echarts.init(document.getElementById('cftc_wheat_opi'), 'vintage');
+        var cftc_l = {{cftc_l|tojson}};
+        var option = {
+            title: {
+                text: '美麦CFTC管理基金持仓',
+                left:80
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer:{
+                    type:'cross'
+                }
+            },
+            legend: {
+                data:['管理基金净多', '持仓', '净多比例', '主连价格', '堪萨斯小麦净多']
+            },
+            xAxis: {
+                type:'category',
+                axisLabel:{
+                    // formatter:'{{value}}kg'
+                    formatter: function (value, index) {
+                        // 格式化成月/日，只在第一个刻度显示年份
+                        var date = new Date(value);
+                        var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                        // if (index === 0) {
+                        //     texts.unshift(date.getFullYear());
+                        // }
+                        return texts.join('/');
+                    }
+                },
+                axisPointer: {
+                    label: {
+                        formatter: function (params) {
+                            var date = new Date(params.value);
+                            var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                            return texts.join('/');
+                        },
+                    }
+                },
+                // data: []
+            },
+            yAxis: [
+            {
+                name:'净多',
+                type:'value',
+                min:function(value){
+                    min = value.min*0.95
+                    return min.toFixed(0)
+                }
+            },
+            {
+                name:'比例',
+                type:'value',
+                min:function(value){
+                    min = value.min
+                    return min.toFixed(2)
+                }
+            },
+            {
+                name:'价格',
+                type:'value',
+                offset:30,
+                min:function(value){
+                    min = value.min*0.99
+                    return min.toFixed(2)
+                }
+            },
+            {
+                name:'持仓',
+                type:'value',
+                offset:60,
+                min:function(value){
+                    min = value.min*0.95
+                    return min.toFixed(0)
+                }
+            },
+            ],
+            dataZoom: [
+                {
+                    type: 'slider',
+                    start:50,
+                    end:100
+                }
+            ],
+            dataset:{
+                dimensions: ['date', 'wsr_opi', 'wsr_netlong_ratio', 'wsr_netlong', 'wsrprice', 'whr_netlong'],
+                source: cftc_l
+            },
+            series: [
+                {
+                    name: '持仓',
+                    type: 'line',
+                    yAxisIndex:3,
+                    // connectNulls:true,
+                    symbol:'none',
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                },
+                {
+                    name: '净多比例',
+                    type: 'line',
+                    yAxisIndex:1,
+                    symbol:'none',
+                    lineStyle:{
+                        type:"bash"
+                    },
+                    // connectNulls:true,
+                    // data: {{l4s}}
+                },
+                {
+                    name: '管理基金净多',
+                    type: 'bar',
+                    yAxisIndex:0,
+                    // connectNulls:true,
+                    // data: {{l4}}
+                },
+                {
+                    name: '主连价格',
+                    type: 'line',
+                    yAxisIndex:2,
+                    color: 'DarkBlue',
+                    itemStyle: {normal: {lineStyle: {width: 3}}},
+                    // connectNulls:true,
+                    // data: {{l4}}
+                },
+                {
+                    name: '堪萨斯小麦净多',
+                    type: 'line',
+                    yAxisIndex:0,
+                    color: 'Gold',
+                    // connectNulls:true,
+                    // data: {{l4}}
+                },
+            ]
+        };
+        myChart3.setOption(option);
+    </script>
+    <script type="text/javascript">
+        window.onresize = function(){
+            myChart1.resize()
+            myChart2.resize()
+            myChart3.resize()
+        }
+    </script>
+{% endblock %}

@@ -282,8 +282,11 @@ def getTemperatureUrl():
 #--------------------------------------------------------------------
 #--------------------------------------------------------------------
 ############################################################################
-############################################################################
 @app.route('/')
+def starthome():
+    return "今日天气好晴朗,处处好风光 好风光，蝴蝶儿忙 蜜蜂也忙，小鸟儿忙着 白云也忙。"
+############################################################################
+@app.route('/home111')
 def home():
     b9= getCornYearBasis09()
     
@@ -301,14 +304,14 @@ def home():
 def tianqiqingkuang():
     rainFallUrl_l = getRainfallUrl()
     droughtUrl_l = getDroughtUrl()
-    return render_template("tianqiqingkuang.html", rainFallUrl_l=rainFallUrl_l, droughtUrl_l=droughtUrl_l)
+    return render_template("tianqiqingkuang.html", rainFallUrl_l=rainFallUrl_l, droughtUrl_l=droughtUrl_l, title="天气情况")
 #------------------------------------------------------------------------------
 # 降水与气温7天预报
 @app.route('/tianqiyubao7')
 def tianqiyubao7():
     precipitationUrl_l = getPrecipitationUrl()
     temperatureUrl_l = getTemperatureUrl()
-    return render_template("tianqiyubao7.html", precipitationUrl_l=precipitationUrl_l, temperatureUrl_l=temperatureUrl_l)
+    return render_template("tianqiyubao7.html", precipitationUrl_l=precipitationUrl_l, temperatureUrl_l=temperatureUrl_l, title="天气预报-7天")
 #------------------------------------------------------------------------------
 # 分策略成交，按时间顺序显示
 @app.route('/StrategyTrade', methods=['POST','GET'])
@@ -896,7 +899,7 @@ def importandexport():
     for month in import_df.index:
         d1 = OrderedDict()
         d1['month'] = month
-        print(type(import_df.loc[month,'2018cassava']))
+        # print(type(import_df.loc[month,'2018cassava']))
         d1['2014corn'] = import_df.loc[month,'2014corn']
         d1['2015corn'] = import_df.loc[month,'2015corn']
         d1['2016corn'] = import_df.loc[month,'2016corn']
@@ -921,8 +924,8 @@ def importandexport():
         d1['2017cassava'] = import_df.loc[month,'2017cassava']
         d1['2018cassava'] = import_df.loc[month,'2018cassava']
         l1.append(d1)
-    print(l1)
-    return render_template("importandexport.html",l1=l1)
+    # print(l1)
+    return render_template("importandexport.html",l1=l1, title="玉米及替代品进口")
 #------------------------------------------------------------------------------
 # deepprocessing
 @app.route('/deepprocessing')
@@ -1004,8 +1007,59 @@ def priceSummarize():
         d1['weekchange'] = round(factory115_df.iloc[i,6],1)
         d1['jinzhou'] = factory115_df.iloc[i,5]
         factory115_l.append(d1)
-    return render_template("priceSummarize.html", region_df=region_df, feedcarryout_df=feedcarryout_df, summarize_df=summarize_df, factory115_l=factory115_l)
+    return render_template("priceSummarize.html", region_df=region_df, feedcarryout_df=feedcarryout_df, summarize_df=summarize_df, factory115_l=factory115_l, title="信息概览")
     # return carryout_df
+#------------------------------------------------------------------------------
+# jinzhou prie seasonal
+@app.route('/priceseasonal')
+def priceseasonal():
+    priceseasonal_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='jinzhouprice_year', index_col=1)
+    priceseasonal_l = []
+    for date in priceseasonal_df.index:
+        d1 = OrderedDict()
+        d1['date'] = date
+        d1['09/10'] = priceseasonal_df.loc[date,"2009/2010"]
+        d1['10/11'] = priceseasonal_df.loc[date,"2010/2011"]
+        d1['11/12'] = priceseasonal_df.loc[date,"2011/2012"]
+        d1['12/13'] = priceseasonal_df.loc[date,"2012/2013"]
+        d1['13/14'] = priceseasonal_df.loc[date,"2013/2014"]
+        d1['14/15'] = priceseasonal_df.loc[date,"2014/2015"]
+        d1['15/16'] = priceseasonal_df.loc[date,"2015/2016"]
+        d1['16/17'] = priceseasonal_df.loc[date,"2016/2017"]
+        d1['17/18'] = priceseasonal_df.loc[date,"2017/2018"]
+        d1['18/19'] = priceseasonal_df.loc[date,"2018/2019"]
+        priceseasonal_l.append(d1)
+
+    return render_template("priceseasonal.html", priceseasonal_l=priceseasonal_l)
+#------------------------------------------------------------------------------
+# CFTC open insterest
+@app.route('/cftcopi')
+def cftcopi():
+    cftc_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='cftc_data', index_col=0)
+    cftc_df = cftc_df.astype('float')
+    cftc_l = []
+    for date in cftc_df.index:
+        d1 = OrderedDict()
+        d1['date'] = date
+        d1['corn_opi'] = cftc_df.loc[date,"corn_opi"]
+        d1['corn_netlong_ratio'] = cftc_df.loc[date,"corn_netlong_ratio"]
+        d1['corn_netlong'] = cftc_df.loc[date,"corn_netlong"]
+        d1['cornprice'] = cftc_df.loc[date,"cornprice"]
+        d1['wsr_opi'] = cftc_df.loc[date,"wsr_opi"]
+        d1['wsr_netlong_ratio'] = cftc_df.loc[date,"wsr_netlong_ratio"]
+        d1['wsr_netlong'] = cftc_df.loc[date,"wsr_netlong"]
+        d1['wsrprice'] = cftc_df.loc[date,"wsrprice"]
+        d1['whr_opi'] = cftc_df.loc[date,"whr_opi"]
+        d1['whr_netlong_ratio'] = cftc_df.loc[date,"whr_netlong_ratio"]
+        d1['whr_netlong'] = cftc_df.loc[date,"whr_netlong"]
+        d1['soy_opi'] = cftc_df.loc[date,"soy_opi"]
+        d1['soy_netlong_ratio'] = cftc_df.loc[date,"soy_netlong_ratio"]
+        d1['soy_netlong'] = cftc_df.loc[date,"soy_netlong"]
+        d1['soyprice'] = cftc_df.loc[date,"soyprice"]
+
+        cftc_l.append(d1)
+
+    return render_template("cftcopi.html", cftc_l=cftc_l)
 #------------------------------------------------------------------------------
 # corntempres
 @app.route('/corntempres')
@@ -1152,7 +1206,7 @@ def getPigPriceData():
 def pigprice():
     pigPrice_l = getPigPriceData()
     # print(pigPrice_l)
-    return render_template("PigPrice.html", pigPrice_l=pigPrice_l)
+    return render_template("PigPrice.html", pigPrice_l=pigPrice_l, title="生猪价格")
 #------------------------------------------------------------------------------
 # temptest
 @app.route('/temptest', methods=['GET', 'POST'])

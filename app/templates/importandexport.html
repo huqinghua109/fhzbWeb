@@ -7,7 +7,7 @@
         var my_l1 = {{l1|tojson}};
         var option = {
             title: {
-                text: '玉米及替代品进口量',
+                text: '14/15至18/19玉米及替代品进口量',
                 left:'center'
             },
             tooltip: {
@@ -16,13 +16,14 @@
                     type:'cross'
                 }
             },
-            // legend: {
-            //     data:['2014corn', '2015corn', '2016corn', '2017corn', '2018corn',
-            //     '2014barley', '2015barley', '2016barley', '2017barley', '2018barley',
-            //     '2014sorghum', '2015sorghum', '2016sorghum', '2017sorghum', '2018sorghum',
-            //     '2014cassava', '2015cassava', '2016cassava', '2017cassava', '2018cassava'],
-            //     y:30
-            // },
+            legend: {
+                // data:['2014corn', '2015corn', '2016corn', '2017corn', '2018corn',
+                // '2014barley', '2015barley', '2016barley', '2017barley', '2018barley',
+                // '2014sorghum', '2015sorghum', '2016sorghum', '2017sorghum', '2018sorghum',
+                // '2014cassava', '2015cassava', '2016cassava', '2017cassava', '2018cassava'],
+                date:["corn", "barley", "sorghum", "cassava", "18/19corn", "18/19barley", "18/19sorghum", "18/19cassava"],
+                y:30
+            },
             xAxis: {
                 type:'category',
             },
@@ -42,102 +43,102 @@
             },
             series: [
                 {
-                    name: '2014corn',
+                    name: 'corn',
                     type: 'bar',
                     stack: '14/15',
                 },
                 {
-                    name: '2015corn',
+                    name: 'corn',
                     type: 'bar',
                     stack: '15/16',
                 },
                 {
-                    name: '2016corn',
+                    name: 'corn',
                     type: 'bar',
                     stack: '16/17',
                 },
                 {
-                    name: '2017corn',
+                    name: 'corn',
                     type: 'bar',
                     stack: '17/18',
                 },
                 {
-                    name: '2018corn',
+                    name: '18/19corn',
                     type: 'bar',
                     stack: '18/19',
                 },
                 {
-                    name: '2014barley',
+                    name: 'barley',
                     type: 'bar',
                     stack: '14/15',
                 },
                 {
-                    name: '2015barley',
+                    name: 'barley',
                     type: 'bar',
                     stack: '15/16',
                 },
                 {
-                    name: '2016barley',
+                    name: 'barley',
                     type: 'bar',
                     stack: '16/17',
                 },
                 {
-                    name: '2017barley',
+                    name: 'barley',
                     type: 'bar',
                     stack: '17/18',
                 },
                 {
-                    name: '2018barley',
+                    name: '18/19barley',
                     type: 'bar',
                     stack: '18/19',
                 },
                 {
-                    name: '2014sorghum',
+                    name: 'sorghum',
                     type: 'bar',
                     stack: '14/15',
                 },
                 {
-                    name: '2015sorghum',
+                    name: 'sorghum',
                     type: 'bar',
                     stack: '15/16',
                 },
                 {
-                    name: '2016sorghum',
+                    name: 'sorghum',
                     type: 'bar',
                     stack: '16/17',
                 },
                 {
-                    name: '2017sorghum',
+                    name: 'sorghum',
                     type: 'bar',
                     stack: '17/18',
                 },
                 {
-                    name: '2018sorghum',
+                    name: '18/19sorghum',
                     type: 'bar',
                     stack: '18/19',
                 },
                 {
-                    name: '2014cassava',
+                    name: 'cassava',
                     type: 'bar',
                     stack: '14/15',
                 },
                 {
-                    name: '2015cassava',
+                    name: 'cassava',
                     type: 'bar',
                     stack: '15/16',
                 },
                 {
-                    name: '2016cassava',
+                    name: 'cassava',
                     type: 'bar',
                     stack: '16/17',
                 },
                 {
-                    name: '2017cassava',
+                    name: 'cassava',
                     type: 'bar',
                     stack: '17/18',
                 },
                 {
-                    name: '2018cassava',
+                    name: '18/19cassava',
                     type: 'bar',
                     stack: '18/19',
                 },

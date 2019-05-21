@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div id="jinzhou_seasonal" class="chart600"></div>
+
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart1 = echarts.init(document.getElementById('jinzhou_seasonal'), 'vintage');
+    var priceseasonal_l = {{priceseasonal_l|tojson}};
+    // myChart.showLoading();
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: '錦州港新粮价格季节性',
+            left:'center'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer:{
+                type:'cross'
+            }
+        },
+        // emphasis: {
+        //     itemStyle: {
+        //         color: 'blue'
+        //     },
+        //     label: {
+        //         show: true,
+        //         formatter: 'This is a emphasis label.'
+        //     
+        // },
+        legend: {
+            data:['09/10', '10/11', '11/12', '12/13', '13/14', '14/15', '15/16', '16/17', '17/18', '18/19', ],
+            y:30
+        },
+        xAxis: {
+            type:'category',
+            axisLabel:{
+                // formatter:'{{value}}kg'
+                formatter: function (value, index) {
+                    // 格式化成月/日，只在第一个刻度显示年份
+                    var date = new Date(value);
+                    // var texts = [date.getFullYear(), date.getMonth()+1, date.getDate()];
+                    var texts = [date.getMonth()+1, date.getDate()];
+                    // if (index === 0) {
+                    //     texts.unshift(date.getFullYear());
+                    // }
+                    return texts.join('/');
+                }
+            },
+            axisPointer: {
+                label: {
+                    formatter: function (params) {
+                        var date = new Date(params.value);
+                        var texts = [date.getMonth()+1, date.getDate()];
+                        return texts.join('/');
+                    },
+                }
+            },
+            // data: []
+        },
+        yAxis: {
+        	// name:'价格',
+            type:'value',
+            min:function(value){
+                return value.min-50
+            }
+            },
+        // dataZoom: [
+        //     {
+        //         type: 'slider',
+        //         start:0,
+        //         end:100
+        //     }
+        // ],
+        dataset:{
+            dimensions: ['date', '09/10', '10/11', '11/12', '12/13', '13/14', '14/15', '15/16', '16/17', '17/18', '18/19'],
+            source: priceseasonal_l
+        },
+        series: [
+            {
+                name: '09/10',
+                type: 'line',
+                connectNulls:true,
+                smooth:true,
+            },
+            {
+                name: '10/11',
+                type: 'line',
+                connectNulls:true,
+                smooth:true,
+            },
+            {
+                name: '11/12',
+                type: 'line',
+                connectNulls:true,
+                smooth:true,
+            },
+            {
+                name: '12/13',
+                type: 'line',
+                connectNulls:true,
+                smooth:true,
+            },
+            {
+                name: '13/14',
+                type: 'line',
+                connectNulls:true,
+                smooth:true,
+            },
+            {
+                name: '14/15',
+                type: 'line',
+                connectNulls:true,
+                smooth:true,
+            },
+            {
+                name: '15/16',
+                type: 'line',
+                connectNulls:true,
+                smooth:true,
+            },
+            {
+                name: '16/17',
+                type: 'line',
+                connectNulls:true,
+                smooth:true,
+                itemStyle: {normal: {lineStyle: {width: 4}}},
+            },
+            {
+                name: '17/18',
+                type: 'line',
+                connectNulls:true,
+                smooth:true,
+                itemStyle: {normal: {lineStyle: {width: 4}}},
+            },
+            {
+                name: '18/19',
+                type: 'line',
+                connectNulls:true,
+                smooth:true,
+                itemStyle: {normal: {lineStyle: {width: 5}}},
+            },
+        ]
+    };
+
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart1.setOption(option);
+</script>
+
+<script type="text/javascript">
+    window.onresize = function(){
+        myChart1.resize()
+    }
+</script>
+
+{% endblock %}
