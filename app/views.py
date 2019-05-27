@@ -37,7 +37,8 @@ STRATEGY_DB_WEB = 'Strategy_Var_Param_WEBDB'
 STRATEGY_DETAILLOG = 'Strategy_DetailLog'
 STRATEGY_TRADELOG = 'Strategy_TradeLog'
 
-c = MongoClient()
+c = None
+# c = MongoClient()
 # try:
 #     c = MongoClient(port=23429)
 #     c['admin'].authenticate('Dean2', 'Dean0129')
@@ -282,11 +283,11 @@ def getTemperatureUrl():
 #--------------------------------------------------------------------
 #--------------------------------------------------------------------
 ############################################################################
-@app.route('/home111')
+@app.route('/')
 def starthome():
     return "今日天气好晴朗,处处好风光 好风光，蝴蝶儿忙 蜜蜂也忙，小鸟儿忙着 白云也忙。"
 ############################################################################
-@app.route('/')
+@app.route('/home111')
 def home():
     b9= getCornYearBasis09()
     
