@@ -776,22 +776,22 @@ def portcarryout():
 # gather and out
 @app.route('/gatherandout', methods=['GET', 'POST'])
 def gatherandout():
-    gatherN_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='gatherN_year')
+    gatherN_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='gatherN_year', index_col=0)
     gatherN_df = gatherN_df.round(decimals=2)
     gatherNcumsum_df = gatherN_df.cumsum(0)
     gatherNcumsum_df = gatherNcumsum_df.round(decimals=2)
 
-    gatherS_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='gatherGD_year')
+    gatherS_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='gatherGD_year', index_col=0)
     gatherS_df = gatherS_df.round(decimals=2)
     gatherScumsum_df = gatherS_df.cumsum(0)
     gatherScumsum_df = gatherScumsum_df.round(decimals=2)
 
-    outN_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='outN_year')
+    outN_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='outN_year', index_col=0)
     outN_df = outN_df.round(decimals=2)
     outNcumsum_df = outN_df.cumsum(0)
     outNcumsum_df = outNcumsum_df.round(decimals=2)
 
-    outS_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='outGD_year')
+    outS_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='outGD_year', index_col=0)
     outS_df = outS_df.round(decimals=2)
     outScumsum_df = outS_df.cumsum(0)
     outScumsum_df = outScumsum_df.round(decimals=2)
@@ -831,22 +831,22 @@ def gatherandout():
         d1['outS_2018_2019'] = outScumsum_df.loc[date,'2018/2019']
         l1.append(d1)
 
-    gatherBBW_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='gatherBBW_year')
+    gatherBBW_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='gatherBBW_year', index_col=0)
     gatherBBW_df = gatherBBW_df.round(decimals=2)
     gatherBBWcumsum_df = gatherBBW_df.cumsum(0)
     gatherBBWcumsum_df = gatherBBWcumsum_df.round(decimals=2)
 
-    gatherZZ_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='gatherZZ_year')
+    gatherZZ_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='gatherZZ_year', index_col=0)
     gatherZZ_df = gatherZZ_df.round(decimals=2)
     gatherZZcumsum_df = gatherZZ_df.cumsum(0)
     gatherZZcumsum_df = gatherZZcumsum_df.round(decimals=2)
 
-    outBBW_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='outBBW_year')
+    outBBW_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='outBBW_year', index_col=0)
     outBBW_df = outBBW_df.round(decimals=2)
     outBBWcumsum_df = outBBW_df.cumsum(0)
     outBBWcumsum_df = outBBWcumsum_df.round(decimals=2)
 
-    outZZ_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='outZZ_year')
+    outZZ_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='outZZ_year', index_col=0)
     outZZ_df = outZZ_df.round(decimals=2)
     outZZcumsum_df = outZZ_df.cumsum(0)
     outZZcumsum_df = outZZcumsum_df.round(decimals=2)
@@ -892,7 +892,7 @@ def gatherandout():
 @app.route('/importandexport')
 def importandexport():
     import_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='importcumsum')
-    import_df = import_df.astype('float')
+    import_df = import_df.astype('float', errors="ignore")
     # import_df = import_df.fillna(0)
     # import_df = import_df.round(decimals=2)
 
@@ -1037,7 +1037,7 @@ def priceseasonal():
 @app.route('/cftcopi')
 def cftcopi():
     cftc_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='cftc_data', index_col=0)
-    cftc_df = cftc_df.astype('float')
+    cftc_df = cftc_df.astype('float', errors="ignore")
     cftc_l = []
     for date in cftc_df.index:
         d1 = OrderedDict()
