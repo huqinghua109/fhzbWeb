@@ -751,6 +751,8 @@ def portcarryout():
         d2 = OrderedDict()
         d2['date'] = date
         d2['GDCarryout'] = round(GD_df.loc[date,'GDCarryOutSum'],2)
+        d2['GDnmCarryout'] = round(GD_df.loc[date,'gdnmcarry'],2)
+        d2['GDjkCarryout'] = round(GD_df.loc[date,'gdjkcarry'],2)
         d2['GDCarryoutChange'] = round(GD_df.loc[date,'weekchange'],2)
         d2['GDPrice'] = GD_df.loc[date,'guangdong']
         l2.append(d2)

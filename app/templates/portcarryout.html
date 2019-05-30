@@ -144,6 +144,7 @@
                     yAxisIndex:2,
                     type: 'line',
                     connectNulls:true,
+                    color:'DarkSlateGray',
                     itemStyle: {normal: {lineStyle: {width: 3}}},
                     // data: {{l4s}}
                 }
@@ -209,7 +210,7 @@
                 }
             },
             legend: {
-                data:['广东港口库存', '库存周度变化', '广东港口价格'],
+                data:['广东港口库存', '广东内贸库存', '广东进口库存', '库存周度变化', '广东港口价格'],
                 y:30
             },
             xAxis: {
@@ -242,7 +243,9 @@
                 {
                     name:'库存',
                     type:'value',
-                    min:10
+                    min:function(value){
+                        return value.min
+                    }
                 },
                 {
                     name:'周变',
@@ -266,7 +269,7 @@
             //     }
             // ],
             dataset:{
-                dimensions: ['date', 'GDCarryout', 'GDCarryoutChange', 'GDPrice'],
+                dimensions: ['date', 'GDCarryout', 'GDnmCarryout', 'GDjkCarryout', 'GDCarryoutChange', 'GDPrice'],
                 source: myl2
             },
             series: [
@@ -274,9 +277,31 @@
                     name: '广东港口库存',
                     yAxisIndex:0,
                     type: 'line',
+                    color:'Crimson',
                     // symbol:'none',
                     // symbolSize:0,
-                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    // itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                    // data: {{l4}}
+                },
+                {
+                    name: '广东内贸库存',
+                    yAxisIndex:0,
+                    type: 'line',
+                    stack: '总量',
+                    symbol:'none',
+                    // symbolSize:0,
+                    itemStyle: {normal: {areaStyle: {color: 'Brown'}}},
+                    // data: {{l4}}
+                },
+                {
+                    name: '广东进口库存',
+                    yAxisIndex:0,
+                    type: 'line',
+                    stack: '总量',
+                    symbol:'none',
+                    color:'Brown',
+                    // symbolSize:0,
+                    itemStyle: {normal: {areaStyle: {color: 'Red'}}},
                     // data: {{l4}}
                 },
                 {
@@ -290,6 +315,8 @@
                     name: '广东港口价格',
                     yAxisIndex:2,
                     type: 'line',
+                    symbol:'none',
+                    color:'DarkSlateGray',
                     connectNulls:true,
                     itemStyle: {normal: {lineStyle: {width: 3}}},
                     // data: {{l4s}}
