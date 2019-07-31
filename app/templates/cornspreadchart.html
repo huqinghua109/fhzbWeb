@@ -205,7 +205,7 @@
             //     
             // },
             legend: {
-                data:['c_cs1505', 'c_cs1605', 'c_cs1705', 'c_cs1805', 'c_cs1905'],
+                data:['c_cs1505', 'c_cs1605', 'c_cs1705', 'c_cs1805', 'c_cs1905', 'c_cs2005'],
                 y:30
             },
             xAxis: {
@@ -243,7 +243,7 @@
             //     }
             // ],
             dataset:{
-                dimensions: ['date', '2015c_cs5', '2016c_cs5', '2017c_cs5', '2018c_cs5', '2019c_cs5'],
+                dimensions: ['date', '2015c_cs5', '2016c_cs5', '2017c_cs5', '2018c_cs5', '2019c_cs5', '2020c_cs5'],
                 source: my_corn_cs_spread5_year_l
             },
             series: [
@@ -273,6 +273,12 @@
                 },
                 {
                     name: 'c_cs1905',
+                    type: 'line',
+                    connectNulls:true,
+                    // data: {{l4s}}
+                },
+                {
+                    name: 'c_cs2005',
                     type: 'line',
                     // color:'black',
                     // symbol:'triangle',
@@ -320,7 +326,7 @@
             //     
             // },
             legend: {
-                data:['c_cs1509', 'c_cs1609', 'c_cs1709', 'c_cs1809', 'c_cs1909'],
+                data:['c_cs1509', 'c_cs1609', 'c_cs1709', 'c_cs1809', 'c_cs1909', 'c_cs2009'],
                 y:30
             },
             xAxis: {
@@ -358,7 +364,7 @@
             //     }
             // ],
             dataset:{
-                dimensions: ['date', '2015c_cs9', '2016c_cs9', '2017c_cs9', '2018c_cs9', '2019c_cs9'],
+                dimensions: ['date', '2015c_cs9', '2016c_cs9', '2017c_cs9', '2018c_cs9', '2019c_cs9', '2020c_cs9'],
                 source: my_corn_cs_spread9_year_l
             },
             series: [
@@ -388,6 +394,12 @@
                 },
                 {
                     name: 'c_cs1909',
+                    type: 'line',
+                    connectNulls:true,
+                    // data: {{l4s}}
+                },
+                {
+                    name: 'c_cs2009',
                     type: 'line',
                     // color:'black',
                     // symbol:'triangle',
@@ -435,7 +447,7 @@
             //     
             // },
             legend: {
-                data:['1909_2001', '1809_1901', '1709_1801', '1609_1701', '1509_1601', '1409_1501'],
+                data:['1409_1501', '1509_1601', '1609_1701', '1709_1801', '1809_1901', '1909_2001'],
                 y:30
             },
             xAxis: {
@@ -473,11 +485,39 @@
             //     }
             // ],
             dataset:{
-                dimensions: ['date', '1909_2001', '1809_1901', '1709_1801', '1609_1701', '1509_1601', '1409_1501'],
+                dimensions: ['date', '1409_1501', '1509_1601', '1609_1701', '1709_1801', '1809_1901', '1909_2001'],
                 source: my_corn_91_year_l
             },
             series: [
                 {
+                    name: '1409_1501',
+                    type: 'line',
+                    connectNulls:true,
+                    // data: {{l4s}}
+                },                {
+                    name: '1509_1601',
+                    type: 'line',
+                    connectNulls:true,
+                    // data: {{l4s}}
+                },                {
+                    name: '1609_1701',
+                    type: 'line',
+                    connectNulls:true,
+                    // data: {{l4s}}
+                },                {
+                    name: '1709_1801',
+                    type: 'line',
+                    connectNulls:true,
+                    // data: {{l4}}
+                },                {
+                    name: '1809_1901',
+                    type: 'line',
+                    // color:'black',
+                    // symbol:'triangle',
+                    // symbolSize:10,
+                    connectNulls:true,
+                    // data: {{l4}}
+                },{
                     name: '1909_2001',
                     type: 'line',
                     // color:'black',
@@ -489,40 +529,8 @@
                     },
                     connectNulls:true,
                     // data: {{l4}}
-                },
-                {
-                    name: '1809_1901',
-                    type: 'line',
-                    // color:'black',
-                    // symbol:'triangle',
-                    // symbolSize:10,
-                    connectNulls:true,
-                    // data: {{l4}}
-                },
-                {
-                    name: '1709_1801',
-                    type: 'line',
-                    connectNulls:true,
-                    // data: {{l4}}
-                },
-                {
-                    name: '1609_1701',
-                    type: 'line',
-                    connectNulls:true,
-                    // data: {{l4s}}
-                },
-                {
-                    name: '1509_1601',
-                    type: 'line',
-                    connectNulls:true,
-                    // data: {{l4s}}
-                },
-                {
-                    name: '1409_1501',
-                    type: 'line',
-                    connectNulls:true,
-                    // data: {{l4s}}
                 }
+
             ]
         };
 
@@ -559,7 +567,7 @@
             //     
             // },
             legend: {
-                data:['1901_1905', '1801_1805', '1701_1705', '1601_1605', '1501_1505'],
+                data:['1501_1505', '1601_1605', '1701_1705', '1801_1805', '1901_1905', '2001_2005'],
                 y:30
             },
             xAxis: {
@@ -597,12 +605,38 @@
             //     }
             // ],
             dataset:{
-                dimensions: ['date', '1901_1905', '1801_1805', '1701_1705', '1601_1605', '1501_1505'],
+                dimensions: ['date', '1501_1505', '1601_1605', '1701_1705', '1801_1805', '1901_1905', '2001_2005'],
                 source: my_corn_15_year_l
             },
             series: [
                 {
+                    name: '1501_1505',
+                    type: 'line',
+                    connectNulls:true,
+                    
+                    // data: {{l4s}}
+                },{
+                    name: '1601_1605',
+                    type: 'line',
+                    connectNulls:true,
+                    // data: {{l4s}}
+                },{
+                    name: '1701_1705',
+                    type: 'line',
+                    connectNulls:true,
+                    // data: {{l4s}}
+                },{
+                    name: '1801_1805',
+                    type: 'line',
+                    connectNulls:true,
+                    // data: {{l4}}
+                },{
                     name: '1901_1905',
+                    type: 'line',
+                    connectNulls:true,
+                    // data: {{l4}}
+                },{
+                    name: '2001_2005',
                     type: 'line',
                     // color:'black',
                     // symbol:'triangle',
@@ -613,32 +647,8 @@
                     },
                     connectNulls:true,
                     // data: {{l4}}
-                },
-                {
-                    name: '1801_1805',
-                    type: 'line',
-                    connectNulls:true,
-                    // data: {{l4}}
-                },
-                {
-                    name: '1701_1705',
-                    type: 'line',
-                    connectNulls:true,
-                    // data: {{l4s}}
-                },
-                {
-                    name: '1601_1605',
-                    type: 'line',
-                    connectNulls:true,
-                    // data: {{l4s}}
-                },
-                {
-                    name: '1501_1505',
-                    type: 'line',
-                    connectNulls:true,
-                    
-                    // data: {{l4s}}
                 }
+                
             ]
         };
 
@@ -675,7 +685,7 @@
             //     
             // },
             legend: {
-                data:['1905_1909', '1805_1809', '1705_1709', '1605_1609', '1505_1509'],
+                data:['1505_1509', '1605_1609', '1705_1709', '1805_1809', '1905_1909', '2005_2009'],
                 y:30
             },
             xAxis: {
@@ -713,12 +723,38 @@
             //     }
             // ],
             dataset:{
-                dimensions: ['date', '1905_1909', '1805_1809', '1705_1709', '1605_1609', '1505_1509'],
+                dimensions: ['date', '1505_1509', '1605_1609', '1705_1709', '1805_1809', '1905_1909', '2005_2009'],
                 source: my_corn_59_year_l
             },
             series: [
                 {
+                    name: '1505_1509',
+                    type: 'line',
+                    connectNulls:true,
+                    
+                    // data: {{l4s}}
+                },{
+                    name: '1605_1609',
+                    type: 'line',
+                    connectNulls:true,
+                    // data: {{l4s}}
+                },{
+                    name: '1705_1709',
+                    type: 'line',
+                    connectNulls:true,
+                    // data: {{l4s}}
+                },{
+                    name: '1805_1809',
+                    type: 'line',
+                    connectNulls:true,
+                    // data: {{l4}}
+                },{
                     name: '1905_1909',
+                    type: 'line',
+                    connectNulls:true,
+                    // data: {{l4}}
+                },{
+                    name: '2005_2009',
                     type: 'line',
                     // color:'black',
                     // symbol:'triangle',
@@ -729,32 +765,8 @@
                     },
                     connectNulls:true,
                     // data: {{l4}}
-                },
-                {
-                    name: '1805_1809',
-                    type: 'line',
-                    connectNulls:true,
-                    // data: {{l4}}
-                },
-                {
-                    name: '1705_1709',
-                    type: 'line',
-                    connectNulls:true,
-                    // data: {{l4s}}
-                },
-                {
-                    name: '1605_1609',
-                    type: 'line',
-                    connectNulls:true,
-                    // data: {{l4s}}
-                },
-                {
-                    name: '1505_1509',
-                    type: 'line',
-                    connectNulls:true,
-                    
-                    // data: {{l4s}}
                 }
+                
             ]
         };
 

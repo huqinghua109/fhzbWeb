@@ -672,6 +672,7 @@ def cornspreadchart():
         d['2017c_cs5'] = corn_cs_spread5_year.loc[date,'2017c-cs5']
         d['2018c_cs5'] = corn_cs_spread5_year.loc[date,'2018c-cs5']
         d['2019c_cs5'] = corn_cs_spread5_year.loc[date,'2019c-cs5']
+        d['2020c_cs5'] = corn_cs_spread5_year.loc[date,'2020c-cs5']
         corn_cs_spread5_year_l.append(d)
 
     corn_cs_spread9_year_l = []
@@ -683,12 +684,14 @@ def cornspreadchart():
         d['2017c_cs9'] = corn_cs_spread9_year.loc[date,'2017c-cs9']
         d['2018c_cs9'] = corn_cs_spread9_year.loc[date,'2018c-cs9']
         d['2019c_cs9'] = corn_cs_spread9_year.loc[date,'2019c-cs9']
+        d['2020c_cs9'] = corn_cs_spread9_year.loc[date,'2020c-cs9']
         corn_cs_spread9_year_l.append(d)
 
     corn_91_year_l = []
     for date in corn_91_spread_df.index:
         d = OrderedDict()
         d['date'] = date
+        # d['2009_2101'] = corn_91_spread_df.loc[date,'20209_1']
         d['1909_2001'] = corn_91_spread_df.loc[date,'20199_1']
         d['1809_1901'] = corn_91_spread_df.loc[date,'20189_1']
         d['1709_1801'] = corn_91_spread_df.loc[date,'20179_1']
@@ -701,6 +704,7 @@ def cornspreadchart():
     for date in corn_15_spread_df.index:
         d = OrderedDict()
         d['date'] = date
+        # d['2101_2105'] = corn_15_spread_df.loc[date,'20211_5']
         d['2001_2005'] = corn_15_spread_df.loc[date,'20201_5']
         d['1901_1905'] = corn_15_spread_df.loc[date,'20191_5']
         d['1801_1805'] = corn_15_spread_df.loc[date,'20181_5']
@@ -713,6 +717,7 @@ def cornspreadchart():
     for date in corn_59_spread_df.index:
         d = OrderedDict()
         d['date'] = date
+        d['2005_2009'] = corn_59_spread_df.loc[date,'20205_9']
         d['1905_1909'] = corn_59_spread_df.loc[date,'20195_9']
         d['1805_1809'] = corn_59_spread_df.loc[date,'20185_9']
         d['1705_1709'] = corn_59_spread_df.loc[date,'20175_9']
