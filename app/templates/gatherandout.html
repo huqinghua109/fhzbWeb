@@ -65,19 +65,19 @@
                 {x2: '5%', y2: '5%', width: '40%', height: '38%'}
             ],
             legend: [{
-                data:['16/17', '17/18', '18/19'],
+                data:['16/17', '17/18', '18/19', '19/20'],
                 x:'15%',
                 y:25,
             },{
-                data:['16/17', '17/18', '18/19'],
+                data:['16/17', '17/18', '18/19', '19/20'],
                 x:'65%',
                 y:25
             },{
-                data:['16/17', '17/18', '18/19'],
+                data:['16/17', '17/18', '18/19', '19/20'],
                 x:'15%',
                 y:'53%',
             },{
-                data:['16/17', '17/18', '18/19'],
+                data:['16/17', '17/18', '18/19', '19/20'],
                 x:'65%',
                 y:'53%',
             }],
@@ -187,7 +187,7 @@
             //     }
             // ],
             dataset:{
-                dimensions: ['date', 'gatherN_2016_2017', 'gatherN_2017_2018', 'gatherN_2018_2019', 'outN_2016_2017', 'outN_2017_2018', 'outN_2018_2019', 'gatherS_2016_2017', 'gatherS_2017_2018', 'gatherS_2018_2019', 'outS_2016_2017', 'outS_2017_2018', 'outS_2018_2019'],
+                dimensions: ['date', 'gatherN_2016_2017', 'gatherN_2017_2018', 'gatherN_2018_2019', 'gatherN_2019_2020', 'outN_2016_2017', 'outN_2017_2018', 'outN_2018_2019', 'outN_2019_2020', 'gatherS_2016_2017', 'gatherS_2017_2018', 'gatherS_2018_2019', 'gatherS_2019_2020', 'outS_2016_2017', 'outS_2017_2018', 'outS_2018_2019', 'outS_2019_2020'],
                 source: myl1
             },
             series: [
@@ -233,7 +233,19 @@
                     // barWidth:'35%',
                     // itemStyle: {normal: {lineStyle: {width: 3}}},
                     // data: {{l4s}}
-                },{
+                },
+                {
+                    name: '19/20',
+                    xAxisIndex: 0,
+                    yAxisIndex:0,
+                    type: 'line',
+                    connectNulls:true,
+                    smooth:true,
+                    // barWidth:'35%',
+                    // itemStyle: {normal: {lineStyle: {width: 3}}},
+                    // data: {{l4s}}
+                },
+                {
                     name: '16/17',
                     xAxisIndex: 1,
                     yAxisIndex:1,
@@ -257,7 +269,17 @@
                     connectNulls:true,
                     smooth:true,
                     // barWidth:'35%',
-                },{
+                },
+                {
+                    name: '19/20',
+                    xAxisIndex: 1,
+                    yAxisIndex:1,
+                    type: 'line',
+                    connectNulls:true,
+                    smooth:true,
+                    // barWidth:'35%',
+                },
+                {
                     name: '16/17',
                     xAxisIndex: 2,
                     yAxisIndex:2,
@@ -281,7 +303,17 @@
                     connectNulls:true,
                     smooth:true,
                     // barWidth:'35%',
-                },{
+                },
+                {
+                    name: '19/20',
+                    xAxisIndex: 2,
+                    yAxisIndex:2,
+                    type: 'line',
+                    connectNulls:true,
+                    smooth:true,
+                    // barWidth:'35%',
+                },
+                {
                     name: '16/17',
                     xAxisIndex: 3,
                     yAxisIndex:3,
@@ -299,6 +331,14 @@
                     // barWidth:'35%',
                 },{
                     name: '18/19',
+                    xAxisIndex: 3,
+                    yAxisIndex:3,
+                    type: 'line',
+                    connectNulls:true,
+                    smooth:true,
+                    // barWidth:'35%',
+                },{
+                    name: '19/20',
                     xAxisIndex: 3,
                     yAxisIndex:3,
                     type: 'line',
@@ -360,19 +400,19 @@
                 {x2: '5%', y2: '5%', width: '40%', height: '38%'}
             ],
             legend: [{
-                data:['16/17', '17/18', '18/19'],
+                data:['16/17', '17/18', '18/19', '19/20'],
                 x:'15%',
                 y:25,
             },{
-                data:['16/17', '17/18', '18/19'],
+                data:['16/17', '17/18', '18/19', '19/20'],
                 x:'65%',
                 y:25
             },{
-                data:['16/17', '17/18', '18/19'],
+                data:['16/17', '17/18', '18/19', '19/20'],
                 x:'15%',
                 y:'53%',
             },{
-                data:['16/17', '17/18', '18/19'],
+                data:['16/17', '17/18', '18/19', '19/20'],
                 x:'65%',
                 y:'53%',
             }],
@@ -482,7 +522,7 @@
             //     }
             // ],
             dataset:{
-                dimensions: ['date', 'gatherN_2016_2017', 'gatherN_2017_2018', 'gatherN_2018_2019', 'outN_2016_2017', 'outN_2017_2018', 'outN_2018_2019', 'gatherS_2016_2017', 'gatherS_2017_2018', 'gatherS_2018_2019', 'outS_2016_2017', 'outS_2017_2018', 'outS_2018_2019'],
+                dimensions: ['date', 'gatherN_2016_2017', 'gatherN_2017_2018', 'gatherN_2018_2019', 'gatherN_2019_2020', 'outN_2016_2017', 'outN_2017_2018', 'outN_2018_2019', 'outN_2019_2020', 'gatherS_2016_2017', 'gatherS_2017_2018', 'gatherS_2018_2019', 'gatherS_2019_2020', 'outS_2016_2017', 'outS_2017_2018', 'outS_2018_2019', 'outS_2019_2020'],
                 source: myl5
             },
             series: [
@@ -528,7 +568,19 @@
                     // barWidth:'35%',
                     // itemStyle: {normal: {lineStyle: {width: 3}}},
                     // data: {{l4s}}
-                },{
+                },
+                {
+                    name: '19/20',
+                    xAxisIndex: 0,
+                    yAxisIndex:0,
+                    type: 'line',
+                    connectNulls:true,
+                    smooth:true,
+                    // barWidth:'35%',
+                    // itemStyle: {normal: {lineStyle: {width: 3}}},
+                    // data: {{l4s}}
+                },
+                {
                     name: '16/17',
                     xAxisIndex: 1,
                     yAxisIndex:1,
@@ -552,7 +604,17 @@
                     connectNulls:true,
                     smooth:true,
                     // barWidth:'35%',
-                },{
+                },
+                {
+                    name: '19/20',
+                    xAxisIndex: 1,
+                    yAxisIndex:1,
+                    type: 'line',
+                    connectNulls:true,
+                    smooth:true,
+                    // barWidth:'35%',
+                },
+                {
                     name: '16/17',
                     xAxisIndex: 2,
                     yAxisIndex:2,
@@ -576,7 +638,17 @@
                     connectNulls:true,
                     smooth:true,
                     // barWidth:'35%',
-                },{
+                },
+                {
+                    name: '19/20',
+                    xAxisIndex: 2,
+                    yAxisIndex:2,
+                    type: 'line',
+                    connectNulls:true,
+                    smooth:true,
+                    // barWidth:'35%',
+                },
+                {
                     name: '16/17',
                     xAxisIndex: 3,
                     yAxisIndex:3,
@@ -594,6 +666,14 @@
                     // barWidth:'35%',
                 },{
                     name: '18/19',
+                    xAxisIndex: 3,
+                    yAxisIndex:3,
+                    type: 'line',
+                    connectNulls:true,
+                    smooth:true,
+                    // barWidth:'35%',
+                },{
+                    name: '19/20',
                     xAxisIndex: 3,
                     yAxisIndex:3,
                     type: 'line',
@@ -655,19 +735,19 @@
                 {x2: '5%', y2: '5%', width: '40%', height: '38%'}
             ],
             legend: [{
-                data:['16/17', '17/18', '18/19'],
+                data:['16/17', '17/18', '18/19', '19/20'],
                 x:'15%',
                 y:25,
             },{
-                data:['16/17', '17/18', '18/19'],
+                data:['16/17', '17/18', '18/19', '19/20'],
                 x:'65%',
                 y:25
             },{
-                data:['16/17', '17/18', '18/19'],
+                data:['16/17', '17/18', '18/19', '19/20'],
                 x:'15%',
                 y:'53%',
             },{
-                data:['16/17', '17/18', '18/19'],
+                data:['16/17', '17/18', '18/19', '19/20'],
                 x:'65%',
                 y:'53%',
             }],
@@ -777,7 +857,7 @@
             //     }
             // ],
             dataset:{
-                dimensions: ['date', 'gatherBBW_2016_2017', 'gatherBBW_2017_2018', 'gatherBBW_2018_2019', 'outBBW_2016_2017', 'outBBW_2017_2018', 'outBBW_2018_2019', 'gatherZZ_2016_2017', 'gatherZZ_2017_2018', 'gatherZZ_2018_2019', 'outZZ_2016_2017', 'outZZ_2017_2018', 'outZZ_2018_2019'],
+                dimensions: ['date', 'gatherBBW_2016_2017', 'gatherBBW_2017_2018', 'gatherBBW_2018_2019', 'gatherBBW_2019_2020', 'outBBW_2016_2017', 'outBBW_2017_2018', 'outBBW_2018_2019', 'outBBW_2019_2020', 'gatherZZ_2016_2017', 'gatherZZ_2017_2018', 'gatherZZ_2018_2019', 'gatherZZ_2019_2020', 'outZZ_2016_2017', 'outZZ_2017_2018', 'outZZ_2018_2019', 'outZZ_2019_2020'],
                 source: myl2
             },
             series: [
@@ -823,7 +903,19 @@
                     // barWidth:'35%',
                     // itemStyle: {normal: {lineStyle: {width: 3}}},
                     // data: {{l4s}}
-                },{
+                },
+                {
+                    name: '19/20',
+                    xAxisIndex: 0,
+                    yAxisIndex:0,
+                    type: 'line',
+                    connectNulls:true,
+                    smooth:true,
+                    // barWidth:'35%',
+                    // itemStyle: {normal: {lineStyle: {width: 3}}},
+                    // data: {{l4s}}
+                },
+                {
                     name: '16/17',
                     xAxisIndex: 1,
                     yAxisIndex:1,
@@ -847,7 +939,17 @@
                     connectNulls:true,
                     smooth:true,
                     // barWidth:'35%',
-                },{
+                },
+                {
+                    name: '19/20',
+                    xAxisIndex: 1,
+                    yAxisIndex:1,
+                    type: 'line',
+                    connectNulls:true,
+                    smooth:true,
+                    // barWidth:'35%',
+                },
+                {
                     name: '16/17',
                     xAxisIndex: 2,
                     yAxisIndex:2,
@@ -871,7 +973,17 @@
                     connectNulls:true,
                     smooth:true,
                     // barWidth:'35%',
-                },{
+                },
+                {
+                    name: '19/20',
+                    xAxisIndex: 2,
+                    yAxisIndex:2,
+                    type: 'line',
+                    connectNulls:true,
+                    smooth:true,
+                    // barWidth:'35%',
+                },
+                {
                     name: '16/17',
                     xAxisIndex: 3,
                     yAxisIndex:3,
@@ -889,6 +1001,14 @@
                     // barWidth:'35%',
                 },{
                     name: '18/19',
+                    xAxisIndex: 3,
+                    yAxisIndex:3,
+                    type: 'line',
+                    connectNulls:true,
+                    smooth:true,
+                    // barWidth:'35%',
+                },{
+                    name: '19/20',
                     xAxisIndex: 3,
                     yAxisIndex:3,
                     type: 'line',
@@ -950,19 +1070,19 @@
                 {x2: '5%', y2: '5%', width: '40%', height: '38%'}
             ],
             legend: [{
-                data:['16/17', '17/18', '18/19'],
+                data:['16/17', '17/18', '18/19', '19/20'],
                 x:'15%',
                 y:25,
             },{
-                data:['16/17', '17/18', '18/19'],
+                data:['16/17', '17/18', '18/19', '19/20'],
                 x:'65%',
                 y:25
             },{
-                data:['16/17', '17/18', '18/19'],
+                data:['16/17', '17/18', '18/19', '19/20'],
                 x:'15%',
                 y:'53%',
             },{
-                data:['16/17', '17/18', '18/19'],
+                data:['16/17', '17/18', '18/19', '19/20'],
                 x:'65%',
                 y:'53%',
             }],
@@ -1072,7 +1192,7 @@
             //     }
             // ],
             dataset:{
-                dimensions: ['date', 'gatherBBW_2016_2017', 'gatherBBW_2017_2018', 'gatherBBW_2018_2019', 'outBBW_2016_2017', 'outBBW_2017_2018', 'outBBW_2018_2019', 'gatherZZ_2016_2017', 'gatherZZ_2017_2018', 'gatherZZ_2018_2019', 'outZZ_2016_2017', 'outZZ_2017_2018', 'outZZ_2018_2019'],
+                dimensions: ['date', 'gatherBBW_2016_2017', 'gatherBBW_2017_2018', 'gatherBBW_2018_2019', 'gatherBBW_2019_2020', 'outBBW_2016_2017', 'outBBW_2017_2018', 'outBBW_2018_2019', 'outBBW_2019_2020', 'gatherZZ_2016_2017', 'gatherZZ_2017_2018', 'gatherZZ_2018_2019', 'gatherZZ_2019_2020', 'outZZ_2016_2017', 'outZZ_2017_2018', 'outZZ_2018_2019', 'outZZ_2019_2020'],
                 source: myl6
             },
             series: [
@@ -1118,7 +1238,19 @@
                     // barWidth:'35%',
                     // itemStyle: {normal: {lineStyle: {width: 3}}},
                     // data: {{l4s}}
-                },{
+                },
+                {
+                    name: '19/20',
+                    xAxisIndex: 0,
+                    yAxisIndex:0,
+                    type: 'line',
+                    connectNulls:true,
+                    smooth:true,
+                    // barWidth:'35%',
+                    // itemStyle: {normal: {lineStyle: {width: 3}}},
+                    // data: {{l4s}}
+                },
+                {
                     name: '16/17',
                     xAxisIndex: 1,
                     yAxisIndex:1,
@@ -1142,7 +1274,17 @@
                     connectNulls:true,
                     smooth:true,
                     // barWidth:'35%',
-                },{
+                },
+                {
+                    name: '19/20',
+                    xAxisIndex: 1,
+                    yAxisIndex:1,
+                    type: 'line',
+                    connectNulls:true,
+                    smooth:true,
+                    // barWidth:'35%',
+                },
+                {
                     name: '16/17',
                     xAxisIndex: 2,
                     yAxisIndex:2,
@@ -1166,7 +1308,17 @@
                     connectNulls:true,
                     smooth:true,
                     // barWidth:'35%',
-                },{
+                },
+                {
+                    name: '19/20',
+                    xAxisIndex: 2,
+                    yAxisIndex:2,
+                    type: 'line',
+                    connectNulls:true,
+                    smooth:true,
+                    // barWidth:'35%',
+                },
+                {
                     name: '16/17',
                     xAxisIndex: 3,
                     yAxisIndex:3,
@@ -1184,6 +1336,14 @@
                     // barWidth:'35%',
                 },{
                     name: '18/19',
+                    xAxisIndex: 3,
+                    yAxisIndex:3,
+                    type: 'line',
+                    connectNulls:true,
+                    smooth:true,
+                    // barWidth:'35%',
+                },{
+                    name: '19/20',
                     xAxisIndex: 3,
                     yAxisIndex:3,
                     type: 'line',

@@ -31,7 +31,7 @@
         //     
         // },
         legend: {
-            data:['09/10', '10/11', '11/12', '12/13', '13/14', '14/15', '15/16', '16/17', '17/18', '18/19', ],
+            data:['09/10', '10/11', '11/12', '12/13', '13/14', '14/15', '15/16', '16/17', '17/18', '18/19', '19/20'],
             y:30
         },
         xAxis: {
@@ -75,7 +75,7 @@
         //     }
         // ],
         dataset:{
-            dimensions: ['date', '09/10', '10/11', '11/12', '12/13', '13/14', '14/15', '15/16', '16/17', '17/18', '18/19'],
+            dimensions: ['date', '09/10', '10/11', '11/12', '12/13', '13/14', '14/15', '15/16', '16/17', '17/18', '18/19', '19/20'],
             source: priceseasonal_l
         },
         series: [
@@ -126,7 +126,6 @@
                 type: 'line',
                 connectNulls:true,
                 smooth:true,
-                itemStyle: {normal: {lineStyle: {width: 4}}},
             },
             {
                 name: '17/18',
@@ -140,6 +139,14 @@
                 type: 'line',
                 connectNulls:true,
                 smooth:true,
+                itemStyle: {normal: {lineStyle: {width: 5}}},
+            },
+            {
+                name: '19/20',
+                type: 'line',
+                connectNulls:true,
+                smooth:true,
+                symbol:'triangle',
                 itemStyle: {normal: {lineStyle: {width: 5}}},
             },
         ]

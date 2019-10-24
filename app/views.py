@@ -810,15 +810,19 @@ def gatherandout():
         d5['gatherN_2016_2017'] = gatherN_df.loc[date,'2016/2017']
         d5['gatherN_2017_2018'] = gatherN_df.loc[date,'2017/2018']
         d5['gatherN_2018_2019'] = gatherN_df.loc[date,'2018/2019']
+        d5['gatherN_2019_2020'] = gatherN_df.loc[date,'2019/2020']
         d5['gatherS_2016_2017'] = gatherS_df.loc[date,'2016/2017']
         d5['gatherS_2017_2018'] = gatherS_df.loc[date,'2017/2018']
         d5['gatherS_2018_2019'] = gatherS_df.loc[date,'2018/2019']
+        d5['gatherS_2019_2020'] = gatherS_df.loc[date,'2019/2020']
         d5['outN_2016_2017'] = outN_df.loc[date,'2016/2017']
         d5['outN_2017_2018'] = outN_df.loc[date,'2017/2018']
         d5['outN_2018_2019'] = outN_df.loc[date,'2018/2019']
+        d5['outN_2019_2020'] = outN_df.loc[date,'2019/2020']
         d5['outS_2016_2017'] = outS_df.loc[date,'2016/2017']
         d5['outS_2017_2018'] = outS_df.loc[date,'2017/2018']
         d5['outS_2018_2019'] = outS_df.loc[date,'2018/2019']
+        d5['outS_2019_2020'] = outS_df.loc[date,'2019/2020']
         l5.append(d5)
     l1 = []
     for date in gatherNcumsum_df.index:
@@ -827,15 +831,19 @@ def gatherandout():
         d1['gatherN_2016_2017'] = gatherNcumsum_df.loc[date,'2016/2017']
         d1['gatherN_2017_2018'] = gatherNcumsum_df.loc[date,'2017/2018']
         d1['gatherN_2018_2019'] = gatherNcumsum_df.loc[date,'2018/2019']
+        d1['gatherN_2019_2020'] = gatherNcumsum_df.loc[date,'2019/2020']
         d1['gatherS_2016_2017'] = gatherScumsum_df.loc[date,'2016/2017']
         d1['gatherS_2017_2018'] = gatherScumsum_df.loc[date,'2017/2018']
         d1['gatherS_2018_2019'] = gatherScumsum_df.loc[date,'2018/2019']
+        d1['gatherS_2019_2020'] = gatherScumsum_df.loc[date,'2019/2020']
         d1['outN_2016_2017'] = outNcumsum_df.loc[date,'2016/2017']
         d1['outN_2017_2018'] = outNcumsum_df.loc[date,'2017/2018']
         d1['outN_2018_2019'] = outNcumsum_df.loc[date,'2018/2019']
+        d1['outN_2019_2020'] = outNcumsum_df.loc[date,'2019/2020']
         d1['outS_2016_2017'] = outScumsum_df.loc[date,'2016/2017']
         d1['outS_2017_2018'] = outScumsum_df.loc[date,'2017/2018']
         d1['outS_2018_2019'] = outScumsum_df.loc[date,'2018/2019']
+        d1['outS_2019_2020'] = outScumsum_df.loc[date,'2019/2020']
         l1.append(d1)
 
     gatherBBW_df = pd.read_excel(app.config['EXCEL_WEBDATA'], sheet_name='gatherBBW_year', index_col=0)
@@ -865,15 +873,19 @@ def gatherandout():
         d6['gatherBBW_2016_2017'] = gatherBBW_df.loc[date,'2016/2017']
         d6['gatherBBW_2017_2018'] = gatherBBW_df.loc[date,'2017/2018']
         d6['gatherBBW_2018_2019'] = gatherBBW_df.loc[date,'2018/2019']
+        d6['gatherBBW_2019_2020'] = gatherBBW_df.loc[date,'2019/2020']
         d6['gatherZZ_2016_2017'] = gatherZZ_df.loc[date,'2016/2017']
         d6['gatherZZ_2017_2018'] = gatherZZ_df.loc[date,'2017/2018']
         d6['gatherZZ_2018_2019'] = gatherZZ_df.loc[date,'2018/2019']
+        d6['gatherZZ_2019_2020'] = gatherZZ_df.loc[date,'2019/2020']
         d6['outBBW_2016_2017'] = outBBW_df.loc[date,'2016/2017']
         d6['outBBW_2017_2018'] = outBBW_df.loc[date,'2017/2018']
         d6['outBBW_2018_2019'] = outBBW_df.loc[date,'2018/2019']
+        d6['outBBW_2019_2020'] = outBBW_df.loc[date,'2019/2020']
         d6['outZZ_2016_2017'] = outZZ_df.loc[date,'2016/2017']
         d6['outZZ_2017_2018'] = outZZ_df.loc[date,'2017/2018']
         d6['outZZ_2018_2019'] = outZZ_df.loc[date,'2018/2019']
+        d6['outZZ_2019_2020'] = outZZ_df.loc[date,'2019/2020']
         l6.append(d6)
     l2 = []
     for date in gatherBBW_df.index:
@@ -882,15 +894,19 @@ def gatherandout():
         # d2['gatherBBW_2016_2017'] = gatherBBWcumsum_df.loc[date,'2016/2017']
         # d2['gatherBBW_2017_2018'] = gatherBBWcumsum_df.loc[date,'2017/2018']
         d2['gatherBBW_2018_2019'] = gatherBBWcumsum_df.loc[date,'2018/2019']
+        d2['gatherBBW_2019_2020'] = gatherBBWcumsum_df.loc[date,'2019/2020']
         # d2['gatherZZ_2016_2017'] = gatherZZcumsum_df.loc[date,'2016/2017']
         d2['gatherZZ_2017_2018'] = gatherZZcumsum_df.loc[date,'2017/2018']
         d2['gatherZZ_2018_2019'] = gatherZZcumsum_df.loc[date,'2018/2019']
+        d2['gatherZZ_2019_2020'] = gatherZZcumsum_df.loc[date,'2019/2020']
         # d2['outBBW_2016_2017'] = outBBWcumsum_df.loc[date,'2016/2017']
         # d2['outBBW_2017_2018'] = outBBWcumsum_df.loc[date,'2017/2018']
         d2['outBBW_2018_2019'] = outBBWcumsum_df.loc[date,'2018/2019']
+        d2['outBBW_2019_2020'] = outBBWcumsum_df.loc[date,'2019/2020']
         # d2['outZZ_2016_2017'] = outZZcumsum_df.loc[date,'2016/2017']
         d2['outZZ_2017_2018'] = outZZcumsum_df.loc[date,'2017/2018']
         d2['outZZ_2018_2019'] = outZZcumsum_df.loc[date,'2018/2019']
+        d2['outZZ_2019_2020'] = outZZcumsum_df.loc[date,'2019/2020']
         l2.append(d2)
 
     return render_template("gatherandout.html",l1=l1, l2=l2, l5=l5, l6=l6)
@@ -913,24 +929,28 @@ def importandexport():
         d1['2016corn'] = import_df.loc[month,'2016corn']
         d1['2017corn'] = import_df.loc[month,'2017corn']
         d1['2018corn'] = import_df.loc[month,'2018corn']
+        d1['2019corn'] = import_df.loc[month,'2019corn']
 
         d1['2014barley'] = import_df.loc[month,'2014barley']
         d1['2015barley'] = import_df.loc[month,'2015barley']
         d1['2016barley'] = import_df.loc[month,'2016barley']
         d1['2017barley'] = import_df.loc[month,'2017barley']
         d1['2018barley'] = import_df.loc[month,'2018barley']
+        d1['2019barley'] = import_df.loc[month,'2019barley']
 
         d1['2014sorghum'] = import_df.loc[month,'2014sorghum']
         d1['2015sorghum'] = import_df.loc[month,'2015sorghum']
         d1['2016sorghum'] = import_df.loc[month,'2016sorghum']
         d1['2017sorghum'] = import_df.loc[month,'2017sorghum']
         d1['2018sorghum'] = import_df.loc[month,'2018sorghum']
+        d1['2019sorghum'] = import_df.loc[month,'2019sorghum']
 
         d1['2014cassava'] = import_df.loc[month,'2014cassava']
         d1['2015cassava'] = import_df.loc[month,'2015cassava']
         d1['2016cassava'] = import_df.loc[month,'2016cassava']
         d1['2017cassava'] = import_df.loc[month,'2017cassava']
         d1['2018cassava'] = import_df.loc[month,'2018cassava']
+        d1['2019cassava'] = import_df.loc[month,'2019cassava']
         l1.append(d1)
     # print(l1)
     return render_template("importandexport.html",l1=l1, title="玉米及替代品进口")
@@ -1036,6 +1056,7 @@ def priceseasonal():
         d1['16/17'] = priceseasonal_df.loc[date,"2016/2017"]
         d1['17/18'] = priceseasonal_df.loc[date,"2017/2018"]
         d1['18/19'] = priceseasonal_df.loc[date,"2018/2019"]
+        d1['19/20'] = priceseasonal_df.loc[date,"2019/2020"]
         priceseasonal_l.append(d1)
 
     return render_template("priceseasonal.html", priceseasonal_l=priceseasonal_l)

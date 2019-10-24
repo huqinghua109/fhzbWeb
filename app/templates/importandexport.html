@@ -21,7 +21,7 @@
                 // '2014barley', '2015barley', '2016barley', '2017barley', '2018barley',
                 // '2014sorghum', '2015sorghum', '2016sorghum', '2017sorghum', '2018sorghum',
                 // '2014cassava', '2015cassava', '2016cassava', '2017cassava', '2018cassava'],
-                date:["corn", "barley", "sorghum", "cassava", "18/19corn", "18/19barley", "18/19sorghum", "18/19cassava"],
+                date:["corn", "barley", "sorghum", "cassava", "19/20corn", "19/20barley", "19/20sorghum", "19/20cassava"],
                 y:30
             },
             xAxis: {
@@ -35,10 +35,10 @@
                 }
             },
             dataset:{
-                dimensions: ['month', '2014corn', '2015corn', '2016corn', '2017corn', '2018corn',
-                '2014barley', '2015barley', '2016barley', '2017barley', '2018barley',
-                '2014sorghum', '2015sorghum', '2016sorghum', '2017sorghum', '2018sorghum',
-                '2014cassava', '2015cassava', '2016cassava', '2017cassava', '2018cassava'],
+                dimensions: ['month', '2014corn', '2015corn', '2016corn', '2017corn', '2018corn', '2019corn',
+                '2014barley', '2015barley', '2016barley', '2017barley', '2018barley', '2019barley',
+                '2014sorghum', '2015sorghum', '2016sorghum', '2017sorghum', '2018sorghum', '2019sorghum',
+                '2014cassava', '2015cassava', '2016cassava', '2017cassava', '2018cassava', '2019cassava'],
                 source: my_l1,
             },
             series: [
@@ -63,9 +63,14 @@
                     stack: '17/18',
                 },
                 {
-                    name: '18/19corn',
+                    name: 'corn',
                     type: 'bar',
                     stack: '18/19',
+                },
+                {
+                    name: '19/20corn',
+                    type: 'bar',
+                    stack: '19/20',
                 },
                 {
                     name: 'barley',
@@ -88,9 +93,14 @@
                     stack: '17/18',
                 },
                 {
-                    name: '18/19barley',
+                    name: 'barley',
                     type: 'bar',
                     stack: '18/19',
+                },
+                {
+                    name: '19/20barley',
+                    type: 'bar',
+                    stack: '19/20',
                 },
                 {
                     name: 'sorghum',
@@ -113,9 +123,14 @@
                     stack: '17/18',
                 },
                 {
-                    name: '18/19sorghum',
+                    name: 'sorghum',
                     type: 'bar',
                     stack: '18/19',
+                },
+                {
+                    name: '19/20sorghum',
+                    type: 'bar',
+                    stack: '19/20',
                 },
                 {
                     name: 'cassava',
@@ -138,9 +153,14 @@
                     stack: '17/18',
                 },
                 {
-                    name: '18/19cassava',
+                    name: 'cassava',
                     type: 'bar',
                     stack: '18/19',
+                },
+                {
+                    name: '19/20cassava',
+                    type: 'bar',
+                    stack: '19/20',
                 },
             ]
         };

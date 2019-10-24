@@ -209,7 +209,7 @@
             //     
             // },
             legend: {
-                data:['2019', '2018', '2017', '2016', '2015'],
+                data:['2020', '2019', '2018', '2017', '2016', '2015'],
                 y:30
             },
             xAxis: {
@@ -247,12 +247,12 @@
             //     }
             // ],
             dataset:{
-                dimensions: ['date', '2019basis5', '2018basis5', '2017basis5', '2016basis5', '2015basis5'],
+                dimensions: ['date', '2020basis5', '2019basis5', '2018basis5', '2017basis5', '2016basis5', '2015basis5'],
                 source: my_corn_year_basis5_l
             },
             series: [
                 {
-                    name: '2019',
+                    name: '2020',
                     type: 'line',
                     // color:'black',
                     // symbol:'none',
@@ -261,6 +261,12 @@
                         width:4,
                         type:"solid"
                     },
+                    connectNulls:true,
+                    // data: {{l4}}
+                },
+                {
+                    name: '2019',
+                    type: 'line',
                     connectNulls:true,
                     // data: {{l4}}
                 },
@@ -324,7 +330,7 @@
             //     
             // },
             legend: {
-                data:['2019', '2018', '2017', '2016', '2015'],
+                data:['2020', '2019', '2018', '2017', '2016', '2015'],
                 y:30
             },
             xAxis: {
@@ -362,12 +368,12 @@
             //     }
             // ],
             dataset:{
-                dimensions: ['date', '2019basis9', '2018basis9', '2017basis9', '2016basis9', '2015basis9'],
+                dimensions: ['date', '2020basis9', '2019basis9', '2018basis9', '2017basis9', '2016basis9', '2015basis9'],
                 source: my_corn_year_basis9_l
             },
             series: [
                 {
-                    name: '2019',
+                    name: '2020',
                     type: 'line',
                     // color:'black',
                     // symbol:'none',
@@ -376,6 +382,12 @@
                         width:4,
                         type:"solid",
                     },
+                    connectNulls:true,
+                    // data: {{l4}}
+                },
+                {
+                    name: '2019',
+                    type: 'line',
                     connectNulls:true,
                     // data: {{l4}}
                 },
