@@ -1156,13 +1156,13 @@ def shouliangjindu():
     for i in salerate_df.index:
         d1 = OrderedDict()
         d1['date'] = i
-        d1['hlg_5ave'] = salerate_df.loc[i,49]
-        d1['jl_5ave'] = salerate_df.loc[i,50]
-        d1['ln_5ave'] = salerate_df.loc[i,51]
-        d1['nm_5ave'] = salerate_df.loc[i,52]
-        d1['hb_5ave'] = salerate_df.loc[i,53]
-        d1['sd_5ave'] = salerate_df.loc[i,54]
-        d1['hn_5ave'] = salerate_df.loc[i,55]
+        d1['hlg_5ave'] = salerate_df.loc[i,57]
+        d1['jl_5ave'] = salerate_df.loc[i,58]
+        d1['ln_5ave'] = salerate_df.loc[i,59]
+        d1['nm_5ave'] = salerate_df.loc[i,60]
+        d1['hb_5ave'] = salerate_df.loc[i,61]
+        d1['sd_5ave'] = salerate_df.loc[i,62]
+        d1['hn_5ave'] = salerate_df.loc[i,63]
 
         d1['hlg_1314'] = salerate_df.loc[i,2]
         d1['jl_1314'] = salerate_df.loc[i,3]
@@ -1211,6 +1211,14 @@ def shouliangjindu():
         d1['hb_1819'] = salerate_df.loc[i,46]
         d1['sd_1819'] = salerate_df.loc[i,47]
         d1['hn_1819'] = salerate_df.loc[i,48]
+
+        d1['hlg_1920'] = salerate_df.loc[i,50]
+        d1['jl_1920'] = salerate_df.loc[i,51]
+        d1['ln_1920'] = salerate_df.loc[i,52]
+        d1['nm_1920'] = salerate_df.loc[i,53]
+        d1['hb_1920'] = salerate_df.loc[i,54]
+        d1['sd_1920'] = salerate_df.loc[i,55]
+        d1['hn_1920'] = salerate_df.loc[i,56]
         l1.append(d1)
 
     return render_template("shouliangjindu.html", l1=l1)
